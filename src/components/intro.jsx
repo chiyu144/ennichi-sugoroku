@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-
 import '../css/style.css';
 
 import Rule from './rule';
@@ -18,7 +17,6 @@ class Intro extends Component {
           <ul>
             <li><NavLink to='/game'>一人遊玩</NavLink></li>
             <li><Rule /></li>
-            {/* <li><NavLink to='/rule'>遊戲說明</NavLink></li> */}
           </ul>
         </div>
       );

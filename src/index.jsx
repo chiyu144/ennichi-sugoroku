@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {  };
   }
   render () {
+    console.log('public url: ', process.env.PUBLIC_URL);
     return (
       <NavBar />
     )

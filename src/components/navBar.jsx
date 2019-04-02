@@ -13,7 +13,7 @@ class NavBar extends Component {
   }
   render () {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL + '/'}>
         <div>
           <NavLink to='/'>Home（放個Logo）</NavLink>
           <Route exact path='/' render={ () => <Intro /> } />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
 
-import './css/style.css';
+import '../css/style.css';
 
 class Rule extends Component {
     constructor(props) {

@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+
 import './css/style.css';
 
+import NavBar from './components/navBar';
+
 class App extends Component {
+  constructor(props) {
+    super(props); 
+    this.state = {  };
+  }
   render () {
-    return <p> Hello React!</p>;
+    return (
+      <NavBar />
+    )
   }
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector('#root'));

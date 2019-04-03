@@ -1,0 +1,13 @@
+.chess {
+    position: relative;
+    width: 20px; height: 50px;
+}
+
+.chess > p {
+    position: absolute;
+}
+
+.chess > img {
+    width: 100%; height: 100%;
+    background-color: orange;
+}

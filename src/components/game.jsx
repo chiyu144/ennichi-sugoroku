@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 // import './css/style.css';
 
-import dataMap from '../data/dataMap';
+import Map from './map';
 
 const Game = () => {
-  console.log(dataMap);
   return(
     <div>
       <p>Game Start (Game)</p>
+      <Map />
     </div>
   )
 }

@@ -1,5 +1,5 @@
-const dataMap = {
-    "cell": [
+const initialState = {
+    cell: [
         { index: 0 },{ index: 1 },{ index: 2 },
         { index: 3 },{ index: 4 },{ index: 5 },
         { index: 6 },{ index: 7 },{ index: 8 },
@@ -23,5 +23,19 @@ const dataMap = {
         { index: 60 },{ index: 61 }
     ]
 }
+  
+const cellReducer = (state = initialState, action) => {
+    switch (action.type) {
+        // case 'ADD_CELL':
+        //     新しく追加するTODO
+        //     const cell = action.payload.cell;
+        //     stateを複製して追加
+        //     const newState = Object.assign({}, state);
+        //     newState.cell.push(cell);
+        //     return newState;
+        default:
+            return state;
+    }
+};
 
-export default dataMap;
+export default cellReducer;

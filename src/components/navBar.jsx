@@ -6,22 +6,16 @@ import '../css/style.css';
 import Intro from './intro';
 import Game from './game';
 
-class NavBar extends Component {
-  constructor(props) {
-    super(props); 
-    this.state = {  };
-  }
-  render () {
-    return (
-      <BrowserRouter basename={'/Ennichi-Sugoroku'}>
-        <div>
-          <NavLink to='/'>Home（放個Logo）</NavLink>
-          <Route exact path='/' render={ () => <Intro /> } />
-          <Route path='/game' render={ () => <Game /> } />
-        </div>
-      </BrowserRouter>
-    )
-  }
+const NavBar = () => {
+  return (
+    <BrowserRouter basename={'/Ennichi-Sugoroku'}>
+      <div>
+        <NavLink to='/'>Home（放個Logo）</NavLink>
+        <Route exact path='/' render={ () => <Intro /> } />
+        <Route path='/game' render={ () => <Game /> } />
+      </div>
+    </BrowserRouter>
+  )
 }
 
 export default NavBar;

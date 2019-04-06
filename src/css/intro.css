@@ -1,42 +1,38 @@
 #intro {
-    width: 100%; max-width: 100%; height: 100%;
+    width: 100%; max-width: 100%; height: calc(100vh - 50px);
     margin-top: 50px;
-}
-
-.circle {
+    background-color:#e5e4de;
     position: relative;
-    top: 0;
-    width: 100%; height: 100vh;
     overflow: hidden;
 }
 
-.circle > p {
+.circle {
     position: absolute;
-    top: 20px; left: 0; right: 0;
-    margin: 0 auto;
-    width: 100%; max-width: 93%;
+    top: -2%; left: 50%;
+    transform: translate( -50%, 2% );
+    width: 1224px;
+    margin: 10px auto;
 }
 
-.circle > p > img {
+.circle > img {
     width: 100%;
 }
 
 #introContent {
-    position: absolute;
-    top: 50px; left: 0; right: 0;
-    padding-top: 13px;
+    position: relative;
+    padding: 3% 0 0;
     margin: auto 0;
 }
 
 @media screen and (max-width: 600px) {
     #introContent {
-        padding: 13px 6% 0;
+        padding: 4% 6% 0;
     }
 } 
 
 #introLogo {
     width: 100%; max-width: 460.99px;
-    margin: 15px auto 0;
+    margin: 10px auto 0;
 }
 
 #introLogo > img {
@@ -47,7 +43,7 @@
 #introSelect {
     display: flex;
     width: 50%;
-    flex-flow: row wrap;
+    flex-flow: row;
     align-items: center;
     justify-content: space-around;
     margin: 40px auto 30px;

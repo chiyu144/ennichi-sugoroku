@@ -14,24 +14,10 @@ import Rule from './rule';
 const Intro = () => {
   return (
         <div id='intro'>
-          <Spring
-            from={{
-              transform: 'translateY(350px)',
-            }}
-            to={{
-              transform: 'translateY(0)'
-            }}>
-            { ({ transform }) =>
-              <p style={{ transform }} className='leaf'>
-                <img src={ leaf } />
-              </p>
-            }
-          </Spring>
-          <p className='circle'>
+          <div className='circle'>
             <img src={ circle } />
-          </p>
-          <Spring 
-            delay={ 300 }
+          </div>
+          <Spring
             from={{
               opacity: 0,
               top: '350px'

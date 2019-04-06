@@ -1,5 +1,6 @@
 #intro {
-    width: 100%; max-width: 100%; min-height: 100%;
+    flex: 1;
+    width: 100%; max-width: 100%;
     margin-top: 50px;
     background-color:#e5e4de;
     position: relative;
@@ -43,11 +44,10 @@
 #introSelect {
     display: flex;
     width: 50%;
-    flex-flow: row wrap;
+    flex-flow: row;
     align-items: center;
     justify-content: space-around;
     margin: 40px auto 30px;
-    padding-bottom: 244px;
 }
 
 #introSelect > li {
@@ -57,6 +57,10 @@
 }
 
 @media screen and (max-width: 900px) {
+    #introLogo {
+        margin: 15px auto 0;
+    }
+
     #introSelect {
         flex-flow: column;
         margin: 18px auto;

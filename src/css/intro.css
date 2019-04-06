@@ -43,6 +43,7 @@
 
 #introSelect {
     display: flex;
+    position: relative;
     width: 50%;
     flex-flow: row;
     align-items: center;

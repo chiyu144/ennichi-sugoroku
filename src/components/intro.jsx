@@ -15,7 +15,9 @@ const Intro = () => {
   return (
         <div id='intro'>
           <div className='circle'>
-            <img src={ circle } />
+            <p>
+              <img src={ circle } />
+            </p>
           </div>
           <Spring
             from={{

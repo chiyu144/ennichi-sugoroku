@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import '../css/style.css';
 import '../css/cell.css';
 
-const Cell = (props) => {
+const Cell = ( {cell} ) => {
   return(
-    props.cell.cell.map((c, i) => {
-      return <div key={i} className='cell'>{c.index}</div>
+    cell.map((cell, i) => {
+      return <div key={i} className='cell'>{cell.index}</div>
     })
   )
 }

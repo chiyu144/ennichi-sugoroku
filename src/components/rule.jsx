@@ -5,7 +5,7 @@ import '../css/style.css';
 
 const Rule = () => {
   return (
-    <Popup trigger={<button className="button"> 遊戲說明 </button>} modal>
+    <Popup trigger={<button className="introBtn"> 遊戲說明 </button>} modal>
       {close => (
         <div className="modal">
           <a className="close" onClick={close}>

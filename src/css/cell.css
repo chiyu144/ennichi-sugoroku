@@ -3,5 +3,6 @@
     text-align: center;
     line-height: 100px;
     border: 1px solid teal;
+    border-radius: 50%;
     background-color: aquamarine;
 }

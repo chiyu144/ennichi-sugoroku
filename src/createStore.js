@@ -2,11 +2,15 @@ import { createStore as reduxCreateStore, applyMiddleware, combineReducers } fro
 import logger from "redux-logger";
 
 import cellReducer from './reducers/cell';
+import chessReducer from "./reducers/chess";
+import characterReducer from "./reducers/character";
 
 const createStore = () => {
     const store = reduxCreateStore(
         combineReducers({
             cell: cellReducer,
+            chess: chessReducer,
+            character: characterReducer
         }),
         applyMiddleware(
             logger,

@@ -1,7 +1,67 @@
 * {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    outline: none;
     box-sizing: border-box;
+    background-repeat: no-repeat;
+    font-family: "Meiryo", "Microsoft Jhenghei", sans-serif;
 }
 
-body {
-    font-family: "Meiryo", "Microsoft Jhenghei", sans-serif;
+html, body, #root {
+    height:100%;
+}
+
+#root {
+    background-color: #e5e4de;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+button {
+    outline: none;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%; height: 50px;
+    background-color: white;
+    z-index: 999;
+}
+
+.navItem {
+    display: inline-flex;
+    flex: 0 0 105px;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    margin-left: 20px;
+    transition: filter .2s ease;
+}
+
+.navItem:hover {
+    filter: brightness(0.5) sepia(1) hue-rotate(-65deg) saturate(4);
+}
+
+.navItem > a {
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    text-decoration: none;
+    z-index: 6;
+    /* 下面三項是為了讓 IE 也點得到 */
+    background-color: #FFF; 
+    opacity: 0;
+    filter: alpha(opacity = 1);
+}
+
+.navItem > img {
+    width: 100%;
 }

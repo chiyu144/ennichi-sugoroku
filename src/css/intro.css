@@ -54,7 +54,7 @@
 
 #introLogo {
     width: 100%; max-width: 460.99px;
-    margin: 20px auto 0;
+    margin: 40px auto 0;
 }
 
 #introLogo > img {
@@ -69,7 +69,7 @@
     flex-flow: row;
     align-items: center;
     justify-content: space-around;
-    margin: 30px auto;
+    margin: 50px auto;
     z-index: 4;
 }
 

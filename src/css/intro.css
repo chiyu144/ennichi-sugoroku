@@ -1,5 +1,5 @@
 #intro {
-    width: 100%; max-width: 100%; height: calc(100vh - 50px);
+    width: 100%; max-width: 100%; min-height: 100%;
     margin-top: 50px;
     background-color:#e5e4de;
     position: relative;
@@ -43,10 +43,11 @@
 #introSelect {
     display: flex;
     width: 50%;
-    flex-flow: row;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: space-around;
     margin: 40px auto 30px;
+    padding-bottom: 244px;
 }
 
 #introSelect > li {

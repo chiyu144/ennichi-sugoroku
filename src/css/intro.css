@@ -15,7 +15,15 @@
     margin: 10px auto;
 }
 
-.circle > img {
+.hanabi {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translate( -50%, 0 );
+    width: 1920px;
+    margin: 0 auto;
+}
+
+.circle > img, .hanabi > img {
     width: 100%;
 }
 

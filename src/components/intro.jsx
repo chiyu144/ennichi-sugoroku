@@ -6,7 +6,7 @@ import '../css/intro.css';
 
 import logo from '../img/logo.png';
 import circle from '../img/circle.png';
-// import leaf from '../img/leaf.png';
+import hanabi from '../img/hanabi.png';
 
 import Character from '../containers/character';
 import Rule from './rule';
@@ -18,6 +18,21 @@ const Intro = () => {
             <img src={ circle } />
           </div>
           <Spring
+            from={{
+              top: '200px' 
+            }}
+            to={{
+              top: '0'
+            }}
+          >
+          { ({ top }) =>
+            <div style={{ top }} className='hanabi'>
+              <img src={ hanabi } />
+            </div>
+          }
+          </Spring>
+          <Spring
+            delay={ 300 }
             from={{
               opacity: 0,
               top: '350px'

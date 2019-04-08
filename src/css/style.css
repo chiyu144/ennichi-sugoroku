@@ -4,12 +4,13 @@
     font: inherit;
     outline: none;
     box-sizing: border-box;
-    background-repeat: no-repeat;
-    font-family: "Meiryo", "Microsoft Jhenghei", sans-serif;
 }
 
 body {
+    color: #313131;
     background-color: #fff;
+    background-repeat: no-repeat;
+    font-family: "Meiryo", "Microsoft Jhenghei", sans-serif;
 }
 
 #root {

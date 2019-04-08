@@ -19,7 +19,6 @@ const NavBar = () => {
       </nav>
         <Route exact path='/' render={ () => <Intro /> } />
         <Route path='/game' render={ () => <Game /> } />
-      {/* <footer>11111111111111</footer> */}
     </HashRouter>
   )
 }

@@ -1,0 +1,102 @@
+@keyframes popupIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#rule {
+    display: inline-flex;
+    flex: 0 0 50%;
+    flex-flow: column
+}
+
+@media screen and (max-width: 900px) {
+    #rule {
+        flex: 0 0 70%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #rule {
+        flex: 0 0 90%;
+    }
+}
+
+.ruleContent {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    border: 3px solid #d1ac38;
+}
+
+.ruleContent > p {
+    color: #fff;
+    font-weight: bold;
+    padding: 6px 0;
+    text-align: center;
+    background-color: #d1ac38;
+}
+
+.ruleContent > dl {
+    font-size: 14px;
+    padding: 6px 5%;
+    background-color: #fff;
+}
+
+.ruleContent > dl > dt {
+    color: #406697;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    padding-top: 10px;
+    margin-bottom: 4px;
+    border-top: 1px solid #c9c9c9;
+}
+
+.ruleContent > dl > dt:first-child {
+    border-top: none;
+}
+
+.ruleContent > dl > dt:before {
+    content: "";
+    display: inline-block;
+    width: 14px; height: 14px;
+    margin-right: 6px;
+    background-image: url(../img/daimond.png);
+    background-size: 100%;
+    background-position: center;
+}
+
+.ruleContent > dl > dd {
+    padding-bottom: 10px;
+}
+
+.ruleCloseBtn {
+    display: block;
+    width: 32px; height: 32px;
+    margin-left: auto;
+    position: relative;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+
+.ruleCloseBtn:hover {
+    transform: scale(1, 0.77);
+}
+
+.ruleCloseBtn > span {
+    display: block;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+    background-color: #434343;
+    width: 100%;
+    height: 2px;
+}
+
+.ruleCloseBtn > span:nth-child(1) {
+    transform: rotateZ(45deg);
+}
+
+.ruleCloseBtn > span:nth-child(2) {
+    transform: rotateZ(-45deg);
+}

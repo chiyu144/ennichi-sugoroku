@@ -2,26 +2,18 @@ const initialState = {
     chess: [
         {
             index: 0,
-            type: 'ply',
-            name: '',
             offset: '',
             chessVisual:''
         }, {
             index: 1,
-            type: 'npc',
-            name: '',
             offset: '',
             chessVisual:''
         }, {
             index: 2,
-            type: 'npc',
-            name: '',
             offset: '',
             chessVisual:''
         }, {
             index: 3,
-            type: 'npc',
-            name: '',
             offset: '',
             chessVisual:''
         }

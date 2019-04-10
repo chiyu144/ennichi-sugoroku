@@ -1,0 +1,43 @@
+#character {
+    flex: 1;
+    width: 100%; max-width: 100%;
+    margin-top: 50px;
+    background-color:#e5e4de;
+    position: relative;
+    overflow: hidden;
+}
+
+#charaDecide {
+    display: flex;
+    flex-flow: row;
+}
+
+.elect {
+    border: 1px solid tomato;
+    margin-right: 20px;
+}
+
+#charaOption {
+    display: flex;
+    flex-flow: row;
+}
+
+.candidate {
+    width: 100px; height: 100px;
+    background-color: rgb(55, 113, 151);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.charaActive {
+    background-color: rgb(144, 206, 248);
+    pointer-events: none;
+}
+
+.charaSelected {
+    background-color: rgb(5, 44, 70);
+    pointer-events: none;
+}

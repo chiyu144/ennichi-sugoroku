@@ -24,7 +24,6 @@ const Rule = () => {
           <a className="ruleCloseBtn" onClick={close}>
             <span></span>
             <span></span>
-            {/* &times; */}
           </a>
           <div className="ruleContent">
               <p> 遊戲說明 </p>

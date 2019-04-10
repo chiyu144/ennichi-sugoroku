@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Spring } from 'react-spring/renderprops';
 
 import '../css/style.css';
@@ -8,7 +9,6 @@ import logo from '../img/logo.png';
 import circle from '../img/circle.png';
 import hanabi from '../img/hanabi.png';
 
-import Character from '../containers/character';
 import Rule from './rule';
 
 const Intro = () => {
@@ -47,7 +47,7 @@ const Intro = () => {
                   <img src={ logo } />
                 </div>
                 <ul style={{ opacity, top }} id='introSelect'>
-                  <li><Character /></li>
+                  <li><button className="introBtn"><NavLink to='/character'>一人遊玩</NavLink></button></li>
                   <li><Rule /></li>
                 </ul>
               </div>

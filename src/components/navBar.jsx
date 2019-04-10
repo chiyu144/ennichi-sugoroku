@@ -7,6 +7,7 @@ import navTop from '../img/navTop.svg';
 
 import Intro from './intro';
 import Game from './game';
+import Character from '../containers/character';
 
 const NavBar = () => {
   return (
@@ -18,6 +19,7 @@ const NavBar = () => {
         </div>
       </nav>
         <Route exact path='/' render={ () => <Intro /> } />
+        <Route path='/character' render={ () => <Character /> } />
         <Route path='/game' render={ () => <Game /> } />
     </HashRouter>
   )

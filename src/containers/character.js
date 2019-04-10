@@ -5,15 +5,16 @@ import Character from '../components/character';
 
 const mapStateToProps = state => {
     return {
-        ply: state.character.ply,
-        npc: state.character.npc,        
+        plyNum: state.character.plyNum,
         character: state.character.character,
+        plyList: state.character.plyList
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addCharacter: (character) => dispatch(actions.addCharacter(character)),
+        setPlyType: (plyNum) => dispatch(actions.setPlyType(plyNum)),
+        setPlyName: (plyListIndex, plyName) => dispatch(actions.setPlyName(plyListIndex, plyName)),    
     }
 }
   

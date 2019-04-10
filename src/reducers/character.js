@@ -1,40 +1,69 @@
+import shortid from 'shortid';
+
 const initialState = {
-    ply: 1,
-    npc: 3,
+    plyNum: 1,
     character: [
         {
+            name: '線香'
+        }, {
+            name: '蜂'
+        }, {
+            name: '柳'
+        }, {
+            name: '土星'
+        }, {
+            name: '錦冠菊'
+        }, {
+            name: '銀冠菊'
+        }
+    ],
+    plyList: [
+        {
             index: 0,
-            name: '線香',
-            keyVisual:'',
-            chessVisual:''
+            uid: shortid.generate(),
+            type: 'ply',
+            name: ''
         }, {
             index: 1,
-            name: '蜂',
-            keyVisual:'',
-            chessVisual:''
+            uid: shortid.generate(),
+            type: 'npc',
+            name: ''
         }, {
             index: 2,
-            name: '土星',
-            keyVisual:'',
-            chessVisual:''
+            uid: shortid.generate(),
+            type: 'npc',
+            name: ''
         }, {
             index: 3,
-            name: '錦冠菊',
-            keyVisual:'',
-            chessVisual:''
+            uid: shortid.generate(),
+            type: 'npc',
+            name: ''
         }
     ]
 }
   
 const characterReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case 'ADD_CELL':
-        //     新しく追加するTODO
-        //     const cell = action.payload.cell;
-        //     stateを複製して追加
-        //     const newState = Object.assign({}, state);
-        //     newState.cell.push(cell);
-        //     return newState;
+        case 'SET_PLY_TYPE':
+            const plyNum = action.payload.plyNum;
+            if(plyNum === 2) {
+                state.plyList[1].type = 'ply';
+                return state
+            } else if (plyNum === 3 ) {
+                state.plyList[1].type = 'ply';
+                state.plyList[2].type = 'ply';
+                return state
+            }  else if (plyNum === 4 ) {
+                state.plyList[1].type = 'ply';
+                state.plyList[2].type = 'ply';
+                state.plyList[3].type = 'ply';
+                return state
+            } else { return state }
+        case 'SET_PLY_NAME':
+            const plyListIndex = action.payload.plyListIndex;
+            const plyName = action.payload.plyName;
+            state.plyList[plyListIndex].name = plyName;
+            return state;
         default:
             return state;
     }

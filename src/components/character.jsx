@@ -111,6 +111,7 @@ class Character extends Component {
         { plyList.map((d, i) => {
           return (
             <div key={i} data-uid={d.uid} className='elect'>
+              { d.type }
               <p>　</p>
               <button data-uid={d.uid} className='selectBtn' onClick={(e) => { this.plySelect(e, plyList[i]) }}>選擇</button>
               <button className='decideBtn'>決定</button>              

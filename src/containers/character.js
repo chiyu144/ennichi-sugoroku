@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         setPlyType: (plyNum) => dispatch(actions.setPlyType(plyNum)),
-        setPlyName: (plyListIndex, plyName) => dispatch(actions.setPlyName(plyListIndex, plyName)),    
+        setPlyName: (plyNameArr) => dispatch(actions.setPlyName(plyNameArr)),    
     }
 }
   

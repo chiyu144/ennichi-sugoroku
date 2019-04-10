@@ -7,12 +7,11 @@ export const setPlyType = (plyNum) => {
     }
 }
 
-export const setPlyName = (plyListIndex, plyName) => {
+export const setPlyName = (plyNameArr) => {
     return { 
         type: 'SET_PLY_NAME',
         payload: { 
-            plyListIndex: plyListIndex,
-            plyName: plyName
+            plyNameArr: plyNameArr
         }
     }
 }

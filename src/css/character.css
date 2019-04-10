@@ -41,3 +41,9 @@
     background-color: rgb(5, 44, 70);
     pointer-events: none;
 }
+
+.disableGameStart {
+    color: #e5e4de;
+    pointer-events: none;
+    background-color: rgb(237, 121, 100);
+}

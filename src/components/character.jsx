@@ -28,6 +28,7 @@ class Character extends Component {
     })
 
     let whoAmI = elect.querySelector('p');
+    let whoAmIs = document.querySelectorAll('.elect > p');
     let decideBtn = elect.querySelector('.decideBtn');
     let kickOutBtn = elect.querySelector('.kickOutBtn');
     
@@ -60,6 +61,7 @@ class Character extends Component {
           cd.className = ('candidate charaSelected') }
       });
       preventReClickSelectBtn();
+      checkPlySelect();
     }
 
     // 反悔用
@@ -70,21 +72,33 @@ class Character extends Component {
           cd.classList.remove('charaSelected');
         }
       });
-      e.target.parentNode.querySelector('p').textContent = '　';
+      e.target.parentNode.querySelector('p').textContent = '';
       preventReClickSelectBtn();
+      checkPlySelect();
     }
-
+    
     // 選好要按叉叉再按選擇才可以重選，不可以直接按第二次選擇用
     let preventReClickSelectBtn = function() {
-      let whoAmIs = document.querySelectorAll('p');
       whoAmIs.forEach(wai => {
-        if(wai.textContent === '　') {
+        if(wai.textContent === '') {
           wai.parentNode.querySelector('.selectBtn').removeAttribute('disabled');
         } else { 
           wai.parentNode.querySelector('.selectBtn').setAttribute('disabled', true);
         }
       })
     }
+
+    // 檢查都選好沒
+    let checkPlySelect = function() {
+      let plyNameArr = [];
+      whoAmIs.forEach(wai => { plyNameArr.push(wai.textContent) });
+      let checkPlyNameArr = plyNameArr.filter(pn => { return pn !== '' });
+      if (checkPlyNameArr.length < 4) {
+        document.querySelector('#gameStartLink').classList.add('disableGameStart');
+      } else {
+        document.querySelector('#gameStartLink').classList.remove('disableGameStart');
+      }
+    } 
 
     // charaOption 可以被選 + 被按會變色
     candidate.forEach( cd => {
@@ -97,6 +111,15 @@ class Character extends Component {
 
     // 叉叉鈕
     kickOutBtn.addEventListener('click', regrating);
+  }
+
+  finalDecision () {
+    let plyNameArr = [];
+    // 把 .elect > p 裡面的文字抽出，推入上方 plyNameArr
+    let electPArr = document.querySelectorAll('.elect > p');
+    electPArr.forEach(ep => { plyNameArr.push(ep.textContent) });
+    // 回傳給 characterReducer
+    this.props.setPlyName(plyNameArr);
   }
 
   render() {
@@ -112,7 +135,7 @@ class Character extends Component {
           return (
             <div key={i} data-uid={d.uid} className='elect'>
               { d.type }
-              <p>　</p>
+              <p></p>
               <button data-uid={d.uid} className='selectBtn' onClick={(e) => { this.plySelect(e, plyList[i]) }}>選擇</button>
               <button className='decideBtn'>決定</button>              
               <button className='kickOutBtn'>&times;</button>
@@ -127,7 +150,7 @@ class Character extends Component {
             </button>
         )})}
         </div>
-        <NavLink to='/game'>Game Start</NavLink>
+        <NavLink id={'gameStartLink'} className={'disableGameStart'} onClick={() => this.finalDecision()} to='/game'>Game Start</NavLink>
       </div>
     )
   }

@@ -60,9 +60,12 @@ const characterReducer = (state = initialState, action) => {
                 return state
             } else { return state }
         case 'SET_PLY_NAME':
-            const plyListIndex = action.payload.plyListIndex;
-            const plyName = action.payload.plyName;
-            state.plyList[plyListIndex].name = plyName;
+            const plyNameArr = action.payload.plyNameArr;
+            plyNameArr.map((pn,i) => {
+                if(i ===  state.plyList[i].index) {
+                    return state.plyList[i].name = pn;
+                }
+            });
             return state;
         default:
             return state;

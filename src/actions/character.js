@@ -15,3 +15,10 @@ export const setPlyName = (plyNameArr) => {
         }
     }
 }
+
+export const drawLotsAnime = (newPlyArr) => {
+    return { 
+        type: 'DRAW_LOTS_ANIME',
+        payload: { newPlyArr: newPlyArr }
+    }
+}

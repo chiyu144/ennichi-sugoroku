@@ -61,12 +61,18 @@ const characterReducer = (state = initialState, action) => {
             } else { return state }
         case 'SET_PLY_NAME':
             const plyNameArr = action.payload.plyNameArr;
+            const newS1 = Object.assign({}, state);
             plyNameArr.map((pn,i) => {
-                if(i ===  state.plyList[i].index) {
-                    return state.plyList[i].name = pn;
+                if(i ===  newS1.plyList[i].index) {
+                    return newS1.plyList[i].name = pn;
                 }
             });
-            return state;
+            return newS1;
+        case 'DRAW_LOTS_ANIME':
+            const newPlyArr = action.payload.newPlyArr;
+            const newS2 = Object.assign({}, state);
+            newS2.plyList = newPlyArr;
+            return newS2;
         default:
             return state;
     }

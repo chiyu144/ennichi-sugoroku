@@ -1,3 +1,22 @@
 #game {
     margin-top: 50px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap {
+    position: relative;
+    width: 100%; max-width: 1200px;
+}
+
+
+#plyUI {
+    width: 200px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+    margin-left: auto;
+    background-color: silver;
 }

@@ -6,7 +6,7 @@ import '../css/style.css';
 import navTop from '../img/navTop.svg';
 
 import Intro from './intro';
-import Game from './game';
+import Game from '../containers/game';
 import Character from '../containers/character';
 
 const NavBar = () => {

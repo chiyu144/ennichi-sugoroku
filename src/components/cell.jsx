@@ -15,9 +15,9 @@ class Cell extends Component {
     return(
       cell.map((c, i) => {
         return (
-          <div key={i} className='cell'>
+          <div key={i} data-curr={c.index} className='cell'>
             <div className='cytoplasm'>
-              <p>{c.index + 1}</p>
+              <p>{c.index + " " + c.event}</p>
               <span className='upperL'></span>
               <span className='upperR'></span>
               <span className='lowerR'></span>

@@ -22,8 +22,8 @@ class Game extends Component {
 
   findSpot(corner) {
     let rect = corner.getBoundingClientRect();
-    console.log({ x: rect.left, y: rect.top });
-    return { x: rect.left, y: rect.top } 
+    let curr = corner.parentNode.parentNode.getAttribute('data-curr');
+    return { curr: curr, x: rect.left, y: rect.top } 
   }
 
   setChessPosition(chess, corner, i) {
@@ -45,7 +45,7 @@ class Game extends Component {
         <div id='board'>
           <Map />
         </div>
-        <PlayerUI />
+        <PlayerUI findSpot={ this.findSpot } setChessPosition={ this.setChessPosition }/>
       </div>
     )
   }

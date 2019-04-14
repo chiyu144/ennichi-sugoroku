@@ -2,6 +2,7 @@ import shortid from 'shortid';
 
 const initialState = {
     plyNum: 1,
+    isTurn: 0,
     character: [
         {
             name: '線香'
@@ -24,28 +25,32 @@ const initialState = {
             type: 'ply',
             name: '',
             outcome: 0,
-            offset: { x: 0, y: 0 }
+            offset: { curr:0, x: 0, y: 0 },
+            triggerEvent: false
         }, {
             index: 1,
             uid: shortid.generate(),
             type: 'npc',
             name: '',
             outcome: 0,
-            offset: { x: 0, y: 0 }
+            offset: { curr:0, x: 0, y: 0 },
+            triggerEvent: false
         }, {
             index: 2,
             uid: shortid.generate(),
             type: 'npc',
             name: '',
             outcome: 0,
-            offset: { x: 0, y: 0 }
+            offset: { curr:0, x: 0, y: 0 },
+            triggerEvent: false
         }, {
             index: 3,
             uid: shortid.generate(),
             type: 'npc',
             name: '',
             outcome: 0,
-            offset: { x: 0, y: 0 }
+            offset: { curr:0, x: 0, y: 0 },
+            triggerEvent: false
         }
     ]
 }
@@ -96,6 +101,11 @@ const characterReducer = (state = initialState, action) => {
             const updateOffset = [...state.plyList];
             updateOffset[which].offset = newOffset;
             return {...state, plyList: updateOffset};
+        
+        case 'UPDATE_TURN':
+            const next = action.payload.next;
+            return {...state, isTurn: next};
+        
         default:
             return state;
     }

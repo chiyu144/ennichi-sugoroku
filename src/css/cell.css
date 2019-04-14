@@ -4,6 +4,28 @@
     padding: 0 12%;
 }
 
+.cell:nth-child(7) {
+    order: 12
+}
+.cell:nth-child(8) {
+    order: 11
+}
+.cell:nth-child(9) {
+    order: 10
+}
+.cell:nth-child(10) {
+    order: 9
+}
+.cell:nth-child(11) {
+    order: 8
+}
+.cell:nth-child(12) {
+    order: 7
+}
+.cell:nth-child(13) {
+    order: 13
+}
+
 .cytoplasm {
     padding: 30px 0;
     margin: 30px 0;

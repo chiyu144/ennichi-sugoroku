@@ -32,3 +32,10 @@ export const updateOffset = (which, newOffset) => {
         payload: { which: which, newOffset: newOffset }
     }
 }
+
+export const updateTurn = (next) => {
+    return {
+        type: 'UPDATE_TURN',
+        payload: { next: next }
+    }
+}

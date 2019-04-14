@@ -11,6 +11,13 @@ class Chess extends Component {
   // componentDidMount() { console.log('YOOOOOOOO') }
   // componentWillUnmount() { console.log('YOOOOOOOO') }
 
+  componentDidUpdate(prevProps) {
+    // props.id が変更されたら再フェッチ
+    // if (this.props.name !== prevProps.name) {
+    //   this.fetchUser(this.props.name);
+    // }
+  }
+
   render() {
     const {
       plyList
@@ -19,7 +26,7 @@ class Chess extends Component {
     return(
       plyList.map((chess, i) => {
         return (
-          <div key={i} style={{ left: chess.offset.x, top: chess.offset.y }} className='chess'>
+          <div key={i} data-confirm={chess.uid} style={{ left: chess.offset.x, top: chess.offset.y }} className='chess'>
             <p>{chess.name}</p>
           </div>
         )

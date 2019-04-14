@@ -1,4 +1,10 @@
 #map {
-    width: 100%; max-width: 1000px;
+    width: 100%; max-width: 1200px;
     border: 1px solid red;
+}
+
+#cellContainer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 3%;
 }

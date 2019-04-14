@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as actions from '../actions/game';
+import * as actions from '../actions/character';
 
 import Game from '../components/game';
 
@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // drawLotsAnime: (game) => dispatch(actions.drawLotsAnime(game)),
+        updateOffset: (which, newOffset) => dispatch(actions.updateOffset(which, newOffset)),
     }
 }
   

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import * as actions from '../actions/cell';
 
 import Cell from '../components/cell';
 
@@ -11,7 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addCell: (cell) => dispatch(actions.addCell(cell)),
+        // updateOffset: (which, newOffset) => dispatch(actions.updateOffset(which, newOffset)),
     }
 }
   

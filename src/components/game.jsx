@@ -4,27 +4,48 @@ import '../css/style.css';
 import '../css/game.css';
 
 import Map from './map';
+import Chess from '../containers/chess';
+import PlayerUI from '../containers/playerUI';
 
 class Game extends Component {
   constructor(props) {
     super(props)
   }
 
-  // componentDidMount() { console.log('YOOOOOOOO') }
+  componentDidMount() { 
+    let chesses = document.querySelectorAll('.chess');
+    let startCorners = document.querySelectorAll('.cytoplasm')[0].querySelectorAll('span');
+    chesses.forEach((chess, i) => {
+      this.setChessPosition(chess, startCorners[i], i);
+    })
+  }
+
+  findSpot(corner) {
+    let rect = corner.getBoundingClientRect();
+    console.log({ x: rect.left, y: rect.top });
+    return { x: rect.left, y: rect.top } 
+  }
+
+  setChessPosition(chess, corner, i) {
+    let spot = this.findSpot(corner);
+    this.props.updateOffset(i, spot);
+  }
+
   // componentWillUnmount() { console.log('YOOOOOOOO') }
 
   render() {
     const {
-      plyList
+      plyNum
     } = this.props;
-    console.log('傳到這個 Component 裡的 props', this.props);
+    console.log('傳到 Game Component 裡的 props', this.props);
     return(
       <div id="game">
-        <p>Game Start (Game)</p>
-        <div className='wrap'>
-          <div id="plyUI">玩家操作介面 fixed 在右邊</div>
+        <Chess />
+        <p>Game Start</p>
+        <div id='board'>
           <Map />
         </div>
+        <PlayerUI />
       </div>
     )
   }

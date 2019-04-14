@@ -22,22 +22,30 @@ const initialState = {
             index: 0,
             uid: shortid.generate(),
             type: 'ply',
-            name: ''
+            name: '',
+            outcome: 0,
+            offset: { x: 0, y: 0 }
         }, {
             index: 1,
             uid: shortid.generate(),
             type: 'npc',
-            name: ''
+            name: '',
+            outcome: 0,
+            offset: { x: 0, y: 0 }
         }, {
             index: 2,
             uid: shortid.generate(),
             type: 'npc',
-            name: ''
+            name: '',
+            outcome: 0,
+            offset: { x: 0, y: 0 }
         }, {
             index: 3,
             uid: shortid.generate(),
             type: 'npc',
-            name: ''
+            name: '',
+            outcome: 0,
+            offset: { x: 0, y: 0 }
         }
     ]
 }
@@ -46,33 +54,48 @@ const characterReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_PLY_TYPE':
             const plyNum = action.payload.plyNum;
+            const newS0 = Object.assign({}, state);
             if(plyNum === 2) {
-                state.plyList[1].type = 'ply';
-                return state
+                newS0.plyList[1].type = 'ply';
+                return newS0
             } else if (plyNum === 3 ) {
-                state.plyList[1].type = 'ply';
-                state.plyList[2].type = 'ply';
-                return state
+                newS0.plyList[1].type = 'ply';
+                newS0.plyList[2].type = 'ply';
+                return newS0
             }  else if (plyNum === 4 ) {
-                state.plyList[1].type = 'ply';
-                state.plyList[2].type = 'ply';
-                state.plyList[3].type = 'ply';
-                return state
-            } else { return state }
+                newS0.plyList[1].type = 'ply';
+                newS0.plyList[2].type = 'ply';
+                newS0.plyList[3].type = 'ply';
+                return newS0
+            } else { return newS0 }
+
         case 'SET_PLY_NAME':
             const plyNameArr = action.payload.plyNameArr;
-            const newS1 = Object.assign({}, state);
+            const updateName = [...state.plyList];
             plyNameArr.map((pn,i) => {
-                if(i ===  newS1.plyList[i].index) {
-                    return newS1.plyList[i].name = pn;
+                if(i ===  updateName[i].index) {
+                    return updateName[i].name = pn;
                 }
             });
-            return newS1;
+            return {...state, plyList: updateName};
+
         case 'DRAW_LOTS_ANIME':
             const newPlyArr = action.payload.newPlyArr;
-            const newS2 = Object.assign({}, state);
-            newS2.plyList = newPlyArr;
-            return newS2;
+            return {...state, plyList: newPlyArr}
+
+        case 'UPDATE_OUTCOME':
+            const who = action.payload.who;
+            const newOutcome = action.payload.newOutcome;
+            const updateOutcome = [...state.plyList];
+            updateOutcome[who].outcome = newOutcome;
+            return {...state, plyList: updateOutcome}
+        
+        case 'UPDATE_OFFSET':
+            const which = action.payload.which;
+            const newOffset = action.payload.newOffset;
+            const updateOffset = [...state.plyList];
+            updateOffset[which].offset = newOffset;
+            return {...state, plyList: updateOffset};
         default:
             return state;
     }

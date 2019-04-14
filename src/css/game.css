@@ -6,17 +6,22 @@
     align-items: center;
 }
 
-.wrap {
+#board {
     position: relative;
+    display: flex;
+    justify-content: center;
     width: 100%; max-width: 1200px;
 }
 
+#gameUI, #plyZone {
+    display: flex;
+    justify-content: space-evenly;
+}
 
-#plyUI {
-    width: 200px;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 50px;
-    margin-left: auto;
-    background-color: silver;
+#gameUI {
+    width: 100%; max-width: 1200px;
+}
+
+.cube {
+    cursor: pointer;
 }

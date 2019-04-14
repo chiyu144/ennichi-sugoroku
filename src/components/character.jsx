@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Spring } from 'react-spring/renderprops';
 import Popup from 'reactjs-popup';
 
 import '../css/style.css';
@@ -9,7 +8,6 @@ import '../css/character.css';
 class Character extends Component {
   constructor(props) {
     super(props)
-    this.plySelect = this.plySelect.bind(this)
   }
 
   // componentDidMount() { window.addEventListener('DOMContentLoaded', this.props.setPlyType(this.props.plyNum)) }
@@ -17,13 +15,14 @@ class Character extends Component {
 
   // 選擇鈕
   plySelect(e, plyListItem) {
-
-    // 一個在選的時候，其他選擇鈕要封起來
-    let selectBtns = document.querySelectorAll('.selectBtn');
     let elect = e.target.parentNode;
-    selectBtns.forEach(sb => {
-      if(sb.getAttribute('data-uid') !== elect.getAttribute('data-uid')) {
-        sb.setAttribute('disabled', true);
+    let otherOptionBtns = document.querySelectorAll('.elect > button');
+    let allKickOutBtns = document.querySelectorAll('.kickOutBtn');
+
+    // 一個在選的時候，其他按鈕 + 自己的叉叉鈕要封起來
+    otherOptionBtns.forEach(opb => {
+      if(opb.getAttribute('data-confirm') !== elect.getAttribute('data-confirm')) {
+        opb.setAttribute('disabled', true);
       }
     })
 
@@ -62,8 +61,8 @@ class Character extends Component {
         if (cd.classList.contains('charaActive')) {
           cd.className = ('candidate charaSelected') }
       });
-      kickOutBtn.removeAttribute('disabled');
-      preventReClickSelectBtn();
+      preventReClickBtn();
+      allKickOutBtns.forEach(akob => akob.removeAttribute('disabled'));
       checkPlySelect();
     }
 
@@ -76,17 +75,19 @@ class Character extends Component {
         }
       });
       e.target.parentNode.querySelector('p').textContent = '';
-      preventReClickSelectBtn();
+      preventReClickBtn();
       checkPlySelect();
     }
     
     // 選好要按叉叉再按選擇才可以重選，不可以直接按第二次選擇用
-    let preventReClickSelectBtn = function() {
+    let preventReClickBtn = function() {
       whoAmIs.forEach(wai => {
         if(wai.textContent === '') {
           wai.parentNode.querySelector('.selectBtn').removeAttribute('disabled');
+          wai.parentNode.querySelector('.decideBtn').removeAttribute('disabled');
         } else { 
           wai.parentNode.querySelector('.selectBtn').setAttribute('disabled', true);
+          wai.parentNode.querySelector('.decideBtn').setAttribute('disabled', true);
         }
       })
     }
@@ -135,8 +136,8 @@ class Character extends Component {
 
   drawLots (e) {
     let originPlyArr = this.props.plyList;
-    let shufflePlyArr = this.shuffle(originPlyArr.map(op => { return { uid: op.uid, type: op.type, name: op.name} }));
-    let newPlyArr = shufflePlyArr.map((np, i) => { return { index: i, uid: np.uid, type: np.type, name: np.name} });
+    let shufflePlyArr = this.shuffle(originPlyArr.map(op => { return { uid: op.uid, type: op.type, name: op.name, outcome: op.outcome, offset: op.offset} }));
+    let newPlyArr = shufflePlyArr.map((np, i) => { return { index: i, uid: np.uid, type: np.type, name: np.name, outcome: np.outcome, offset: np.offset} });
     this.props.drawLotsAnime(newPlyArr);
     // 抽好後 Game Start 出來，抽按鈕消失
     e.target.style.visibility = 'hidden';
@@ -148,19 +149,19 @@ class Character extends Component {
     const {
       plyList, character
     } = this.props;
-    console.log('傳到這個 Component 裡的 props', this.props);
+    console.log('傳到 Character Component 裡的 props', this.props);
     return(
       <div id="character">
         <p>請選擇角色吧 !</p>
         <div id='charaDecide'>
         { plyList.map((d, i) => {
           return (
-            <div key={i} data-uid={d.uid} className='elect'>
+            <div key={i} data-confirm={d.uid} className='elect'>
               { d.type }
               <p></p>
-              <button data-uid={d.uid} className='selectBtn' onClick={(e) => { this.plySelect(e, plyList[i]) }}>選擇</button>
-              <button className='decideBtn'>決定</button>              
-              <button className='kickOutBtn'>&times;</button>
+              <button data-confirm={d.uid} className='selectBtn' onClick={(e) => { this.plySelect(e, plyList[i]) }}>選擇</button>
+              <button data-confirm={d.uid} className='decideBtn'>決定</button>              
+              <button data-confirm={d.uid} className='kickOutBtn'>&times;</button>
             </div>
         )})}
         </div>
@@ -194,25 +195,15 @@ class Character extends Component {
                 <p>請抽籤決定遊玩順序吧!</p>
                 <div id="machine">
                   <p>只能抽一次唷!</p>
-                  <Spring
-                    from={{
-                      opacity: 0,
-                    }}
-                    to={{
-                      opacity: 1,
-                    }}>
-                    { ({ opacity }) =>
-                      <div id="slot">
-                        { plyList.map((d, i) => {
-                        return (
-                          <div key={i} className='panel'>
-                            <p>{ i+1 }</p>
-                            <div style={{ opacity }} className="wheel">{ d.name }</div>
-                          </div>
-                        )})}
-                      </div>
-                    }
-                    </Spring>
+                    <div id="slot">
+                      { plyList.map((d, i) => {
+                      return (
+                        <div key={i} className='panel'>
+                          <p>{ i+1 }</p>
+                          <div className="wheel">{ d.name }</div>
+                        </div>
+                      )})}
+                    </div>
                   <button id='drawLotsBtn' onClick={ (e) => { this.drawLots(e) }}>抽</button>
                   <NavLink id={'gameStartLink'} to='/game'>Game Start</NavLink>
                 </div>

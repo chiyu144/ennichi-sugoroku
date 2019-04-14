@@ -1,8 +1,33 @@
 .cell {
-    width: 100px; height: 100px;
+    color: #fff;
     text-align: center;
-    line-height: 100px;
-    border: 1px solid teal;
-    border-radius: 50%;
-    background-color: aquamarine;
+    padding: 0 12%;
+}
+
+.cytoplasm {
+    padding: 30px 0;
+    margin: 30px 0;
+    height: 100%;
+    border: 1px solid darkblue;
+    background-color: royalblue;
+    position: relative;
+}
+
+.cytoplasm > span {
+    display: inline-flex;
+    position: absolute;
+    width: 30px; height: 30px;
+}
+
+.upperL {
+    top: 0; left:0;
+}
+.upperR {
+    top: 0; right:0;
+}
+.lowerR {
+    bottom: 0; right: 0;
+}
+.lowerL {
+    bottom: 0; left: 0;
 }

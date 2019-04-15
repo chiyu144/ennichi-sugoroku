@@ -46,25 +46,25 @@ class PlayerUI extends Component {
         }
         // 觸發命運機會事件，如果有
         let cell = this.props.cell[parseInt(curr) + step];
-        if (cell !== undefined) {
-            if (cell.event === null) {
+        // if (cell !== undefined) {
+            if (cell.event === null && cell !== undefined) {
                 this.cubeInit(i + 1);
                 return
-            } else if (cell.event === 'foward') {
+            } else if (cell.event === 'foward' && cell !== undefined) {
                 this.moveChess(e, parseInt(curr) + step);
-                alert('獲得跑車，前進一格')
+                alert('獲得跑車，前進一格');
                 this.cubeInit(i + 1);
-            } else if (cell.event === 'back') {
+            } else if (cell.event === 'back' && cell !== undefined) {
                 this.moveChess(e, parseInt(curr) + step - 2);
                 alert('被狗追，後退一格');
                 this.cubeInit(i + 1);
-            } else if (cell.event === 'stay') {
-                alert('踩到香蕉皮，休息一次')
+            } else if (cell.event === 'stay' && cell !== undefined) {
+                alert('踩到香蕉皮，休息一次');
                 this.cubeInit(i + 1);
-            } else if (cell.event === 'goal') {
+            } else if (cell.event === 'goal' && cell !== undefined) {
                 alert (e.target.parentNode.parentNode.querySelector('p').textContent + ' 贏ㄌ!!!');
             }
-        }
+        // }
     }
 
     moveChess(e, curr) {

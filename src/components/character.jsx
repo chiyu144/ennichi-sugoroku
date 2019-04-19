@@ -10,7 +10,10 @@ class Character extends Component {
     super(props)
   }
 
-  // componentDidMount() { window.addEventListener('DOMContentLoaded', this.props.setPlyType(this.props.plyNum)) }
+  componentDidMount() {
+    this.props.setPlyType(this.props.plyNum);
+  }
+  
   // componentWillUnmount() { window.removeEventListener('DOMContentLoaded', this.props.setPlyType(this.props.plyNum)) }
 
   // 選擇鈕
@@ -136,8 +139,8 @@ class Character extends Component {
 
   drawLots (e) {
     let originPlyArr = this.props.plyList;
-    let shufflePlyArr = this.shuffle(originPlyArr.map(op => { return { uid: op.uid, type: op.type, name: op.name, outcome: op.outcome, offset: op.offset, triggerEvent: op.triggerEvent} }));
-    let newPlyArr = shufflePlyArr.map((np, i) => { return { index: i, uid: np.uid, type: np.type, name: np.name, outcome: np.outcome, offset: np.offset, triggerEvent: np.triggerEvent} });
+    let shufflePlyArr = this.shuffle(originPlyArr.map(op => { return { uid: op.uid, type: op.type, name: op.name, outcome: op.outcome, offset: op.offset, inJail: op.inJail} }));
+    let newPlyArr = shufflePlyArr.map((np, i) => { return { index: i, uid: np.uid, type: np.type, name: np.name, outcome: np.outcome, offset: np.offset, inJail: np.inJail} });
     this.props.drawLotsAnime(newPlyArr);
     // 抽好後 Game Start 出來，抽按鈕消失
     e.target.style.visibility = 'hidden';
@@ -149,7 +152,7 @@ class Character extends Component {
     const {
       plyList, character
     } = this.props;
-    console.log('傳到 Character Component 裡的 props', this.props);
+    // console.log('傳到 Character Component 裡的 props', this.props);
     return(
       <div id="character">
         <p>請選擇角色吧 !</p>

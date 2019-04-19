@@ -4,6 +4,7 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    /* position: relative; */
 }
 
 #board {
@@ -22,6 +23,54 @@
     width: 100%; max-width: 1200px;
 }
 
+.dice {
+    pointer-events: none;
+}
+
 .cube {
     cursor: pointer;
+}
+
+#eventShower {
+    display: none;
+}
+
+#eventShower:checked ~ #eventBackground {
+    opacity: 0.5;
+    z-index: 999;
+}
+
+#eventShower:checked ~ #eventMenu,
+#eventShower:checked ~ .cytoplasm {
+    transform: translate(-500px);
+}
+
+label {
+    pointer-events: none;
+}
+
+#eventBackground {
+    background-color: #333; /*黒背景*/
+    display: block;
+    height: 100%;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 50px;
+    transition: all 0.3s linear 0s; /*0.3s はアニメーションにかかる時間*/
+    width: 100%;
+    z-index: -1;
+}
+
+#eventMenu {
+    background-color: #fff; /*メニュー背景色*/
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px 40px; /*メニュー内左右上下余白*/
+    position: fixed;
+    right: -500px; /*メニュー横幅 width と合わせる*/
+    top: 0;
+    transition: transform 0.2s ease-out; /*0.3s はアニメーションにかかる時間*/
+    width: 500px; /*メニュー横幅*/
+    z-index: 1000;
 }

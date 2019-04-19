@@ -16,13 +16,13 @@ class Cell extends Component {
       cell.map((c, i) => {
         return (
           <div key={i} data-curr={c.index} className='cell'>
-            <div className='cytoplasm'>
-              <p>{c.index + " " + c.event}</p>
+            <label htmlFor='eventShower' className='cytoplasm'>
+              <p>{c.index + " " + c.event.type}</p>
               <span className='upperL'></span>
               <span className='upperR'></span>
               <span className='lowerR'></span>
               <span className='lowerL'></span>
-            </div>
+            </label>
           </div>
       )})
     )

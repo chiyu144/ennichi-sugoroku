@@ -26,7 +26,7 @@ const initialState = {
             name: '',
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
-            triggerEvent: false
+            inJail: false
         }, {
             index: 1,
             uid: shortid.generate(),
@@ -34,7 +34,7 @@ const initialState = {
             name: '',
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
-            triggerEvent: false
+            inJail: false
         }, {
             index: 2,
             uid: shortid.generate(),
@@ -42,7 +42,7 @@ const initialState = {
             name: '',
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
-            triggerEvent: false
+            inJail: false
         }, {
             index: 3,
             uid: shortid.generate(),
@@ -50,7 +50,7 @@ const initialState = {
             name: '',
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
-            triggerEvent: false
+            inJail: false
         }
     ]
 }
@@ -59,20 +59,20 @@ const characterReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_PLY_TYPE':
             const plyNum = action.payload.plyNum;
-            const newS0 = Object.assign({}, state);
+            const newState = JSON.parse(JSON.stringify(state));
             if(plyNum === 2) {
-                newS0.plyList[1].type = 'ply';
-                return newS0
+                newState.plyList[1].type = 'ply';
+                return newState
             } else if (plyNum === 3 ) {
-                newS0.plyList[1].type = 'ply';
-                newS0.plyList[2].type = 'ply';
-                return newS0
+                newState.plyList[1].type = 'ply';
+                newState.plyList[2].type = 'ply';
+                return newState
             }  else if (plyNum === 4 ) {
-                newS0.plyList[1].type = 'ply';
-                newS0.plyList[2].type = 'ply';
-                newS0.plyList[3].type = 'ply';
-                return newS0
-            } else { return newS0 }
+                newState.plyList[1].type = 'ply';
+                newState.plyList[2].type = 'ply';
+                newState.plyList[3].type = 'ply';
+                return newState
+            } else { return newState }
 
         case 'SET_PLY_NAME':
             const plyNameArr = action.payload.plyNameArr;
@@ -103,8 +103,15 @@ const characterReducer = (state = initialState, action) => {
             return {...state, plyList: updateOffset};
         
         case 'UPDATE_TURN':
-            const next = action.payload.next;
+            let next = action.payload.next;
+            if (next >= 4) { next = 0 }
             return {...state, isTurn: next};
+
+        case 'IN_OUT_JAIL':
+            const inmate = action.payload.inmate;
+            const prison = [...state.plyList];
+            prison[inmate].inJail = !prison[inmate].inJail;
+            return {...state, plyList: prison}
         
         default:
             return state;

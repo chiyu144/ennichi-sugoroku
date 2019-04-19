@@ -22,11 +22,15 @@ class Chess extends Component {
     const {
       plyList
     } = this.props;
-    console.log('傳到 Chess Component 裡的 props', this.props);
+    // console.log('傳到 Chess Component 裡的 props', this.props);
     return(
       plyList.map((chess, i) => {
         return (
-          <div key={i} data-confirm={chess.uid} style={{ left: chess.offset.x, top: chess.offset.y }} className='chess'>
+          <div key={i} data-confirm={chess.uid}
+               style={{
+                 left: chess.offset.x, top: chess.offset.y,
+                //  transform: `translate(-${chess.offset.x}px, -${chess.offset.y}px)`,
+               }} className='chess'>
             <p>{chess.name}</p>
           </div>
         )

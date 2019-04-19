@@ -4,7 +4,7 @@
     padding: 0 12%;
 }
 
-.cell:nth-child(7) {
+/* .cell:nth-child(7) {
     order: 12
 }
 .cell:nth-child(8) {
@@ -24,15 +24,17 @@
 }
 .cell:nth-child(13) {
     order: 13
-}
+} */
 
 .cytoplasm {
+    display: flex;
     padding: 30px 0;
     margin: 30px 0;
     height: 100%;
     border: 1px solid darkblue;
     background-color: royalblue;
     position: relative;
+    transition: all 0.3s linear 0s; /*0.3s はアニメーションにかかる時間*/
 }
 
 .cytoplasm > span {

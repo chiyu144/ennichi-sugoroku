@@ -39,3 +39,10 @@ export const updateTurn = (next) => {
         payload: { next: next }
     }
 }
+
+export const inOutJail = (inmate) => {
+    return {
+        type: 'IN_OUT_JAIL',
+        payload: { inmate: inmate }
+    }
+}

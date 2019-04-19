@@ -6,7 +6,7 @@ import '../css/game.css';
 import Map from './map';
 import Chess from '../containers/chess';
 import PlayerUI from '../containers/playerUI';
-
+import Event from '../containers/event';
 class Game extends Component {
   constructor(props) {
     super(props)
@@ -23,7 +23,7 @@ class Game extends Component {
   findSpot(corner) {
     let rect = corner.getBoundingClientRect();
     let curr = corner.parentNode.parentNode.getAttribute('data-curr');
-    return { curr: curr, x: rect.left, y: rect.top } 
+    return { curr: curr, x: rect.left + window.pageXOffset, y: rect.top + window.pageYOffset } 
   }
 
   setChessPosition(chess, corner, i) {
@@ -37,15 +37,20 @@ class Game extends Component {
     const {
       plyNum
     } = this.props;
-    console.log('傳到 Game Component 裡的 props', this.props);
+    // console.log('傳到 Game Component 裡的 props', this.props);
     return(
       <div id="game">
         <Chess />
+        <input type="checkbox" id="eventShower"></input>
         <p>Game Start</p>
         <div id='board'>
           <Map />
         </div>
         <PlayerUI findSpot={ this.findSpot } setChessPosition={ this.setChessPosition }/>
+        <label id="eventBackground" htmlFor="eventShower"></label>
+        <div id='eventMenu'>
+          <Event findSpot={ this.findSpot }/>
+        </div>
       </div>
     )
   }

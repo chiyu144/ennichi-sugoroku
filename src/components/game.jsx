@@ -31,17 +31,31 @@ class Game extends Component {
     this.props.updateOffset(i, spot);
   }
 
-  // componentWillUnmount() { console.log('YOOOOOOOO') }
+  componentDidUpdate(prevProps) {
+    
+    let prevChecked = prevProps.checked;
+    let nextChecked = this.props.checked;
+    let playing = this.props.plyList[this.props.isTurn];
+
+    if (nextChecked !== prevChecked) {
+      if (nextChecked === true && playing.type === 'npc') {  
+        setTimeout(() => { document.querySelector('#eventTrigger > button').click() }, 2000);
+      } else if (nextChecked === true && playing.type === 'ply') {
+        document.querySelector('#eventTrigger').style.pointerEvents = 'auto'
+      } else {
+        document.querySelector('#eventTrigger').style.pointerEvents = 'none';
+      }
+    }
+  }
 
   render() {
     const {
-      plyNum
+      checked
     } = this.props;
-    // console.log('傳到 Game Component 裡的 props', this.props);
     return(
       <div id="game">
         <Chess />
-        <input type="checkbox" id="eventShower"></input>
+        <input type="checkbox" id="eventShower" checked={ checked } onChange={ this.props.openCloseEvent }></input>
         <p>Game Start</p>
         <div id='board'>
           <Map />

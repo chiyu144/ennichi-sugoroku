@@ -13,9 +13,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setPlyType: (plyNum) => dispatch(actions.setPlyType(plyNum)),
+        setPlyType: (plyNum) => dispatch(actions.setPlyType(plyNum)), 
         setPlyName: (plyNameArr) => dispatch(actions.setPlyName(plyNameArr)), 
-        drawLotsAnime: (newPlyArr) => dispatch(actions.drawLotsAnime(newPlyArr))
+        drawLotsAnime: (newPlyArr) => dispatch(actions.drawLotsAnime(newPlyArr)),
     }
 }
   

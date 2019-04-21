@@ -7,7 +7,7 @@ import '../css/style.css';
 
 import navTop from '../img/navTop.svg';
 
-import Intro from './intro';
+import Intro from '../containers/intro';
 import Game from '../containers/game';
 import Character from '../containers/character';
 

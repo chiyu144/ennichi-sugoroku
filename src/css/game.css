@@ -45,7 +45,7 @@
     transform: translate(-500px);
 }
 
-label {
+label, #eventTrigger {
     pointer-events: none;
 }
 

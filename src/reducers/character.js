@@ -57,6 +57,10 @@ const initialState = {
   
 const characterReducer = (state = initialState, action) => {
     switch (action.type) {
+        case 'SET_PLY_NUM':
+            const person = action.payload.person;
+            return {...state, plyNum: person}
+
         case 'SET_PLY_TYPE':
             const plyNum = action.payload.plyNum;
             const newState = JSON.parse(JSON.stringify(state));

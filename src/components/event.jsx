@@ -8,11 +8,6 @@ class Event extends Component {
         super(props)
     }
 
-    closeEvent() {
-        let eventShower = document.querySelector('#eventShower');
-        eventShower.checked = false;
-    }
-
     eventMoveChessOneTime(isTurn, direction, currCellNum) {
         let currCell = document.querySelectorAll('.cell')[currCellNum];
         // 因為跟骰骰子的前進後退用不一樣的條件，又再寫一個 function 來處理命運機會的移動棋子
@@ -25,20 +20,28 @@ class Event extends Component {
     }
 
     eventMoveChessManyTimes(move, isTurn, direction, currCellNum) {
-        this.closeEvent();
+        console.log(this.props.openCloseEvent);
+        this.props.openCloseEvent(false);
         if (isTurn >= document.plyZone.length) {
             isTurn = isTurn % document.plyZone.length;
         }
-        for (let j = 0; j < move; j++) {
-            console.log('動多次', '誰動', isTurn, '方向', direction, '目前格子index', currCellNum);
-            setTimeout(() => { this.eventMoveChessOneTime(isTurn, direction, parseInt(currCellNum) + j) }, j * 300);
+        if (direction) {
+            // 前進
+            for (let j = 0; j < move; j++) {
+                setTimeout(() => { this.eventMoveChessOneTime(isTurn, direction, parseInt(currCellNum) + j) }, j * 300);
+            }
+        } else {
+            // 後退
+            for (let j = 0; j < move; j++) {
+                setTimeout(() => { this.eventMoveChessOneTime(isTurn, direction, parseInt(currCellNum) - j) }, j * 300);
+            }
         }
         // 換下一人
         setTimeout(() => { this.props.updateTurn(isTurn + 1) }, move * 400);
     }
 
     eventJail(isTurn) {
-        this.closeEvent();
+        this.props.openCloseEvent(false);
         // 關閉 checkbox → 修改 Redux 裡 PlyList[isTurn].inJail = true（坐牢狀態）
         this.props.inOutJail(isTurn);
         // 顯示坐牢 UI
@@ -47,7 +50,7 @@ class Event extends Component {
     }
 
     eventTellKnowledge(isTurn) {
-        this.closeEvent();
+        this.props.openCloseEvent(false);
         if (isTurn >= document.plyZone.length) {
             isTurn = isTurn % document.plyZone.length;
         }
@@ -60,9 +63,7 @@ class Event extends Component {
             isTurn,
             plyList,
             cell,
-            event
         } = this.props;
-
         // 需要： 1. isTurn 數字（當棋子的 index，找到正在玩的玩家棋子）
         // 2. offset.curr（找到正站在哪格）
 
@@ -71,23 +72,19 @@ class Event extends Component {
         const theCell = cell[theCellNum];
         // 準備把他那格的事件 render 出來
         const theEvent = theCell.event;
-
-        // console.log('傳到 Event Component 裡的 props', this.props);
         
-        // if 事件類型是「前進」就 render 可以 trigger「前進」的按鈕
-        // if 事件類型是「後退」就 render 可以 trigger「後退」的按鈕
-        // if 事件類型是「坐牢」就 render 可以 trigger「坐牢」的按鈕
-        // if 事件類型是「科普」就 render 可以 trigger「科普」的按鈕
-        
+        // if 事件類型是「前進」就 render 可以 trigger「前進」的按鈕，以此類推
         return(
             <div id='event'>
                 <p>{ theEvent.title }</p>
                 <p>{ theEvent.description }</p>
-                { theEvent.type === 'foward' && <button onClick={ () => this.eventMoveChessManyTimes(theEvent.move, isTurn, theEvent.direction, theCellNum) }>前</button> }
-                { theEvent.type === 'back' && <button onClick={ () => this.eventMoveChessManyTimes(theEvent.move, isTurn, theEvent.direction, theCellNum) }>後</button> }
-                { theEvent.type === 'jail' && <button onClick={ () => this.eventJail(isTurn) }>坐牢</button> }
-                { theEvent.type === 'knowledge' && <button onClick={ () => this.eventTellKnowledge(isTurn) }>科普</button> }            
-                { theEvent.type === 'goal' && <button onClick={ () => this.closeEvent() }>勝利</button> }            
+                <div id='eventTrigger'>
+                    { theEvent.type === 'foward' && <button onClick={ () => this.eventMoveChessManyTimes(theEvent.move, isTurn, theEvent.direction, theCellNum) }>前</button> }
+                    { theEvent.type === 'back' && <button onClick={ () => this.eventMoveChessManyTimes(theEvent.move, isTurn, theEvent.direction, theCellNum) }>後</button> }
+                    { theEvent.type === 'jail' && <button onClick={ () => this.eventJail(isTurn) }>坐牢</button> }
+                    { theEvent.type === 'knowledge' && <button onClick={ () => this.eventTellKnowledge(isTurn) }>科普</button> }            
+                    { theEvent.type === 'goal' && <button onClick={ () => this.closeEvent() }>勝利</button> }            
+                </div>
             </div>
         )
     }

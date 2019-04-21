@@ -1,3 +1,10 @@
+export const setPlyNum = (person) => {
+    return { 
+        type: 'SET_PLY_NUM',
+        payload: { person: person }
+    }
+}
+
 export const setPlyType = (plyNum) => {
     return { 
         type: 'SET_PLY_TYPE',

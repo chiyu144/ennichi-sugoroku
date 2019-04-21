@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/character';
+import * as eventActions from '../actions/event';
 
 import PlayerUI from '../components/playerUI';
 
@@ -18,7 +19,8 @@ const mapDispatchToProps = dispatch => {
         updateOutcome: (who, newOutcome) => dispatch(actions.updateOutcome(who, newOutcome)),
         updateOffset: (which, newOffset) => dispatch(actions.updateOffset(which, newOffset)),
         updateTurn: (next) => dispatch(actions.updateTurn(next)),
-        inOutJail: (inmate) => dispatch(actions.inOutJail(inmate)) 
+        inOutJail: (inmate) => dispatch(actions.inOutJail(inmate)),
+        openCloseEvent: (toggle) => dispatch(eventActions.openCloseEvent(toggle))
     }
 }
   

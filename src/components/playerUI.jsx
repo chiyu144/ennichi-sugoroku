@@ -26,7 +26,7 @@ class PlayerUI extends Component {
         let prevPlyIndex = prevProps.isTurn;
         let nextPlyIndex = this.props.isTurn;
         let nextPly = this.props.plyList[nextPlyIndex];
-        // console.log(typeof nextPlyIndex);
+
         if (nextPlyIndex !== prevPlyIndex) {
             if (nextPly.inJail) {
                 this.cubeInit(nextPlyIndex + 1);
@@ -80,7 +80,6 @@ class PlayerUI extends Component {
     }
 
     checkEvent(cube, chesses) {
-        let eventShower = document.querySelector('#eventShower'); 
         chesses.forEach((c, i) => {
             if(cube.getAttribute('data-confirm') === c.getAttribute('data-confirm')) {
                 let currCellNum = this.props.plyList[i].offset.curr;
@@ -93,7 +92,7 @@ class PlayerUI extends Component {
                 } else {
                     // 把 check box 打勾，蓋板從旁邊長出（漢堡選單概念）
                     // 蓋板內容顯示是啥事件，在裡面按了選項，才真的 trigger 事件
-                    eventShower.checked = true;
+                    this.props.openCloseEvent(true);
                 }
             }
         });
@@ -118,7 +117,6 @@ class PlayerUI extends Component {
 
     render() {
         const {
-            isTurn,
             plyList
         } = this.props;
         // console.log('傳到 PlyayerUI Component 裡的 props', this.props);

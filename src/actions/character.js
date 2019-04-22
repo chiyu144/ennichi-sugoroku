@@ -53,3 +53,10 @@ export const inOutJail = (inmate) => {
         payload: { inmate: inmate }
     }
 }
+
+export const ranking = (plyListArr) => {
+    return {
+        type: 'RANKING',
+        payload: { plyListArr: plyListArr }
+    }
+}

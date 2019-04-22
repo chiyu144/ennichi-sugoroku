@@ -1,0 +1,14 @@
+.eventBtn > a {
+    color: #313131;
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    text-decoration: none;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 下面三項是為了讓 IE 也點得到 */
+    background-color: transparent;
+    filter: alpha(opacity = 1);
+}

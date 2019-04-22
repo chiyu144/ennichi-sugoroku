@@ -17,7 +17,8 @@ const mapDispatchToProps = dispatch => {
         updateOffset: (which, newOffset) => dispatch(actions.updateOffset(which, newOffset)),
         updateTurn: (next) => dispatch(actions.updateTurn(next)),
         inOutJail: (inmate) => dispatch(actions.inOutJail(inmate)),
-        openCloseEvent: (toggle) => dispatch(eventActions.openCloseEvent(toggle))
+        openCloseEvent: (toggle) => dispatch(eventActions.openCloseEvent(toggle)),
+        ranking: (plyListArr) => dispatch(actions.ranking(plyListArr))
     }
 }
   

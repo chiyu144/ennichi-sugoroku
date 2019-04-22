@@ -95,190 +95,6 @@ const initialState = {
         {
             index: 12,
             event: {
-                type: null
-            }
-        },
-        {
-            index: 13,
-            event: {
-                type: 'jail',
-                title: '漁夫纏身',
-                visual: 'src',
-                description: '遭到數名漁夫包圍，一時之間無法脫身，休息 1 次。',
-                move: 0,
-                direction: null
-            }
-        },
-        {
-            index: 14,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 15,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 16,
-            event: {
-                type: 'foward',
-                title: '體驗 U-Bike',
-                visual: 'src',
-                description: '平常鮮少運動的你心血來潮的跑去騎 U-Bike 兜風，前進 1 格',
-                move: 1,
-                direction: true
-            }
-        },
-        {
-            index: 17,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 18,
-            event: {
-                type: 'knowledge',
-                title: '',
-                visual: 'src',
-                description: '',
-                move: 0,
-                direction: null
-            }        
-        },
-        {
-            index: 19,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 20,
-            event: {
-                type: 'back',
-                title: '黑色流星',
-                visual: 'src',
-                description: '開開心心的在路邊攤吃炒麵，突然一隻會飛的「黑色流星」襲來，驚嚇不已，倒退 1 格',
-                move: 1,
-                direction: false
-            }
-        },
-        {
-            index: 21,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 22,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 23,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 24,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 25,
-            event: {
-                type: 'back',
-                title: '唐傘小僧',
-                visual: 'src',
-                description: '無意中撞見唐傘小僧，雖然祂只是混入人群中享受祭典氣氛，你還是嚇得魂飛魄散，倒退 3 格。',
-                move: 3,
-                direction: false
-            }
-        },
-        {
-            index: 26,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 27,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 28,
-            event: {
-                type: 'back',
-                title: '糊里糊塗',
-                visual: 'src',
-                description: '和朋友聊天太開心，捷運搭錯方向，還好及早發現，後退 1 格',
-                move: 1,
-                direction: false
-            }
-        },
-        {
-            index: 29,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 30,
-            event: {
-                type: 'foward',
-                title: '打折誘惑',
-                visual: 'src',
-                description: '聽說前方不遠處有名牌精品包包跳樓大拍賣，但走了好久都沒看見，前進 2 格。',
-                move: 2,
-                direction: true
-            }
-        },
-        {
-            index: 31,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 32,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 33,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 34,
-            event: {
-                type: 'jail',
-                title: '癡漢疑惑',
-                visual: 'src',
-                description: '好心幫助迷路的小妹妹找家人，路人卻誤會你是誘拐犯，被帶去警局喝咖啡，休息 1 次。',
-                move: 0,
-                direction: null
-            }
-        },
-        {
-            index: 35,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 36,
-            event: {
                 type: 'goal',
                 title: '抵達終點',
                 visual: 'src',
@@ -286,7 +102,196 @@ const initialState = {
                 move: 0,
                 direction: null
             }
-        },
+        } // },
+        // {
+        //     index: 13,
+        //     event: {
+        //         type: 'jail',
+        //         title: '漁夫纏身',
+        //         visual: 'src',
+        //         description: '遭到數名漁夫包圍，一時之間無法脫身，休息 1 次。',
+        //         move: 0,
+        //         direction: null
+        //     }
+        // },
+        // {
+        //     index: 14,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 15,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 16,
+        //     event: {
+        //         type: 'foward',
+        //         title: '體驗 U-Bike',
+        //         visual: 'src',
+        //         description: '平常鮮少運動的你心血來潮的跑去騎 U-Bike 兜風，前進 1 格',
+        //         move: 1,
+        //         direction: true
+        //     }
+        // },
+        // {
+        //     index: 17,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 18,
+        //     event: {
+        //         type: 'knowledge',
+        //         title: '',
+        //         visual: 'src',
+        //         description: '',
+        //         move: 0,
+        //         direction: null
+        //     }        
+        // },
+        // {
+        //     index: 19,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 20,
+        //     event: {
+        //         type: 'back',
+        //         title: '黑色流星',
+        //         visual: 'src',
+        //         description: '開開心心的在路邊攤吃炒麵，突然一隻會飛的「黑色流星」襲來，驚嚇不已，倒退 1 格',
+        //         move: 1,
+        //         direction: false
+        //     }
+        // },
+        // {
+        //     index: 21,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 22,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 23,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 24,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 25,
+        //     event: {
+        //         type: 'back',
+        //         title: '唐傘小僧',
+        //         visual: 'src',
+        //         description: '無意中撞見唐傘小僧，雖然祂只是混入人群中享受祭典氣氛，你還是嚇得魂飛魄散，倒退 3 格。',
+        //         move: 3,
+        //         direction: false
+        //     }
+        // },
+        // {
+        //     index: 26,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 27,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 28,
+        //     event: {
+        //         type: 'back',
+        //         title: '糊里糊塗',
+        //         visual: 'src',
+        //         description: '和朋友聊天太開心，捷運搭錯方向，還好及早發現，後退 1 格',
+        //         move: 1,
+        //         direction: false
+        //     }
+        // },
+        // {
+        //     index: 29,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 30,
+        //     event: {
+        //         type: 'foward',
+        //         title: '打折誘惑',
+        //         visual: 'src',
+        //         description: '聽說前方不遠處有名牌精品包包跳樓大拍賣，但走了好久都沒看見，前進 2 格。',
+        //         move: 2,
+        //         direction: true
+        //     }
+        // },
+        // {
+        //     index: 31,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 32,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 33,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 34,
+        //     event: {
+        //         type: 'jail',
+        //         title: '癡漢疑惑',
+        //         visual: 'src',
+        //         description: '好心幫助迷路的小妹妹找家人，路人卻誤會你是誘拐犯，被帶去警局喝咖啡，休息 1 次。',
+        //         move: 0,
+        //         direction: null
+        //     }
+        // },
+        // {
+        //     index: 35,
+        //     event: {
+        //         type: null
+        //     }
+        // },
+        // {
+        //     index: 36,
+        //     event: {
+        //         type: 'goal',
+        //         title: '抵達終點',
+        //         visual: 'src',
+        //         description: '恭喜你贏ㄌ～!',
+        //         move: 0,
+        //         direction: null
+        //     }
+        // },
         // {
         //     index: 37
         // },

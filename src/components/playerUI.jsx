@@ -44,10 +44,8 @@ class PlayerUI extends Component {
     }
     
     cubeInit(num) {
-        console.log('原始', num);
         if (num < 1) {
             num = (num + 1) % document.plyZone.length;
-            console.log('小於1，+1後', num);
         }
         if (num >= document.plyZone.length) {
             num = num % document.plyZone.length;

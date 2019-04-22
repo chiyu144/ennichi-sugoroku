@@ -138,9 +138,10 @@ class Character extends Component {
   }
 
   drawLots (e) {
-    let originPlyArr = this.props.plyList;
-    let shufflePlyArr = this.shuffle(originPlyArr.map(op => { return { uid: op.uid, type: op.type, name: op.name, outcome: op.outcome, offset: op.offset, inJail: op.inJail} }));
-    let newPlyArr = shufflePlyArr.map((np, i) => { return { index: i, uid: np.uid, type: np.type, name: np.name, outcome: np.outcome, offset: np.offset, inJail: np.inJail} });
+    let originPlyArr = [...this.props.plyList];
+    let shufflePlyArr = this.shuffle(originPlyArr.map(op => { delete op.index; return op }));
+    let newPlyArr = shufflePlyArr.map((np, i) => { np.index = i; return np });
+
     this.props.drawLotsAnime(newPlyArr);
     // 抽好後 Game Start 出來，抽按鈕消失
     e.target.style.visibility = 'hidden';

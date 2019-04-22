@@ -36,10 +36,12 @@ class Game extends Component {
     let prevChecked = prevProps.checked;
     let nextChecked = this.props.checked;
     let playing = this.props.plyList[this.props.isTurn];
+    let theEventType = this.props.cell[playing.offset.curr].event.type;
 
     if (nextChecked !== prevChecked) {
-      if (nextChecked === true && playing.type === 'npc') {  
-        setTimeout(() => { document.querySelector('#eventTrigger > button').click() }, 2000);
+      if (nextChecked === true && playing.type === 'npc') {
+        if (theEventType === 'goal') setTimeout(() => { document.querySelector('#eventTrigger a').click() }, 1500)
+        else setTimeout(() => { document.querySelector('#eventTrigger > button').click() }, 1500);
       } else if (nextChecked === true && playing.type === 'ply') {
         document.querySelector('#eventTrigger').style.pointerEvents = 'auto'
       } else {

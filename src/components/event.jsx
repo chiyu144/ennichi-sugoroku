@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import '../css/style.css';
-import '../css/chess.css';
+import '../css/event.css';
 
 class Event extends Component {
     constructor(props) {
@@ -91,19 +91,31 @@ class Event extends Component {
         const theCellNum = plyList[isTurn].offset.curr;
         const theCell = cell[theCellNum];
         // 準備把他那格的事件 render 出來
-        const theEvent = theCell.event;
-        
+        const theEvent = theCell.event;        
+
         // if 事件類型是「前進」就 render 可以 trigger「前進」的按鈕，以此類推
         return(
             <div id='event'>
-                <p>{ theEvent.title }</p>
-                <p>{ theEvent.description }</p>
+                <p id='eventHeadline'>
+                    Event :::&nbsp;
+                    { theEvent.type === 'foward' && <span>前進</span> }
+                    { theEvent.type === 'back' && <span>後退</span> }
+                    { theEvent.type === 'jail' && <span>休息</span> }
+                    { theEvent.type === 'knowledge' && <span>科普</span> }
+                    { theEvent.type === 'goal' && <span>終點</span> }
+                </p>
+                <p id='eventTitle'>{ theEvent.title }</p> {/* { theEvent.title } */}
+                <div id='eventVisual'>
+                    <img src={require('../img/name7.png')} />
+                </div>
+                <p id='eventDesc'>{ theEvent.description }</p> {/* { theEvent.description } */}
                 <div id='eventTrigger'>
-                    { theEvent.type === 'foward' && <button className="eventBtn" onClick={ (e) => this.eventMoveChessManyTimes(e, theEvent.move, isTurn, theEvent.direction, theCellNum) }>前</button> }
-                    { theEvent.type === 'back' && <button className="eventBtn" onClick={ (e) => this.eventMoveChessManyTimes(e, theEvent.move, isTurn, theEvent.direction, theCellNum) }>後</button> }
-                    { theEvent.type === 'jail' && <button className="eventBtn" onClick={ (e) => this.eventJail(e, isTurn) }>坐牢</button> }
-                    { theEvent.type === 'knowledge' && <button className="eventBtn" onClick={ (e) => this.eventTellKnowledge(e, isTurn) }>科普</button> }            
-                    { theEvent.type === 'goal' && <div><p>{ plyList[isTurn].name + '贏了～!!' }</p><button onClick={ (e) => this.eventRanking(e)} className="eventBtn"><NavLink to='/ranking'>勝利</NavLink></button></div> }            
+                {/* <button className="eventBtn">測試</button> */}
+                    { theEvent.type === 'foward' && <button className="eventBtn" onClick={ (e) => this.eventMoveChessManyTimes(e, theEvent.move, isTurn, theEvent.direction, theCellNum) }>確認</button> }
+                    { theEvent.type === 'back' && <button className="eventBtn" onClick={ (e) => this.eventMoveChessManyTimes(e, theEvent.move, isTurn, theEvent.direction, theCellNum) }>確認</button> }
+                    { theEvent.type === 'jail' && <button className="eventBtn" onClick={ (e) => this.eventJail(e, isTurn) }>確認</button> }
+                    { theEvent.type === 'knowledge' && <button className="eventBtn" onClick={ (e) => this.eventTellKnowledge(e, isTurn) }>確認</button> }            
+                    { theEvent.type === 'goal' && <button onClick={ (e) => this.eventRanking(e)} className="eventBtn"><NavLink to='/ranking'>確認</NavLink></button> }            
                 </div>
             </div>
         )

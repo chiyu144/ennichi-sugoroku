@@ -1,4 +1,7 @@
+let bodyWidth = document.body.clientWidth;
+
 const initialState = {
+    bodyWidth: bodyWidth,
     cell: [
         {
             index: 0,
@@ -15,7 +18,14 @@ const initialState = {
         {
             index: 2,
             event: {
-                type: null
+                type: 'knowledge',
+                title: '「緣日雙六 - HANABI -」的意思',
+                visual: 'src',
+                description: '緣日，指的是與神佛有緣之日，例如神佛的生日、舉行祭祀之日。每逢緣日，神社或寺廟內通常會舉行祭典；' +
+                             '雙六，在日語中是指一種擲骰子前進的桌遊，先到達終點者勝利，由於玩法與大富翁大致相同，一般可稱做日式大富翁；' +
+                             'HANABI，也是來自日語，指煙火，煙火是日本夏日風情的象徵。因此，緣日雙六 - HANABI -，就如其名是一款以夏日祭典為主題的日式大富翁遊戲。',
+                move: 0,
+                direction: null
             }
         },
         {
@@ -27,12 +37,12 @@ const initialState = {
         {
             index: 4,
             event: {
-                type: 'knowledge',
-                title: '「緣日雙六 - HANABI -」的意思',
+                type: 'back',
+                title: '忘東忘西',
                 visual: 'src',
-                description: '緣日，指的是與神佛有緣之日，例如神佛的生日、舉行祭祀之日。每逢緣日，神社或寺廟內通常會舉行祭典；雙六，在日語中是指一種擲骰子前進的桌遊，先到達終點者勝利，由於玩法與大富翁大致相同，一般可稱做日式大富翁；HANABI，也是來自日語，指煙火，煙火是日本夏日風情的象徵。因此，緣日雙六 - HANABI -，就如其名是一款以夏日祭典為主題的日式大富翁遊戲。',
-                move: 0,
-                direction: null
+                description: '買完東西後把錢包忘在攤位上，急忙跑回去找老闆拿，後退 1 格。',
+                move: 1,
+                direction: false
             }
         },
         {
@@ -47,7 +57,7 @@ const initialState = {
                 type: 'foward',
                 title: '獲得跑車',
                 visual: 'src',
-                description: '轉轉樂抽到頭獎，獲得跑車一台，前進 3 格',
+                description: '轉轉樂抽到頭獎，獲得跑車一台，前進 3 格。',
                 move: 3,
                 direction: true
             }
@@ -81,7 +91,9 @@ const initialState = {
                 type: 'knowledge',
                 title: '為什麼日本的夏天是煙火的季節？',
                 visual: 'src',
-                description: '西元 1733 年，有「中興之祖」之稱的江戶幕府第八代將軍「德川吉宗」為了驅除惡靈、安撫因飢餓或疾病而死去的亡靈，在位於東京的隅田川舉行了「水神祭」並在祭典中施放了煙火（據說就是東京隅田川花火大會的前身），夏日夜晚氣候涼爽適合民眾外出觀賞煙火，煙火製造商為了競爭誰家的煙火好，也很積極參與。此後在夏天舉行煙火大會祭典就演變成一個習俗了。',
+                description: '西元 1733 年，有「中興之祖」之稱的江戶幕府第八代將軍「德川吉宗」為了驅除惡靈、安撫因飢餓或疾病而死去的亡靈，' + 
+                             '在位於東京的隅田川舉行了「水神祭」並在祭典中施放了煙火（據說就是東京隅田川花火大會的前身），' + 
+                             '夏日夜晚氣候涼爽適合民眾外出觀賞煙火，煙火製造商也為了競爭誰家的煙火好，積極參與。此後在夏天舉行煙火大會祭典就演變成一個習俗了。',
                 move: 0,
                 direction: null
             }
@@ -95,230 +107,404 @@ const initialState = {
         {
             index: 12,
             event: {
-                type: 'goal',
-                title: '抵達終點',
+                type: null
+            }
+        },
+        {
+            index: 13,
+            event: {
+                type: 'jail',
+                title: '漁夫纏身',
                 visual: 'src',
-                description: '恭喜你贏ㄌ～!',
+                description: '遭到數名漁夫包圍，一時之間無法脫身，休息 1 次。',
                 move: 0,
                 direction: null
             }
-        } // },
-        // {
-        //     index: 13,
-        //     event: {
-        //         type: 'jail',
-        //         title: '漁夫纏身',
-        //         visual: 'src',
-        //         description: '遭到數名漁夫包圍，一時之間無法脫身，休息 1 次。',
-        //         move: 0,
-        //         direction: null
-        //     }
-        // },
-        // {
-        //     index: 14,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 15,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 16,
-        //     event: {
-        //         type: 'foward',
-        //         title: '體驗 U-Bike',
-        //         visual: 'src',
-        //         description: '平常鮮少運動的你心血來潮的跑去騎 U-Bike 兜風，前進 1 格',
-        //         move: 1,
-        //         direction: true
-        //     }
-        // },
-        // {
-        //     index: 17,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 18,
-        //     event: {
-        //         type: 'knowledge',
-        //         title: '',
-        //         visual: 'src',
-        //         description: '',
-        //         move: 0,
-        //         direction: null
-        //     }        
-        // },
-        // {
-        //     index: 19,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 20,
-        //     event: {
-        //         type: 'back',
-        //         title: '黑色流星',
-        //         visual: 'src',
-        //         description: '開開心心的在路邊攤吃炒麵，突然一隻會飛的「黑色流星」襲來，驚嚇不已，倒退 1 格',
-        //         move: 1,
-        //         direction: false
-        //     }
-        // },
-        // {
-        //     index: 21,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 22,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 23,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 24,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 25,
-        //     event: {
-        //         type: 'back',
-        //         title: '唐傘小僧',
-        //         visual: 'src',
-        //         description: '無意中撞見唐傘小僧，雖然祂只是混入人群中享受祭典氣氛，你還是嚇得魂飛魄散，倒退 3 格。',
-        //         move: 3,
-        //         direction: false
-        //     }
-        // },
-        // {
-        //     index: 26,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 27,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 28,
-        //     event: {
-        //         type: 'back',
-        //         title: '糊里糊塗',
-        //         visual: 'src',
-        //         description: '和朋友聊天太開心，捷運搭錯方向，還好及早發現，後退 1 格',
-        //         move: 1,
-        //         direction: false
-        //     }
-        // },
-        // {
-        //     index: 29,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 30,
-        //     event: {
-        //         type: 'foward',
-        //         title: '打折誘惑',
-        //         visual: 'src',
-        //         description: '聽說前方不遠處有名牌精品包包跳樓大拍賣，但走了好久都沒看見，前進 2 格。',
-        //         move: 2,
-        //         direction: true
-        //     }
-        // },
-        // {
-        //     index: 31,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 32,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 33,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 34,
-        //     event: {
-        //         type: 'jail',
-        //         title: '癡漢疑惑',
-        //         visual: 'src',
-        //         description: '好心幫助迷路的小妹妹找家人，路人卻誤會你是誘拐犯，被帶去警局喝咖啡，休息 1 次。',
-        //         move: 0,
-        //         direction: null
-        //     }
-        // },
-        // {
-        //     index: 35,
-        //     event: {
-        //         type: null
-        //     }
-        // },
-        // {
-        //     index: 36,
-        //     event: {
-        //         type: 'goal',
-        //         title: '抵達終點',
-        //         visual: 'src',
-        //         description: '恭喜你贏ㄌ～!',
-        //         move: 0,
-        //         direction: null
-        //     }
-        // },
-        // {
-        //     index: 37
-        // },
-        // {
-        //     index: 38
-        // },
-        // { index: 39 },{ index: 40 },{ index: 41 },
-        // { index: 42 },{ index: 43 },{ index: 44 },
-        // { index: 45 },{ index: 46 },{ index: 47 },
-        // { index: 48 },{ index: 49 },{ index: 50 },
-        // { index: 51 },{ index: 52 },{ index: 53 },
-        // { index: 54 },{ index: 55 },{ index: 56 },
-        // { index: 57 },{ index: 58 },{ index: 59 },
-        // { index: 60 }
+        },
+        {
+            index: 14,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 15,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 16,
+            event: {
+                type: 'foward',
+                title: '體驗 U-Bike',
+                visual: 'src',
+                description: '平常鮮少運動的你心血來潮的跑去騎 U-Bike 兜風，前進 1 格',
+                move: 1,
+                direction: true
+            }
+        },
+        {
+            index: 17,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 18,
+            event: {
+                type: 'knowledge',
+                title: '玉屋（Tamaya）、鍵屋（Kagiya）',
+                visual: 'src',
+                description: '在日本的花火大會上，經常會聽到「玉屋（Tamaya）」、「鍵屋（Kagiya）」的吆喝聲，' + 
+                             '玉屋、鍵屋是江戶時代最著名的兩大煙火製造商商號。' + 
+                             '舉行花火大會的時候，玉屋、鍵屋兩家的煙火會交替燃放競賽，' + 
+                             '人們為了讚賞自己認為最美麗的煙火，就會高喊煙火商的商號助威。這種加油號子就一直流傳到了現在。',
+                move: 0,
+                direction: null
+            }
+        },
+        {
+            index: 19,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 20,
+            event: {
+                type: 'back',
+                title: '黑色流星',
+                visual: 'src',
+                description: '開開心心的吃著路邊攤美食，突然一隻會飛的「黑色流星」襲來，驚嚇不已，倒退 1 格',
+                move: 1,
+                direction: false
+            }
+        },
+        {
+            index: 21,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 22,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 23,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 24,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 25,
+            event: {
+                type: 'back',
+                title: '唐傘小僧',
+                visual: 'src',
+                description: '無意中撞見唐傘小僧，雖然祂只是混入人群中享受祭典氣氛，你還是嚇得魂飛魄散，倒退 3 格。',
+                move: 3,
+                direction: false
+            }
+        },
+        {
+            index: 26,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 27,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 28,
+            event: {
+                type: 'back',
+                title: '糊里糊塗',
+                visual: 'src',
+                description: '和朋友聊天太開心，捷運搭錯方向，還好及早發現，後退 1 格',
+                move: 1,
+                direction: false
+            }
+        },
+        {
+            index: 29,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 30,
+            event: {
+                type: 'foward',
+                title: '打折誘惑',
+                visual: 'src',
+                description: '聽說前方不遠處有名牌精品包包跳樓大拍賣，但走了好久都沒看見，前進 2 格。',
+                move: 2,
+                direction: true
+            }
+        },
+        {
+            index: 31,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 32,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 33,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 34,
+            event: {
+                type: 'jail',
+                title: '癡漢疑惑',
+                visual: 'src',
+                description: '好心幫助迷路的小妹妹找家人，路人卻誤會你是誘拐犯，被帶去警局喝咖啡，休息 1 次。',
+                move: 0,
+                direction: null
+            }
+        },
+        {
+            index: 35,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 36,
+            event: {
+                type: 'back',
+                title: '地牛翻身',
+                visual: 'src',
+                description: '起先只是感到輕微搖晃，接著越晃越大，安全起見，只好隨著眾人一起避難去，後退 3 格。',
+                move: 3,
+                direction: false
+            }
+        },
+        {
+            index: 37,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 38,
+            event: {
+                type: 'jail',
+                title: '占卜阿嬤',
+                visual: 'src',
+                description: '行經一個桌上擺放水晶球的攤位，攤主阿嬤將你叫住，擅自替你進行了一連串的占卜，休息一次。',
+                move: 0,
+                direction: null
+            }
+        },
+        {
+            index: 39,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 40,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 41,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 42,
+            event: {
+                type: 'knowledge',
+                title: '線香花火',
+                visual: 'src',
+                description: '在細紙捲的前端放上少量火藥的小型玩具煙火。' + 
+                             '點燃後，火種會漸漸地膨脹就像牡丹花蕾一般，接著爆發出松葉或菊花形狀的淡淡煙火，' +
+                             '最後爆發的間隔漸漸地變短，火光一束一束的掉落、消失。' + 
+                             '根據風的強度與拿法的改變，煙火維持的時間也會不同。那細緻的風情可說是日本傳統美的代表。',
+                move: 0,
+                direction: null
+            }
+        },
+        {
+            index: 43,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 44,
+            event: {
+                type: 'foward',
+                title: '絕佳景點',
+                visual: 'src',
+                description: '朋友說他知道一處欣賞煙火的絕佳景點，雖然雙腳已開始痠痛，但你們還是不辭辛勞的走了過去，前進 1 格。',
+                move: 1,
+                direction: true
+            }
+        },
+        {
+            index: 45,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 46,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 47,
+            event: {
+                type: 'jail',
+                title: '巧遇男神',
+                visual: 'src',
+                description: '你的偶像男神喬裝成一般民眾外出逛街被你發現，你立刻上前攀談，聊得太開心休息 1 次。',
+                move: 0,
+                direction: null
+            }
+        },
+        {
+            index: 48,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 49,
+            event: {
+                type: 'foward',
+                title: '美食療癒',
+                visual: 'src',
+                description: '吃了烤玉米、刨冰、烤魷魚、蘋果糖 … 等等各式祭典美食，心靈感到療癒滿足，前進 2 格。',
+                move: 2,
+                direction: true
+            }
+        },
+        {
+            index: 50,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 51,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 52,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 53,
+            event: {
+                type: 'knowledge',
+                title: '打上花火',
+                visual: 'src',
+                description: '意即「高空煙火」。煙火師將火藥設置在鐵筒內然後朝著高空發射，被打上高空的火藥就會像花朵一樣綻放成美麗的煙火，' + 
+                             '「土星」、「銀冠菊」、「錦冠菊」、「柳」、「蜂」都是打上花火的一種。',
+                move: 0,
+                direction: null
+            }
+        },
+        {
+            index: 54,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 55,
+            event: {
+                type: 'back',
+                title: '離奇噴飛',
+                visual: 'src',
+                description: '不慎踩到香蕉皮，跌進一旁的手推車，沒想到路面傾斜，在手推車裡的你隨著斜坡高速滑行，路人紛紛閃避，所幸最後撞到一塊廢棄床墊後停下，無人傷亡但後退 5 格。',
+                move: 5,
+                direction: false
+            }
+        },
+        {
+            index: 56,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 57,
+            event: {
+                type: 'back',
+                title: '雷雨特報',
+                visual: 'src',
+                description: '突然下起了雷陣雨，雨勢太過強大，連雨傘都快招架不住，只好臨時找地方避一避，後退 1 格',
+                move: 1,
+                direction: false
+            }
+        },
+        {
+            index: 58,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 59,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 60,
+            event: {
+                type: 'goal',
+                title: '抵達終點～!',
+                visual: 'src',
+                description: '恭喜～!!!',
+                move: 0,
+                direction: null
+            }
+        }
     ]
 }
   
 const cellReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case 'ADD_CELL':
-        //     新しく追加するTODO
-        //     const cell = action.payload.cell;
-        //     stateを複製して追加
-        //     const newState = Object.assign({}, state);
-        //     newState.cell.push(cell);
-        //     return newState;
-        default:
+        case 'UPDATE_BODY_WIDTH':
+            const newBodyWidth = action.payload.newBodyWidth;   
+            return {...state, bodyWidth: newBodyWidth};
+        
+            default:
             return state;
     }
 };

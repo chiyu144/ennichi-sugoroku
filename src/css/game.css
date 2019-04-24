@@ -21,6 +21,7 @@
 
 #gameUI {
     width: 100%; max-width: 1200px;
+    margin: 0 auto;
 }
 
 .dice {
@@ -36,13 +37,13 @@
 }
 
 #eventShower:checked ~ #eventBackground {
-    opacity: 0.5;
+    opacity: 0.95;
     z-index: 999;
 }
 
-#eventShower:checked ~ #eventMenu,
+#eventShower:checked ~ #eventWrap,
 #eventShower:checked ~ .cytoplasm {
-    transform: translate(-500px);
+    transform: translate(-600px);
 }
 
 label, #eventTrigger {
@@ -50,7 +51,7 @@ label, #eventTrigger {
 }
 
 #eventBackground {
-    background-color: #333; /*黒背景*/
+    background-color: #fff; /*黒背景*/
     display: block;
     height: 100%;
     opacity: 0;
@@ -62,15 +63,18 @@ label, #eventTrigger {
     z-index: -1;
 }
 
-#eventMenu {
-    background-color: #fff; /*メニュー背景色*/
+#eventWrap {
+    background-image: linear-gradient(135deg, #e8e8e8 1.52%, #ffffff 1.52%, #ffffff 31.82%, #fafafa 31.82%, #fafafa 50%, #e8e8e8 50%, #e8e8e8 51.52%, #ffffff 51.52%, #ffffff 81.82%, #fafafa 81.82%, #fafafa 100%);
+    background-size: 46.67px 46.67px;
     box-sizing: border-box;
     height: 100%;
-    padding: 10px 40px; /*メニュー内左右上下余白*/
+    padding: 20px 30px; /*メニュー内左右上下余白*/
     position: fixed;
-    right: -500px; /*メニュー横幅 width と合わせる*/
+    right: -600px; /*メニュー横幅 width と合わせる*/
     top: 0;
     transition: transform 0.2s ease-out; /*0.3s はアニメーションにかかる時間*/
-    width: 500px; /*メニュー横幅*/
+    width: 600px; /*メニュー横幅*/
     z-index: 1000;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

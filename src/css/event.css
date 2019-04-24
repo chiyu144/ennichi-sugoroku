@@ -1,3 +1,63 @@
+#event,
+#eventVisual,
+#eventVisual > img,
+#eventDesc {
+    width: 100%;
+}
+
+#event {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#eventHeadline {
+    font-size: 18px;
+    margin: 6px auto 0;
+    font-family: 'Source Code Pro', monospace;
+}
+
+#eventHeadline > span {
+    font-family: 'M PLUS 1p', sans-serif;
+}
+
+#eventTitle {
+    font-size: 30px;
+    margin: 20px auto 12px;
+}
+
+#eventVisual {
+    max-width: 75%;
+}
+
+#eventVisual > img {
+    width: 100%;
+}
+
+#eventDesc {
+    max-width: 85%;
+    margin: 20px auto 30px;
+    text-align: center;
+}
+
+.eventBtn {
+    width: 190px; height: 54px;
+    padding: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    background-image: url(../img/button.svg);
+    background-size: 100%;
+    transition: filter .2s ease;
+    position: relative;
+    /* overflow: hidden; */
+}
+
+.eventBtn:hover {
+    filter: brightness(0.7) sepia(1) hue-rotate(-10deg) saturate(2);
+}
+
 .eventBtn > a {
     color: #313131;
     width: 100%; height: 100%;

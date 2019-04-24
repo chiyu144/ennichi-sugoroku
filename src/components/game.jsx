@@ -18,6 +18,11 @@ class Game extends Component {
     chesses.forEach((chess, i) => {
       this.setChessPosition(chess, startCorners[i], i);
     })
+    window.addEventListener("resize", () => { this.props.updateBodyWidth(document.body.offsetWidth) });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", () => { this.props.updateBodyWidth(document.body.offsetWidth) });
   }
 
   findSpot(corner) {
@@ -39,14 +44,34 @@ class Game extends Component {
     let theEventType = this.props.cell[playing.offset.curr].event.type;
 
     if (nextChecked !== prevChecked) {
-      if (nextChecked === true && playing.type === 'npc') {
-        if (theEventType === 'goal') setTimeout(() => { document.querySelector('#eventTrigger a').click() }, 1500)
-        else setTimeout(() => { document.querySelector('#eventTrigger > button').click() }, 1500);
-      } else if (nextChecked === true && playing.type === 'ply') {
-        document.querySelector('#eventTrigger').style.pointerEvents = 'auto'
+      if (nextChecked === true) {
+        let scrollWidth = window.innerWidth - document.body.clientWidth;
+        document.querySelector('#game').style.marginRight = scrollWidth + 'px';
+        document.body.style.overflow = 'hidden';
+        
+        if (playing.type === 'npc') {
+          if (theEventType === 'goal') setTimeout(() => { document.querySelector('#eventTrigger a').click() }, 2000)
+          else setTimeout(() => { document.querySelector('#eventTrigger > button').click() }, 2000);
+        } else if (playing.type === 'ply') {
+          document.querySelector('#eventTrigger').style.pointerEvents = 'auto'
+        } else {
+          document.querySelector('#eventTrigger').style.pointerEvents = 'none';
+        }
+
       } else {
-        document.querySelector('#eventTrigger').style.pointerEvents = 'none';
+        document.querySelector('#game').style.marginRight = 0;
+        document.body.style.overflow = 'auto';
       }
+    }
+
+    let prevBodyWith = prevProps.bodyWidth;
+    let nextBodyWith = this.props.bodyWidth;
+    if(nextBodyWith !== prevBodyWith) {
+      console.log('Body寬度有變');
+      // let chesses = document.querySelectorAll('.chess');
+      // chesses.forEach((chess, i) => {
+      //   this.setChessPosition(chess, startCorners[i], i);
+      // })
     }
   }
 
@@ -64,7 +89,7 @@ class Game extends Component {
         </div>
         <PlayerUI findSpot={ this.findSpot } setChessPosition={ this.setChessPosition }/>
         <label id="eventBackground" htmlFor="eventShower"></label>
-        <div id='eventMenu'>
+        <div id='eventWrap'>
           <Event findSpot={ this.findSpot }/>
         </div>
       </div>

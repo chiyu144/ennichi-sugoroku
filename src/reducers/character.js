@@ -1,7 +1,7 @@
 import shortid from 'shortid';
 
 const initialState = {
-    plyNum: 1,
+    plyNum: 4,
     isTurn: 0,
     character: [
         {

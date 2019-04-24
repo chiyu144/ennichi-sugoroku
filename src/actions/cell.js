@@ -1,6 +1,6 @@
-// export const addCell = (cell) => {
-//     return { 
-//         type: 'ADD_CELL',
-//         payload: { cell: cell }
-//     }
-// }
+export const updateBodyWidth = (newBodyWidth) => {
+    return { 
+        type: 'UPDATE_BODY_WIDTH',
+        payload: { newBodyWidth: newBodyWidth }
+    }
+}

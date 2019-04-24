@@ -11,12 +11,12 @@ class Chess extends Component {
   // componentDidMount() { console.log('YOOOOOOOO') }
   // componentWillUnmount() { console.log('YOOOOOOOO') }
 
-  componentDidUpdate(prevProps) {
+  // componentDidUpdate(prevProps) {
     // props.id が変更されたら再フェッチ
     // if (this.props.name !== prevProps.name) {
     //   this.fetchUser(this.props.name);
     // }
-  }
+  // }
 
   render() {
     const {
@@ -29,7 +29,7 @@ class Chess extends Component {
           <div key={i} data-confirm={chess.uid}
                style={{
                  left: chess.offset.x, top: chess.offset.y,
-                //  transform: `translate(-${chess.offset.x}px, -${chess.offset.y}px)`,
+                //  transform: `translateX(${chess.offset.x}px) translateY(${chess.offset.y}px)`,
                }} className='chess'>
             <p>{chess.name}</p>
           </div>

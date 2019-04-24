@@ -16,7 +16,7 @@ class PlayerUI extends Component {
             setTimeout(() => {
                 console.log('等 3 秒自動骰～！');
                 document.querySelectorAll('.cube')[0].click();
-            }, 3000);
+            }, 2000);
         }
     }
 
@@ -36,7 +36,7 @@ class PlayerUI extends Component {
                 this.props.inOutJail(nextPlyIndex);
             } else if (nextPly.type === 'npc') {
                 nextPlyIndex === 0 ? this.cubeInit(-1) : this.cubeInit(nextPlyIndex);
-                setTimeout(() => { document.querySelectorAll('.cube')[nextPlyIndex].click() }, 1000);
+                setTimeout(() => { document.querySelectorAll('.cube')[nextPlyIndex].click() }, 2000);
             } else if (nextPly.type === 'ply') {
                 nextPlyIndex === 0 ? this.cubeInit(-1) : this.cubeInit(nextPlyIndex);
             }
@@ -121,10 +121,10 @@ class PlayerUI extends Component {
         return(
             <footer>
                 <div id='gameUI'>
-                    <div id="gameInfo">
+                    {/* <div id="gameInfo">
                         <p>回合數</p>
                         <p id="currentTurn">YOO</p>
-                    </div>
+                    </div> */}
                     <form id='plyZone' name='plyZone'>
                     { plyList.map((ply, i) => {
                         return(

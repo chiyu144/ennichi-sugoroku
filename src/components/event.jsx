@@ -23,7 +23,7 @@ class Event extends Component {
         // 抓下一格的定位 span，改 redux 裡的座標
         let nextCell = null;
         direction ? nextCell = currCell.nextSibling : nextCell = currCell.previousSibling;
-        console.log('動一次', '方向', direction, '目前格', currCell, '下一格', nextCell);
+        // console.log('動一次', '方向', direction, '目前格', currCell, '下一格', nextCell);
         let nextSpot = this.props.findSpot(nextCell.querySelectorAll('span')[isTurn]);
         this.props.updateOffset(isTurn, nextSpot);
     }
@@ -83,6 +83,7 @@ class Event extends Component {
             isTurn,
             plyList,
             cell,
+            checked
         } = this.props;
         // 需要： 1. isTurn 數字（當棋子的 index，找到正在玩的玩家棋子）
         // 2. offset.curr（找到正站在哪格）

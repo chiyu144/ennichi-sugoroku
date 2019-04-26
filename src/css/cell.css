@@ -1,40 +1,40 @@
 .cell {
     color: #fff;
     text-align: center;
-    padding: 0 12%;
+    padding: 24%;
 }
 
-/* .cell:nth-child(7) {
-    order: 12
+.cell:nth-child(12n+7) {
+    grid-column-start: 6
 }
-.cell:nth-child(8) {
-    order: 11
+.cell:nth-child(12n+8) {
+    grid-column-start: 5
 }
-.cell:nth-child(9) {
-    order: 10
+.cell:nth-child(12n+9) {
+    grid-column-start: 4
 }
-.cell:nth-child(10) {
-    order: 9
+.cell:nth-child(12n+10) {
+    grid-column-start: 3
 }
-.cell:nth-child(11) {
-    order: 8
+.cell:nth-child(12n+11) {
+    grid-column-start: 2
 }
-.cell:nth-child(12) {
-    order: 7
+.cell:nth-child(12n+12) {
+    grid-column-start: 1
 }
-.cell:nth-child(13) {
-    order: 13
-} */
 
 .cytoplasm {
     display: flex;
-    padding: 30px 0;
-    margin: 30px 0;
     height: 100%;
-    border: 1px solid darkblue;
-    background-color: royalblue;
     position: relative;
-    transition: all 0.3s linear 0s; /*0.3s はアニメーションにかかる時間*/
+    background-color: royalblue;
+    /* border: 2px solid royalblue; */
+    -webkit-transform: rotate(45deg) skew(-0.32175055rad, -0.32175055rad);
+    -moz-transform: rotate(45deg) skew(-0.32175055rad, -0.32175055rad);
+    -ms-transform: rotate(45deg) skew(-0.32175055rad, -0.32175055rad);
+    -o-transform: rotate(45deg) skew(-0.32175055rad, -0.32175055rad);
+    transform: rotate(45deg) skew(-0.32175055rad, -0.32175055rad);
+    transition: all 0.3s linear 0s;
 }
 
 .cytoplasm > span {
@@ -43,15 +43,40 @@
     width: 30px; height: 30px;
 }
 
+.cell:nth-child(12n+7) > .cytoplasm {
+    /* border: 2px solid yellowgreen; */
+    background-color: yellowgreen;
+}
+.cell:nth-child(12n+8) > .cytoplasm {
+    /* border: 2px solid yellowgreen; */
+    background-color: yellowgreen;
+}
+.cell:nth-child(12n+9) > .cytoplasm {
+    /* border: 2px solid yellowgreen; */
+    background-color: yellowgreen;
+}
+.cell:nth-child(12n+10) > .cytoplasm {
+    /* border: 2px solid yellowgreen; */
+    background-color: yellowgreen;
+}
+.cell:nth-child(12n+11) > .cytoplasm {
+    /* border: 2px solid yellowgreen; */
+    background-color: yellowgreen;
+}
+.cell:nth-child(12n+12) > .cytoplasm {
+    /* border: 2px solid yellowgreen; */
+    background-color: yellowgreen;
+}
+
 .upperL {
-    top: 0; left:0;
+    top: -20%; left: 0;
 }
 .upperR {
-    top: 0; right:0;
+    top: -20%; right: 10%;
 }
 .lowerR {
-    bottom: 0; right: 0;
+    bottom: 20%; right: 10%;
 }
 .lowerL {
-    bottom: 0; left: 0;
+    bottom: 20%; left: 0;
 }

@@ -50,12 +50,11 @@ class Game extends Component {
         document.body.style.overflow = 'hidden';
         
         if (playing.type === 'npc') {
+          document.querySelector('#eventTrigger').style.pointerEvents = 'none';
           if (theEventType === 'goal') setTimeout(() => { document.querySelector('#eventTrigger a').click() }, 2000)
           else setTimeout(() => { document.querySelector('#eventTrigger > button').click() }, 2000);
         } else if (playing.type === 'ply') {
           document.querySelector('#eventTrigger').style.pointerEvents = 'auto'
-        } else {
-          document.querySelector('#eventTrigger').style.pointerEvents = 'none';
         }
 
       } else {
@@ -64,15 +63,15 @@ class Game extends Component {
       }
     }
 
-    let prevBodyWith = prevProps.bodyWidth;
-    let nextBodyWith = this.props.bodyWidth;
-    if(nextBodyWith !== prevBodyWith) {
-      console.log('Body寬度有變');
+    // let prevBodyWith = prevProps.bodyWidth;
+    // let nextBodyWith = this.props.bodyWidth;
+    // if(nextBodyWith !== prevBodyWith) {
+    //   console.log('Body寬度有變');
       // let chesses = document.querySelectorAll('.chess');
       // chesses.forEach((chess, i) => {
       //   this.setChessPosition(chess, startCorners[i], i);
       // })
-    }
+    // }
   }
 
   render() {

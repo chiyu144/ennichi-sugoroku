@@ -8,7 +8,8 @@ const mapStateToProps = state => {
     return {
         isTurn: state.character.isTurn,
         plyList: state.character.plyList,
-        cell: state.cell.cell
+        cell: state.cell.cell,
+        checked: state.event.checked
     }
 }
 

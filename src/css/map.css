@@ -1,10 +1,46 @@
 #map {
     width: 100%; max-width: 1200px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 #cellContainer {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-gap: 3%;
+    grid-auto-rows: 1fr;
+    grid-auto-flow: row dense;
+    /* position: relative; */
+}
+
+/* 為了讓 cell 是正方形 */
+#cellContainer:before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+}
+#cellContainer > *:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+}
+  
+/* 為了讓 cell 可見（藍色底是細胞質，不是 cell） */
+#cellContainer> * {
+    background: transparent;
+    /* border: 1px #ccc solid; */
+}
+
+#cellContainer > *:nth-child(6n), 
+#cellContainer > *:nth-child(6n+1) {
+    background-image: url('../img/tube.svg');
+    background-repeat: no-repeat;
+}
+
+#cellContainer > *:nth-child(6n) {
+    background-position: center 101%;
+}
+
+#cellContainer> *:nth-child(1) {
+    background: transparent;
+    /* border: 1px #ccc solid; */
 }

@@ -199,6 +199,9 @@ class Character extends Component {
           return (
             <div key={i} className="candidateProfile">
               <h3>{c.name}</h3>
+              <div className='charaVisual'>
+                <img src={require("../img/chara0" + `${(i+1)}` + ".png")}></img>
+              </div>
             </div>
         )})}
         <p>按下抽順序，就不能重選角色囉!</p>

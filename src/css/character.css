@@ -38,7 +38,7 @@
 }
 
 .elect {
-    width: 120px; height: 200px;
+    width: 120px; height: 60px;
 }
 
 #charaOption {
@@ -113,4 +113,12 @@
 .candidateProfile {
     width: 100%; padding: 10px 0 60px 0;
 	display: none;
+}
+
+.charaVisual {
+    width: 100%; max-width: 25%;
+}
+
+.charaVisual > img{
+    width: 100%;
 }

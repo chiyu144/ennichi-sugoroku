@@ -4,14 +4,29 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    /* position: relative; */
+}
+
+@keyframes movement{
+    0% {
+      background-position:0px 0px;
+    }
+    100%{
+      background-position:560px 0px;
+    }
 }
 
 #board {
     position: relative;
     display: flex;
+    flex-flow: column;
     justify-content: center;
-    width: 100%; max-width: 1200px;
+    align-items: center;
+    width: 100%; max-width: 100%;
+    background-color:#BFDFEC;
+    background-repeat:repeat-x;
+    background-image:url("https://i.stack.imgur.com/b7z29.png");
+    animation: movement 10s linear infinite; 
+    background-attachment: fixed;
 }
 
 #gameUI, #plyZone {
@@ -37,7 +52,7 @@
 }
 
 #eventShower:checked ~ #eventBackground {
-    opacity: 0.95;
+    opacity: 0.7;
     z-index: 999;
 }
 

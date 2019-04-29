@@ -12,6 +12,7 @@ class Character extends Component {
 
   componentDidMount() {
     this.props.setPlyType(this.props.plyNum);
+    document.querySelectorAll('.candidate')[0].click();
   }
   
   // componentWillUnmount() { window.removeEventListener('DOMContentLoaded', this.props.setPlyType(this.props.plyNum)) }
@@ -21,7 +22,10 @@ class Character extends Component {
     let elect = e.target.parentNode;
     let otherOptionBtns = document.querySelectorAll('.elect > button');
     let allKickOutBtns = document.querySelectorAll('.kickOutBtn');
+    let charaOption = document.querySelector('#charaOption');
 
+    charaOption.style.pointerEvents = 'auto';
+    
     // 一個在選的時候，其他按鈕 + 自己的叉叉鈕要封起來
     otherOptionBtns.forEach(opb => {
       if(opb.getAttribute('data-confirm') !== elect.getAttribute('data-confirm')) {
@@ -66,6 +70,7 @@ class Character extends Component {
       });
       preventReClickBtn();
       allKickOutBtns.forEach(akob => akob.removeAttribute('disabled'));
+      charaOption.style.pointerEvents = 'none';
       checkPlySelect();
     }
 
@@ -149,6 +154,15 @@ class Character extends Component {
     document.querySelector('#gameStartLink').style.pointerEvents = 'auto';
   }
 
+  showProfile(profileIndex, colorCode) {
+    let profiles=document.querySelectorAll('.candidateProfile');
+    profiles.forEach(pn => {
+      pn.style.display = "none";
+    });
+    profiles[profileIndex].style.display='block';
+    profiles[profileIndex].style.backgroundColor=colorCode;
+  }
+
   render() {
     const {
       plyList, character
@@ -156,27 +170,37 @@ class Character extends Component {
     // console.log('傳到 Character Component 裡的 props', this.props);
     return(
       <div id="character">
-        <p>請選擇角色吧 !</p>
-        <div id='charaDecide'>
-        { plyList.map((d, i) => {
-          return (
-            <div key={i} data-confirm={d.uid} className='elect'>
-              { d.type }
-              <p></p>
-              <button data-confirm={d.uid} className='selectBtn' onClick={(e) => { this.plySelect(e, plyList[i]) }}>選擇</button>
-              <button data-confirm={d.uid} className='decideBtn'>決定</button>              
-              <button data-confirm={d.uid} className='kickOutBtn'>&times;</button>
+        <div id='charaForm'>
+          <div id='charaDecide'>
+            <p>請選擇角色（若有 NPC，也請幫他 / 他們選擇角色吧!）</p>
+            <div id='electWrap'>
+              { plyList.map((d, i) => {
+                return (
+                  <div key={i} data-confirm={d.uid} className='elect'>
+                    { d.type }
+                    <p></p>
+                    <button data-confirm={d.uid} className='selectBtn' onClick={(e) => { this.plySelect(e, plyList[i]) }}>選擇</button>
+                    <button data-confirm={d.uid} className='decideBtn'>決定</button>              
+                    <button data-confirm={d.uid} className='kickOutBtn'>&times;</button>
+                  </div>
+              )})}
             </div>
-        )})}
+          </div>
+          <div id='charaOption'>
+          { character.map((c, i) => {
+            return (
+              <button key={i} className='candidate' onClick={ (e) => { this.showProfile(i, '#eee') }}>
+                {c.name}
+              </button>
+          )})}
+          </div>
         </div>
-        <div id='charaOption'>
         { character.map((c, i) => {
           return (
-            <button key={i} className='candidate'>
-              {c.name}
-            </button>
+            <div key={i} className="candidateProfile">
+              <h3>{c.name}</h3>
+            </div>
         )})}
-        </div>
         <p>按下抽順序，就不能重選角色囉!</p>
         <Popup trigger={<button id="drawLotsTrigger" className='drawLotsNO'> 抽順序! </button>}
           onOpen={() => this.finalDecision()}

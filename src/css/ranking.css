@@ -1,3 +1,8 @@
 #ranking{
     margin-top: 50px;
+    flex: 1;
+    width: 100%; max-width: 100%;
+    background-color:#e5e4de;
+    position: relative;
+    overflow: hidden;
 }

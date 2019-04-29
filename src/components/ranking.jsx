@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import '../css/style.css';
 import '../css/ranking.css';
 
+import circle from '../img/circle.png';
+
 class Ranking extends Component {
     constructor(props) {
         super(props)
@@ -14,6 +16,9 @@ class Ranking extends Component {
         } = this.props;
         return (
             <div id='ranking'>
+                <div className='circle'>
+                    <img src={ circle } />
+                </div>
                 <p>第一名</p>
                 <p>{ plyList[0].name }</p>
                 <p>第二名</p>

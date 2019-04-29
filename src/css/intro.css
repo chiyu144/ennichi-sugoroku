@@ -52,7 +52,7 @@
 #introSelect {
     display: flex;
     position: relative;
-    width: 45%;
+    width: 100%; max-width: 45%;
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-around;

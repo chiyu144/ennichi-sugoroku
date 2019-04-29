@@ -82,8 +82,8 @@ class Game extends Component {
       <div id="game">
         <Chess />
         <input type="checkbox" id="eventShower" checked={ checked } onChange={ this.props.openCloseEvent }></input>
-        <p>Game Start</p>
         <div id='board'>
+          <p>Game Start</p>
           <Map />
         </div>
         <PlayerUI findSpot={ this.findSpot } setChessPosition={ this.setChessPosition }/>

@@ -7,19 +7,45 @@
     overflow: hidden;
 }
 
+#charaForm {
+    width: 100%; max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #charaDecide {
     display: flex;
+    flex-flow: column;
+    border: 3px solid #d1ac38;
+}
+
+#charaDecide > p {
+    color: #fff;
+    font-weight: bold;
+    padding: 6px 0;
+    text-align: center;
+    background-color: #d1ac38;
+}
+
+#electWrap {
+    display: flex;
     flex-flow: row;
+    justify-content: space-between;
+    background-color: #fff;
 }
 
 .elect {
-    border: 1px solid tomato;
-    margin-right: 20px;
+    width: 120px; height: 200px;
 }
 
 #charaOption {
     display: flex;
     flex-flow: row;
+    pointer-events: none;
+    margin-top: 40px;
 }
 
 .candidate {
@@ -82,4 +108,9 @@
 .wheel {
     width: 100%; height: 100%;
     background-color: #2b3f81;
+}
+
+.candidateProfile {
+    width: 100%; padding: 10px 0 60px 0;
+	display: none;
 }

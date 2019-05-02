@@ -40,7 +40,8 @@
     background-position: center 101%;
 }
 
-#cellContainer> *:nth-child(1) {
+#cellContainer> *:nth-child(1),
+#cellContainer> *:nth-child(30) {
     background: transparent;
     /* border: 1px #ccc solid; */
 }

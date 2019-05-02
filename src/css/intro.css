@@ -86,7 +86,6 @@
     background-size: 100%;
     transition: filter .2s ease;
     position: relative;
-    /* overflow: hidden; */
 }
 
 .introBtn:hover {

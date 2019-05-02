@@ -27,6 +27,7 @@
     display: flex;
     height: 100%;
     position: relative;
+    /* background-image: url('../img/bg1.png'); */
     background-color: royalblue;
     /* border: 2px solid royalblue; */
     -webkit-transform: rotate(45deg) skew(-0.32175055rad, -0.32175055rad);

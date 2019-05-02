@@ -17,7 +17,6 @@ class Intro extends Component {
   }
 
   render() {
-    console.log('Intro', this.props);
     return (
       <div id='intro'>
         <div className='circle'>

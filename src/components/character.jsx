@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Spring } from 'react-spring/renderprops';
 import Popup from 'reactjs-popup';
 
 import '../css/style.css';
@@ -12,128 +13,80 @@ class Character extends Component {
 
   componentDidMount() {
     this.props.setPlyType(this.props.plyNum);
-    document.querySelectorAll('.candidate')[0].click();
+    this.characterSelect(this.props.isSelecting);
+  }
+
+  componentDidUpdate(prevProps) {
+    let prevSelecting = prevProps.isSelecting;
+    let nextSelecting = this.props.isSelecting;
+    if (prevSelecting !== nextSelecting) {
+      this.characterSelect(nextSelecting);
+    }
   }
   
-  // componentWillUnmount() { window.removeEventListener('DOMContentLoaded', this.props.setPlyType(this.props.plyNum)) }
-
-  // 選擇鈕
-  plySelect(e, plyListItem) {
-    let elect = e.target.parentNode;
-    let otherOptionBtns = document.querySelectorAll('.elect > button');
-    let allKickOutBtns = document.querySelectorAll('.kickOutBtn');
-    let charaOption = document.querySelector('#charaOption');
-
-    charaOption.style.pointerEvents = 'auto';
-    
-    // 一個在選的時候，其他按鈕 + 自己的叉叉鈕要封起來
-    otherOptionBtns.forEach(opb => {
-      if(opb.getAttribute('data-confirm') !== elect.getAttribute('data-confirm')) {
-        opb.setAttribute('disabled', true);
-      }
-    })
-
-    let whoAmI = elect.querySelector('p');
-    let whoAmIs = document.querySelectorAll('.elect > p');
-    let decideBtn = elect.querySelector('.decideBtn');
-    
-    let kickOutBtn = elect.querySelector('.kickOutBtn');
-    kickOutBtn.setAttribute('disabled', true)
-    
-    // 如果角色已經被別人選走就不能再重複選
-    let candidate = document.querySelectorAll('.candidate');
-    candidate.forEach(cd => {
-      if (cd.className === 'candidate charaSelected') {
-      cd.setAttribute('disabled', true) }
-    });
-
-    // 我現在是誰文字用
-    let selecting = function(e) {
-      whoAmI.textContent = e.target.textContent;
-    }
-    // 角色選項變色用
-    let toggling = function(e) {
-      let option = candidate[0];
-        while(option) {
-            if(option.tagName === 'BUTTON') { option.classList.remove('charaActive') }
-            option = option.nextSibling;
-        }
-        e.target.classList.add('charaActive');
-    }
-    // 決定用
-    let deciding = function() {
-      candidate.forEach( cd => {
-        cd.removeEventListener('click', selecting);
-        cd.removeEventListener('click', toggling);
-        if (cd.classList.contains('charaActive')) {
-          cd.className = ('candidate charaSelected') }
-      });
-      preventReClickBtn();
-      allKickOutBtns.forEach(akob => akob.removeAttribute('disabled'));
-      charaOption.style.pointerEvents = 'none';
-      checkPlySelect();
-    }
-
-    // 反悔用
-    let regrating = function(e) {
+  // 新選角色邏輯，DidMount 時就執行，再來接 DidUpdate
+  characterSelect(plyIndex) {
+    if (plyIndex + 1 > 4) {
+      return
+    } else {
+      let candidate = document.querySelectorAll('.candidate');
       candidate.forEach(cd => {
-        if (cd.classList.contains('charaSelected') && cd.textContent === whoAmI.textContent) {
-          cd.removeAttribute('disabled');
-          cd.classList.remove('charaSelected');
-        }
+        if (cd.className === 'candidate charaSelected') {
+        cd.setAttribute('disabled', true) }
       });
-      e.target.parentNode.querySelector('p').textContent = '';
-      preventReClickBtn();
-      checkPlySelect();
-    }
-    
-    // 選好要按叉叉再按選擇才可以重選，不可以直接按第二次選擇用
-    let preventReClickBtn = function() {
-      whoAmIs.forEach(wai => {
-        if(wai.textContent === '') {
-          wai.parentNode.querySelector('.selectBtn').removeAttribute('disabled');
-          wai.parentNode.querySelector('.decideBtn').removeAttribute('disabled');
-        } else { 
-          wai.parentNode.querySelector('.selectBtn').setAttribute('disabled', true);
-          wai.parentNode.querySelector('.decideBtn').setAttribute('disabled', true);
-        }
-      })
-    }
 
-    // 檢查都選好沒
-    let checkPlySelect = function() {
-      let plyNameArr = [];
-      let drawLotsTrigger = document.querySelector('#drawLotsTrigger');
-      whoAmIs.forEach(wai => { plyNameArr.push(wai.textContent) });
-      let checkPlyNameArr = plyNameArr.filter(pn => { return pn !== '' });
-      if (checkPlyNameArr.length < 4) {
-        drawLotsTrigger.className = 'drawLotsNO';
-      } else {
-        drawLotsTrigger.className = 'drawLotsOK';
-      }
-    } 
+      let charaOption = document.querySelector('#charaOption');
+      charaOption.style.pointerEvents = 'auto';
+      
+      let elect = document.querySelectorAll('.elect')[plyIndex];
+      let decideBtn = elect.querySelector('.decideBtn');
 
-    // charaOption 可以被選 + 被按會變色
+      elect.classList.add('electing');
+      decideBtn.classList.add('decideBtnActive');
+
+      decideBtn.addEventListener('click', (e) => this.deciding(e, candidate, plyIndex, charaOption));
+    }
+  }
+
+  // 決定鈕 CallBack
+  deciding(e, candidate, plyIndex, charaOption) {
+    // 被選走的角色不能重複再被選
     candidate.forEach( cd => {
-      cd.addEventListener('click', selecting);
-      cd.addEventListener('click', toggling);
-    })
-
-    // 決定鈕
-    decideBtn.addEventListener('click', deciding);
-
-    // 叉叉鈕
-    kickOutBtn.addEventListener('click', regrating);
+      if (cd.classList.contains('charaActive')) {
+        // 決定按下去，觸發 action，elect 格子要顯示大頭 + 名字（舊版的：set ply name，新增 visual、chessVisual、icon）
+        this.props.setPlyInfo(cd.getAttribute('data-index'), plyIndex);
+        cd.className = ('candidate charaSelected');
+        // 選好後，畫面顯示換下一個人選
+        document.querySelectorAll('.elect')[plyIndex].classList.remove('electing');
+        e.target.classList.remove('decideBtnActive');
+        charaOption.style.pointerEvents = 'none';
+        // 通知 Redux 換下一個人了
+        this.props.updateIsSelecting(plyIndex + 1);
+      }
+    });
+    this.checkPlySelect();
   }
 
-  finalDecision () {
-    let plyNameArr = [];
-    // 把 .elect > p 裡面的文字抽出，推入上方 plyNameArr
-    let electPArr = document.querySelectorAll('.elect > p');
-    electPArr.forEach(ep => { plyNameArr.push(ep.textContent) });
-    // 回傳給 characterReducer
-    this.props.setPlyName(plyNameArr);
+  // 角色選項變色用
+  toggling (e) {
+    let option = document.querySelectorAll('.candidate')[0];
+      while(option) {
+          if(option.tagName === 'BUTTON') { option.classList.remove('charaActive') }
+          option = option.nextSibling;
+      }
+      e.currentTarget.classList.add('charaActive');
   }
+
+  // 檢查都選好沒
+  checkPlySelect () {
+    let drawLotsTrigger = document.querySelector('#drawLotsTrigger');
+    let checkPlyNameArr = this.props.plyList.filter(p => { return p.name !== null });
+    if (checkPlyNameArr.length < 4) {
+      drawLotsTrigger.className = 'drawLots';
+    } else {
+      drawLotsTrigger.classList.add('readyToSlot');
+    }
+  } 
 
   // 洗牌
   shuffle(t) { // 括號記得加回 t
@@ -142,6 +95,7 @@ class Character extends Component {
     return temp;
   }
 
+  // 抽順序
   drawLots (e) {
     let originPlyArr = [...this.props.plyList];
     let shufflePlyArr = this.shuffle(originPlyArr.map(op => { delete op.index; return op }));
@@ -149,64 +103,21 @@ class Character extends Component {
 
     this.props.drawLotsAnime(newPlyArr);
     // 抽好後 Game Start 出來，抽按鈕消失
-    e.target.style.visibility = 'hidden';
-    document.querySelector('#gameStartLink').style.opacity = 1;
+    e.target.style.display = 'none';
+    document.querySelector('#gameStartLink').style.display = 'flex';
     document.querySelector('#gameStartLink').style.pointerEvents = 'auto';
-  }
-
-  showProfile(profileIndex, colorCode) {
-    let profiles=document.querySelectorAll('.candidateProfile');
-    profiles.forEach(pn => {
-      pn.style.display = "none";
-    });
-    profiles[profileIndex].style.display='block';
-    profiles[profileIndex].style.backgroundColor=colorCode;
   }
 
   render() {
     const {
-      plyList, character
+      plyList, character, spin
     } = this.props;
-    // console.log('傳到 Character Component 裡的 props', this.props);
     return(
       <div id="character">
         <div id='charaForm'>
-          <div id='charaDecide'>
-            <p>請選擇角色（若有 NPC，也請幫他 / 他們選擇角色吧!）</p>
-            <div id='electWrap'>
-              { plyList.map((d, i) => {
-                return (
-                  <div key={i} data-confirm={d.uid} className='elect'>
-                    { d.type }
-                    <p></p>
-                    <button data-confirm={d.uid} className='selectBtn' onClick={(e) => { this.plySelect(e, plyList[i]) }}>選擇</button>
-                    <button data-confirm={d.uid} className='decideBtn'>決定</button>              
-                    <button data-confirm={d.uid} className='kickOutBtn'>&times;</button>
-                  </div>
-              )})}
-            </div>
-          </div>
-          <div id='charaOption'>
-          { character.map((c, i) => {
-            return (
-              <button key={i} className='candidate' onClick={ (e) => { this.showProfile(i, '#eee') }}>
-                {c.name}
-              </button>
-          )})}
-          </div>
-        </div>
-        { character.map((c, i) => {
-          return (
-            <div key={i} className="candidateProfile">
-              <h3>{c.name}</h3>
-              <div className='charaVisual'>
-                <img src={require("../img/chara0" + `${(i+1)}` + ".png")}></img>
-              </div>
-            </div>
-        )})}
-        <p>按下抽順序，就不能重選角色囉!</p>
-        <Popup trigger={<button id="drawLotsTrigger" className='drawLotsNO'> 抽順序! </button>}
-          onOpen={() => this.finalDecision()}
+          <p>選擇 ::: 角色</p>
+          <p>請依序選擇想要扮演的角色，選好後請抽籤決定遊玩順序。※ 如果有 NPC ，也請幫他 / 他們選個角色吧!</p>
+          <Popup trigger={<button id="drawLotsTrigger" className='drawLots readyToSlot'> 抽順序! </button>}
           closeOnDocumentClick={false}
           overlayStyle={{
             background: 'rgb(255, 255, 255, 1)',
@@ -231,17 +142,69 @@ class Character extends Component {
                       return (
                         <div key={i} className='panel'>
                           <p>{ i+1 }</p>
-                          <div className="wheel">{ d.name }</div>
+                          <Spring
+                            from={{
+                              transform: 'rotateY(0deg)'
+                            }}
+                            to={{
+                              transform: spin ? 'rotateY(360deg)' : 'rotateY(0deg)'
+                            }}
+                          >
+                          { ({ transform }) =>
+                            <div style={{ transform }} className="wheel">
+                              { d.type === 'ply' && <p style={{ transform }}>玩家</p> }
+                              { d.type === 'npc' && <p style={{ transform }}>NPC</p> }
+                              <img src={ d.icon }></img>
+                            </div>
+                          }
+                          </Spring>
                         </div>
                       )})}
                     </div>
-                  <button id='drawLotsBtn' onClick={ (e) => { this.drawLots(e) }}>抽</button>
-                  <NavLink id={'gameStartLink'} to='/game'>Game Start</NavLink>
+                  <div id='drawLotsAction'>
+                    <button id='drawLotsBtn' onClick={ (e) => { this.drawLots(e) }}>抽籤</button>
+                    <button id='gameStartLink'><NavLink to='/game'>遊戲開始</NavLink></button>
+                  </div>
                 </div>
               </div>
             </div>
           )}
         </Popup>
+          <div id='charaDecide'>
+              { plyList.map((d, i) => {
+                return (
+                  <div key={i} data-confirm={d.uid} className='elect'>
+                    { d.type === 'ply' && <p>玩家</p> }
+                    { d.type === 'npc' && <p>NPC</p> }
+                    <Spring
+                      from={{
+                        left: -300
+                      }}
+                      to={{
+                        left: d.name !== null ? 0 : -300
+                      }}>
+                      { ({ left }) =>
+                        <div style={{ left }} className="deciding">
+                          { d.icon === null ? <img src={ require('../img/icon00.png') }></img> : <img src={ d.icon }></img> }
+                        </div>
+                      }
+                    </Spring>
+                    <button data-index={d.index} className='decideBtn'>決定</button>
+                  </div>
+              )})}
+          </div>
+          <div id='charaOption'>
+          { character.map((c, i) => {
+            return (
+              <button key={i} data-index={c.index} className='candidate' onClick={(e) => { this.toggling(e) }}>
+                <p>{ c.name }</p>
+                <img src={ c.visual }></img>
+              </button>
+          )})}
+          </div>
+        </div>
+        
+        
       </div>
     )
   }

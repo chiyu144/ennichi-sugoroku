@@ -12,10 +12,17 @@ export const setPlyType = (plyNum) => {
     }
 }
 
-export const setPlyName = (plyNameArr) => {
+export const setPlyInfo = (selectedIndex, plyIndex) => {
     return { 
-        type: 'SET_PLY_NAME',
-        payload: { plyNameArr: plyNameArr }
+        type: 'SET_PLY_INFO',
+        payload: { selectedIndex: selectedIndex , plyIndex: plyIndex}
+    }
+}
+
+export const updateIsSelecting = (selectingIndex) => {
+    return { 
+        type: 'UPDATE_IS_SELECTING',
+        payload: { selectingIndex: selectingIndex }
     }
 }
 

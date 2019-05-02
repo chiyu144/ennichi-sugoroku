@@ -12,12 +12,6 @@ const initialState = {
         {
             index: 1,
             event: {
-                type: null
-            }
-        },
-        {
-            index: 2,
-            event: {
                 type: 'knowledge',
                 title: '「緣日雙六 - HANABI -」的意思',
                 visual: 'src',
@@ -29,13 +23,13 @@ const initialState = {
             }
         },
         {
-            index: 3,
+            index: 2,
             event: {
                 type: null
             }
         },
         {
-            index: 4,
+            index: 3,
             event: {
                 type: 'back',
                 title: '忘東忘西',
@@ -43,6 +37,17 @@ const initialState = {
                 description: '買完東西後把錢包忘在攤位上，急忙跑回去找老闆拿，後退 1 格。',
                 move: 1,
                 direction: false
+            }
+        },
+        {
+            index: 4,
+            event: {
+                type: 'foward',
+                title: '獲得跑車',
+                visual: 'src',
+                description: '轉轉樂抽到頭獎，獲得跑車一台，前進 3 格。',
+                move: 3,
+                direction: true
             }
         },
         {
@@ -54,12 +59,12 @@ const initialState = {
         {
             index: 6,
             event: {
-                type: 'foward',
-                title: '獲得跑車',
+                type: 'back',
+                title: '遭遇惡犬',
                 visual: 'src',
-                description: '轉轉樂抽到頭獎，獲得跑車一台，前進 3 格。',
-                move: 3,
-                direction: true
+                description: '與路邊惡犬對到眼，被牠追趕，後退 1 格',
+                move: 1,
+                direction: false
             }
         },
         {
@@ -70,23 +75,6 @@ const initialState = {
         },
         {
             index: 8,
-            event: {
-                type: 'back',
-                title: '遭遇惡犬',
-                visual: 'src',
-                description: '與路邊惡犬對到眼，被牠追趕，後退 1 格',
-                move: 1,
-                direction: false
-            }
-        },
-        {
-            index: 9,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 10,
             event: {
                 type: 'knowledge',
                 title: '為什麼日本的夏天是煙火的季節？',
@@ -99,19 +87,7 @@ const initialState = {
             }
         },
         {
-            index: 11,
-            event: {
-                type: null
-            },
-        },
-        {
-            index: 12,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 13,
+            index: 9,
             event: {
                 type: 'jail',
                 title: '漁夫纏身',
@@ -122,9 +98,48 @@ const initialState = {
             }
         },
         {
-            index: 14,
+            index: 10,
+            event: {
+                type: 'foward',
+                title: '體驗 U-Bike',
+                visual: 'src',
+                description: '平常鮮少運動的你心血來潮的跑去騎 U-Bike 兜風，前進 1 格',
+                move: 1,
+                direction: true
+            }
+        },
+        {
+            index: 11,
             event: {
                 type: null
+            }
+        },
+        {
+            index: 12,
+            event: {
+                type: 'jail',
+                title: '癡漢疑惑',
+                visual: 'src',
+                description: '好心幫助迷路的小妹妹找家人，路人卻誤會你是誘拐犯，被帶去警局喝咖啡，休息 1 次。',
+                move: 0,
+                direction: null
+            }
+        },
+        {
+            index: 13,
+            event: {
+                type: null
+            }
+        },
+        {
+            index: 14,
+            event: {
+                type: 'back',
+                title: '黑色流星',
+                visual: 'src',
+                description: '開開心心的吃著路邊攤美食，突然一隻會飛的「黑色流星」襲來，驚嚇不已，倒退 1 格',
+                move: 1,
+                direction: false
             }
         },
         {
@@ -136,18 +151,23 @@ const initialState = {
         {
             index: 16,
             event: {
-                type: 'foward',
-                title: '體驗 U-Bike',
+                type: 'back',
+                title: '唐傘小僧',
                 visual: 'src',
-                description: '平常鮮少運動的你心血來潮的跑去騎 U-Bike 兜風，前進 1 格',
-                move: 1,
-                direction: true
+                description: '無意中撞見唐傘小僧，雖然祂只是混入人群中享受祭典氣氛，你還是嚇得魂飛魄散，倒退 3 格。',
+                move: 3,
+                direction: false
             }
         },
         {
             index: 17,
             event: {
-                type: null
+                type: 'foward',
+                title: '打折誘惑',
+                visual: 'src',
+                description: '聽說前方不遠處有名牌精品包包跳樓大拍賣，但走了好久都沒看見，前進 2 格。',
+                move: 2,
+                direction: true
             }
         },
         {
@@ -173,144 +193,6 @@ const initialState = {
         {
             index: 20,
             event: {
-                type: 'back',
-                title: '黑色流星',
-                visual: 'src',
-                description: '開開心心的吃著路邊攤美食，突然一隻會飛的「黑色流星」襲來，驚嚇不已，倒退 1 格',
-                move: 1,
-                direction: false
-            }
-        },
-        {
-            index: 21,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 22,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 23,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 24,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 25,
-            event: {
-                type: 'back',
-                title: '唐傘小僧',
-                visual: 'src',
-                description: '無意中撞見唐傘小僧，雖然祂只是混入人群中享受祭典氣氛，你還是嚇得魂飛魄散，倒退 3 格。',
-                move: 3,
-                direction: false
-            }
-        },
-        {
-            index: 26,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 27,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 28,
-            event: {
-                type: 'back',
-                title: '糊里糊塗',
-                visual: 'src',
-                description: '和朋友聊天太開心，捷運搭錯方向，還好及早發現，後退 1 格',
-                move: 1,
-                direction: false
-            }
-        },
-        {
-            index: 29,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 30,
-            event: {
-                type: 'foward',
-                title: '打折誘惑',
-                visual: 'src',
-                description: '聽說前方不遠處有名牌精品包包跳樓大拍賣，但走了好久都沒看見，前進 2 格。',
-                move: 2,
-                direction: true
-            }
-        },
-        {
-            index: 31,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 32,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 33,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 34,
-            event: {
-                type: 'jail',
-                title: '癡漢疑惑',
-                visual: 'src',
-                description: '好心幫助迷路的小妹妹找家人，路人卻誤會你是誘拐犯，被帶去警局喝咖啡，休息 1 次。',
-                move: 0,
-                direction: null
-            }
-        },
-        {
-            index: 35,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 36,
-            event: {
-                type: 'back',
-                title: '地牛翻身',
-                visual: 'src',
-                description: '起先只是感到輕微搖晃，接著越晃越大，安全起見，只好隨著眾人一起避難去，後退 3 格。',
-                move: 3,
-                direction: false
-            }
-        },
-        {
-            index: 37,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 38,
-            event: {
                 type: 'jail',
                 title: '占卜阿嬤',
                 visual: 'src',
@@ -320,25 +202,7 @@ const initialState = {
             }
         },
         {
-            index: 39,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 40,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 41,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 42,
+            index: 21,
             event: {
                 type: 'knowledge',
                 title: '線香花火',
@@ -352,13 +216,7 @@ const initialState = {
             }
         },
         {
-            index: 43,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 44,
+            index: 22,
             event: {
                 type: 'foward',
                 title: '絕佳景點',
@@ -369,19 +227,13 @@ const initialState = {
             }
         },
         {
-            index: 45,
+            index: 23,
             event: {
                 type: null
             }
         },
         {
-            index: 46,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 47,
+            index: 24,
             event: {
                 type: 'jail',
                 title: '巧遇男神',
@@ -392,13 +244,7 @@ const initialState = {
             }
         },
         {
-            index: 48,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 49,
+            index: 25,
             event: {
                 type: 'foward',
                 title: '美食療癒',
@@ -409,25 +255,7 @@ const initialState = {
             }
         },
         {
-            index: 50,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 51,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 52,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 53,
+            index: 26,
             event: {
                 type: 'knowledge',
                 title: '打上花火',
@@ -439,13 +267,13 @@ const initialState = {
             }
         },
         {
-            index: 54,
+            index: 27,
             event: {
                 type: null
             }
         },
         {
-            index: 55,
+            index: 28,
             event: {
                 type: 'back',
                 title: '離奇噴飛',
@@ -456,36 +284,7 @@ const initialState = {
             }
         },
         {
-            index: 56,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 57,
-            event: {
-                type: 'back',
-                title: '雷雨特報',
-                visual: 'src',
-                description: '突然下起了雷陣雨，雨勢太過強大，連雨傘都快招架不住，只好臨時找地方避一避，後退 1 格',
-                move: 1,
-                direction: false
-            }
-        },
-        {
-            index: 58,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 59,
-            event: {
-                type: null
-            }
-        },
-        {
-            index: 60,
+            index: 29,
             event: {
                 type: 'goal',
                 title: '抵達終點～!',

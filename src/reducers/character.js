@@ -1,21 +1,47 @@
 import shortid from 'shortid';
 
 const initialState = {
-    plyNum: 4,
+    plyNum: 1,
+    isSelecting: 0,
     isTurn: 0,
+    spin: false,
     character: [
         {
-            name: '線香'
+            index: 0,
+            name: '線香',
+            chessVisual:null,
+            icon:require('../img/icon01.png'),
+            visual: require('../img/chara01.png')
         }, {
-            name: '蜂'
+            index: 1,
+            name: '蜂',
+            chessVisual:null,
+            icon:require('../img/icon02.png'),
+            visual: require('../img/chara02.png')
         }, {
-            name: '柳'
+            index: 2,
+            name: '柳',
+            chessVisual:null,
+            icon:require('../img/icon03.png'),
+            visual: require('../img/chara03.png')
         }, {
-            name: '土星'
+            index: 3,
+            name: '土星',
+            chessVisual:null,
+            icon:require('../img/icon04.png'),
+            visual: require('../img/chara04.png')
         }, {
-            name: '錦冠菊'
+            index: 4,
+            name: '錦冠菊',
+            chessVisual:null,
+            icon:require('../img/icon05.png'),
+            visual: require('../img/chara05.png')
         }, {
-            name: '銀冠菊'
+            index: 5,
+            name: '銀冠菊',
+            chessVisual:null,
+            icon:require('../img/icon06.png'),
+            visual: require('../img/chara06.png')
         }
     ],
     plyList: [
@@ -23,7 +49,10 @@ const initialState = {
             index: 0,
             uid: shortid.generate(),
             type: 'ply',
-            name: '',
+            name: null,
+            visual: null,
+            icon: null,
+            chessVisual:null,
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
             inJail: false
@@ -31,7 +60,10 @@ const initialState = {
             index: 1,
             uid: shortid.generate(),
             type: 'npc',
-            name: '',
+            name: null,
+            visual: null,
+            icon: null,
+            chessVisual:null,
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
             inJail: false
@@ -39,7 +71,10 @@ const initialState = {
             index: 2,
             uid: shortid.generate(),
             type: 'npc',
-            name: '',
+            name: null,
+            visual: null,
+            icon: null,
+            chessVisual:null,
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
             inJail: false
@@ -47,7 +82,10 @@ const initialState = {
             index: 3,
             uid: shortid.generate(),
             type: 'npc',
-            name: '',
+            name: null,
+            visual: null,
+            icon: null,
+            chessVisual:null,
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
             inJail: false
@@ -78,19 +116,26 @@ const characterReducer = (state = initialState, action) => {
                 return newState
             } else { return newState }
 
-        case 'SET_PLY_NAME':
-            const plyNameArr = action.payload.plyNameArr;
-            const updateName = [...state.plyList];
-            plyNameArr.map((pn,i) => {
-                if(i ===  updateName[i].index) {
-                    return updateName[i].name = pn;
-                }
-            });
-            return {...state, plyList: updateName};
+        case 'SET_PLY_INFO':
+            const selectedIndex = action.payload.selectedIndex;
+            const plyIndex = action.payload.plyIndex;
+            const selected = [...state.character][selectedIndex];
+            const setUp = [...state.plyList];
+
+            setUp[plyIndex].name = selected.name;
+            setUp[plyIndex].visual = selected.visual;
+            setUp[plyIndex].chessVisual = selected.chessVisual;
+            setUp[plyIndex].icon = selected.icon;
+
+            return {...state, plyList: setUp};
+
+        case 'UPDATE_IS_SELECTING':
+            const selectingIndex = action.payload.selectingIndex;
+            return {...state, isSelecting: selectingIndex}
 
         case 'DRAW_LOTS_ANIME':
             const newPlyArr = action.payload.newPlyArr;
-            return {...state, plyList: newPlyArr}
+            return {...state, plyList: newPlyArr, spin: true }
 
         case 'UPDATE_OUTCOME':
             const who = action.payload.who;

@@ -2,60 +2,217 @@
     flex: 1;
     width: 100%; max-width: 100%;
     margin-top: 50px;
-    background-color:#e5e4de;
+    background-image: url(../img/bg0.png);
     position: relative;
     overflow: hidden;
 }
 
 #charaForm {
     width: 100%; max-width: 1200px;
-    margin: 40px auto;
+    margin: 40px auto 4%;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    padding: 0 4%;
+}
+
+@media (max-width:900px){
+    #charaForm {
+        padding: 0 3%;
+    }
+}
+@media (max-width:600px){
+    #charaForm {
+        padding: 0 5%;
+    }
 }
 
 #charaDecide {
     display: flex;
-    flex-flow: column;
-    border: 3px solid #d1ac38;
-}
-
-#charaDecide > p {
-    color: #fff;
-    font-weight: bold;
-    padding: 6px 0;
-    text-align: center;
-    background-color: #d1ac38;
-}
-
-#electWrap {
-    display: flex;
     flex-flow: row;
     justify-content: space-between;
-    background-color: #fff;
+    background-color: #e5e4de;
+    width: 100%; max-width: 70%;
+    padding: 0.5% 0.25%;
+    border-radius: 6px;
+    margin: 40px auto 10px;
+}
+
+@media (max-width:900px){
+    #charaDecide {
+        max-width: 90%;
+    }
+}
+
+@media (max-width:600px){
+    #charaDecide {
+        max-width: 100%;
+    }
+}
+
+#charaForm > p:first-child {
+    letter-spacing: 4px;
+    font-size: 24px;
+    padding: 6px 0;
+    margin: 0 auto 40px;
+    position: relative;
+}
+
+#charaForm > p:first-child:after {
+    content: ""; position: absolute; display: inline-flex;
+	bottom: 0; right: 0;
+	width: 100%; height: 20px;
+	transform: skew(-40deg);
+	background: #2fe0ff5e;
+}
+
+#charaForm > p:nth-child(2) {
+    margin: 20px auto 40px;
+}
+
+@media (max-width:900px){
+    #charaForm > p:nth-child(2) {
+        padding: 0 3%;
+    }
+}
+
+@media (max-width:600px){
+    #charaForm > p:nth-child(2) {
+        padding: 0 5%;
+    }
 }
 
 .elect {
-    width: 120px; height: 60px;
+    display: flex;
+    flex-flow: column;
+    height: 50%;
+    flex: 1 1 100%;
+    background-color: #fff;
+    padding: 1%;
+    margin: 0 0.5%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.electing {
+    z-index: 0;
+    position: relative;
+}
+.electing:before {
+    content: '';
+    position: absolute;
+    border-radius: 4px;
+    top: 0; bottom: 0; left: 0; right: 0;
+    z-index: -1;
+    margin: 2%;
+    transition: box-shadow .5s linear;
+    animation: glow .5s infinite alternate;
+}
+  
+@keyframes glow {
+    to {
+        -webkit-box-shadow: 0 0 2px #2fc4ff; 
+        -moz-box-shadow: 0 0 2px #2fc4ff; 
+        box-shadow: 0 0 10px #2fc4ff; 
+      }
+}
+
+.deciding {
+    width: 100%;
+    position: relative;
+}
+
+.deciding > img {
+    width: 100%;
+    background-color: #fff;
 }
 
 #charaOption {
+    width: 100%; max-width: 100%;
     display: flex;
     flex-flow: row;
     pointer-events: none;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .candidate {
-    width: 100px; height: 100px;
-    background-color: rgb(55, 113, 151);
-    border-radius: 50%;
+    background-color: transparent;
+    border: none;
     text-align: center;
-    line-height: 100px;
-    color: #fff;
-    margin-right: 20px;
+    color: #000;
+    margin: 0 1%;
+    overflow: hidden;
+    transition: background-color .2s ease;
+}
+
+.candidate > img {
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (max-width:900px){
+    #charaOption {
+        flex-flow: row wrap;
+        margin-top: 30px;
+        justify-content: space-between;
+        max-width: 90%;
+    }
+    .candidate {
+        max-width: 49%;
+        height: 280px;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width:600px){
+    #charaOption {
+        margin-top: 20px;
+        width: 100%; max-width: 100%;
+    }
+    .candidate {
+        height: 200px;
+        margin: 10px 0;
+    }
+}
+
+.decideBtn {
+    margin-top: auto;
+    pointer-events: none;
+    padding: 10px 0;
+    border: none;
+    background-color: transparent;
+    background-image: url(../img/button.svg);
+    background-repeat: no-repeat;
+    background-size: 95%;
+    background-position: center;
+    filter: brightness(0.9) sepia(0) hue-rotate(-10deg) saturate(0);
+    transition: filter .2s ease;
+    color: silver;
+}
+
+@media (max-width:900px){
+    .decideBtn {
+        padding: 7px 0;
+    }
+}
+
+@media (max-width:600px){
+    .decideBtn {
+        padding: 0 0;
+        font-size: 14px;
+    }
+}
+
+.decideBtnActive {
+    pointer-events: auto;
+    color: #313131;
+    filter: brightness(1) sepia(0) hue-rotate(0deg) saturate(0);
+    transition: filter .2s ease;
+}
+
+.decideBtnActive:hover {
+    filter: brightness(0.7) sepia(1) hue-rotate(-10deg) saturate(2);
 }
 
 .charaActive {
@@ -68,57 +225,142 @@
     pointer-events: none;
 }
 
-.drawLotsNO {
+.drawLots {
     pointer-events: none;
-    color: #e5e4de;
-    background-color: rgb(237, 121, 100);
+    width: 190px; height: 54px;
+    padding: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    background-image: url(../img/button.svg);
+    background-size: 100%;
+    color: silver;
+    filter: brightness(0.9) sepia(0) hue-rotate(-10deg) saturate(0);
+    transition: filter .2s ease;
 }
 
-.drawLotsOK {
-    color: #e5e4de;
-    background-color: rgb(71, 110, 116);
+.readyToSlot {
+    pointer-events: auto;
+    color: #313131;
+    filter: brightness(1) sepia(0) hue-rotate(0deg) saturate(0);
+    transition: filter .2s ease;
 }
 
-#gameStartLink {
-    opacity: 0;
-    pointer-events: none;
+.readyToSlot:hover {
+    filter: brightness(0.7) sepia(1) hue-rotate(-10deg) saturate(2);
 }
 
 #machine {
+    display: flex;
+    flex-flow: column;
     background-color: #fff;
+}
+
+#machine > p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#machine > p:before {
+    content: "";
+    display: inline-block;
+    width: 14px; height: 14px;
+    margin-right: 6px;
+    background-image: url(../img/daimond.png);
+    background-size: 100%;
+    background-position: center;
+}
+
+#drawLotsAction > button {
+    width: 152px; height: 43px;
+    margin: 0 auto;
+    padding: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    background-image: url(../img/button.svg);
+    background-size: 100%;
+    transition: filter .2s ease;
+}
+
+#drawLotsAction > button:hover {
+    filter: brightness(0.7) sepia(1) hue-rotate(-10deg) saturate(2);
 }
 
 #slot {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 20px 5%;
+    padding: 10px 5%;
 }
 
 .panel {
-    color: #fff;
-    background-color: #24bd76;
-    display: inline-flex;
+    color: #d1ac38;
+    display: flex;
     flex: 0 1 20%;
-    height: 60px;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.panel > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; height: 40px;
+    font-size: 24px;
+    border-radius: 50%;
+    border: 1px solid #d1ac38;
+    margin: 12px 0;
 }
 
 .wheel {
-    width: 100%; height: 100%;
-    background-color: #2b3f81;
+    position: relative;
 }
 
-.candidateProfile {
-    width: 100%; padding: 10px 0 60px 0;
-	display: none;
+.wheel > p {
+    text-align: center;
+    color: #000;
+    border: 1px solid #2fc4ff;
+    border-radius: 4px;
+    margin: 0 auto 12px;
 }
 
-.charaVisual {
-    width: 100%; max-width: 25%;
+@media (max-width:900px){
+    .panel > p {
+        width: 30px; height: 30px;
+        font-size: 22px;
+    }
 }
 
-.charaVisual > img{
+.wheel > img {
     width: 100%;
+}
+
+#drawLotsAction {
+    display: flex;
+    flex-flow: row;
+    margin: 0 auto 12px;
+}
+
+#gameStartLink {
+    display: none;
+    pointer-events: none;
+    position: relative;
+}
+
+#gameStartLink > a {
+    color: #313131;
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    text-decoration: none;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 下面三項是為了讓 IE 也點得到 */
+    background-color: transparent;
+    filter: alpha(opacity = 1);
 }

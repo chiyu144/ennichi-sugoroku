@@ -27,6 +27,23 @@
     margin: 20px auto 12px;
 }
 
+@media (max-width:1024px){
+    #eventHeadline {
+        font-size: 16px;
+    }
+    #eventTitle {
+        font-size: 26px;
+    }
+}
+@media (max-width:700px){
+    #eventHeadline {
+        font-size: 14px;
+    }
+    #eventTitle {
+        font-size: 22px;
+    }
+}
+
 #eventVisual {
     max-width: 75%;
 }
@@ -51,11 +68,22 @@
     background-size: 100%;
     transition: filter .2s ease;
     position: relative;
-    /* overflow: hidden; */
 }
 
 .eventBtn:hover {
     filter: brightness(0.7) sepia(1) hue-rotate(-10deg) saturate(2);
+}
+
+@media (max-width:1024px){
+    .eventBtn {
+        width: 171px; height: 49px;
+        font-size: 14px;
+    }
+}
+@media (max-width:700px){
+    .eventBtn {
+        width: 152px; height: 43px;
+    }
 }
 
 .eventBtn > a {

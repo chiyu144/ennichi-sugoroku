@@ -23,6 +23,63 @@
     grid-column-start: 1
 }
 
+@media (max-width:1024px){
+    .cell:nth-child(12n+7) {
+        grid-column-start: unset
+    }
+    .cell:nth-child(12n+8) {
+        grid-column-start: unset
+    }
+    .cell:nth-child(12n+9) {
+        grid-column-start: unset
+    }
+    .cell:nth-child(12n+10) {
+        grid-column-start: unset
+    }
+    .cell:nth-child(12n+11) {
+        grid-column-start: unset
+    }
+    .cell:nth-child(12n+12) {
+        grid-column-start: unset
+    }
+
+    .cell:nth-child(8n+5) {
+        grid-column-start: 4
+    }
+    .cell:nth-child(8n+6) {
+        grid-column-start: 3
+    }
+    .cell:nth-child(8n+7) {
+        grid-column-start: 2
+    }
+    .cell:nth-child(8n+8) {
+        grid-column-start: 1
+    }
+}
+
+@media (max-width:700px){
+    .cell:nth-child(8n+5) {
+        grid-column-start: unset
+    }
+    .cell:nth-child(8n+6) {
+        grid-column-start: unset
+    }
+    .cell:nth-child(8n+7) {
+        grid-column-start: unset
+    }
+    .cell:nth-child(8n+8) {
+        grid-column-start: unset
+    }
+
+    .cell:nth-child(4n+3) {
+        grid-column-start: 2
+    }
+    .cell:nth-child(4n+4) {
+        grid-column-start: 1
+    }
+}
+
+
 .cytoplasm {
     display: flex;
     height: 100%;

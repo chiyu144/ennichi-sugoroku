@@ -134,21 +134,28 @@
     flex-flow: row;
     pointer-events: none;
     margin-top: 50px;
+    /* background-image: url(../img/bg1.png); */
+    background-size: 100%;
+    position: relative;
 }
 
 .candidate {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: relative;
     background-color: transparent;
     border: none;
     text-align: center;
     color: #000;
     margin: 0 1%;
     overflow: hidden;
-    transition: background-color .2s ease;
 }
 
 .candidate > img {
     width: 100%;
     object-fit: cover;
+    margin-top: auto;
 }
 
 @media (max-width:900px){
@@ -216,12 +223,13 @@
 }
 
 .charaActive {
-    background-color: rgb(144, 206, 248);
+    filter: brightness(1.2);
     pointer-events: none;
+    transition: filter .2s ease;
 }
 
 .charaSelected {
-    background-color: rgb(5, 44, 70);
+    filter: brightness(0.75);
     pointer-events: none;
 }
 
@@ -321,7 +329,7 @@
 
 .wheel > p {
     text-align: center;
-    color: #000;
+    color: #1fb7f3;
     border: 1px solid #2fc4ff;
     border-radius: 4px;
     margin: 0 auto 12px;

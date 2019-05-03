@@ -8,34 +8,35 @@ const initialState = {
     character: [
         {
             index: 0,
-            name: '線香',
-            chessVisual:null,
-            icon:require('../img/icon01.png'),
-            visual: require('../img/chara01.png')
-        }, {
-            index: 1,
-            name: '蜂',
-            chessVisual:null,
-            icon:require('../img/icon02.png'),
-            visual: require('../img/chara02.png')
-        }, {
-            index: 2,
-            name: '柳',
-            chessVisual:null,
-            icon:require('../img/icon03.png'),
-            visual: require('../img/chara03.png')
-        }, {
-            index: 3,
             name: '土星',
             chessVisual:null,
             icon:require('../img/icon04.png'),
             visual: require('../img/chara04.png')
         }, {
-            index: 4,
+            index: 1,
             name: '錦冠菊',
             chessVisual:null,
             icon:require('../img/icon05.png'),
             visual: require('../img/chara05.png')
+        }, {
+            index: 2,
+            name: '蜂',
+            chessVisual:null,
+            icon:require('../img/icon02.png'),
+            visual: require('../img/chara02.png')
+        }, {
+            index: 3,
+            name: '線香',
+            chessVisual:null,
+            icon:require('../img/icon01.png'),
+            visual: require('../img/chara01.png')
+        }, {
+            index: 4,
+            name: '柳',
+            chessVisual:null,
+            icon:require('../img/icon03.png'),
+            visual: require('../img/chara03.png')
+            
         }, {
             index: 5,
             name: '銀冠菊',

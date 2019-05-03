@@ -132,6 +132,14 @@ class PlayerUI extends Component {
                                 <p>{ply.name}</p>
                                 <div data-confirm={ply.uid} className='dice'>
                                     <p>{ ply.outcome }</p>
+                                    <div className="cubic">
+                                        <div className="front"></div>
+                                        <div className="right"></div>
+                                        <div className="bottom"></div>
+                                        <div className="top"></div>
+                                        <div className="left"></div>
+                                        <div className="back"></div>
+                                    </div>
                                     <input type='button' value='骰～!'
                                     name={ 'cube' + i } className='cube'
                                     data-confirm={ply.uid}

@@ -5,6 +5,14 @@ const initialState = {
     isSelecting: 0,
     isTurn: 0,
     spin: false,
+    sides: [
+        "translateZ(-100px) rotateY(0deg)",
+        "translateZ(-100px) rotateX(-180deg)",
+        "translateZ(-100px) rotateY(-90deg)",
+        "translateZ(-100px) rotateY(90deg)",
+        "translateZ(-100px) rotateX(-90deg)",
+        "translateZ(-100px) rotateX(90deg)"
+    ],
     character: [
         {
             index: 0,

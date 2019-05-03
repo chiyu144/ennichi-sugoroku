@@ -1,6 +1,7 @@
 // a.k.a Footer
 
 import React, { Component } from 'react';
+import { Spring } from 'react-spring/renderprops';
 
 import '../css/style.css';
 
@@ -64,17 +65,36 @@ class PlayerUI extends Component {
     rollingDice(e, i, curr) {
         // 點一次之後就封起來，不讓人類亂連擊丟骰子按鈕
         document.querySelectorAll('.dice')[i].style.pointerEvents = 'none';
+        // 骰按鈕
         let cube = e.target;
+        // 骰子本人
+        let cubic = document.querySelectorAll('.cubic')[i];
+        // 骰子本人角度
+        let sides = this.props.sides;
+        // 在這觸發丟骰子動畫
+        cubic.classList.add('rolling');
+        // 骰到幾
         let step = Math.floor(Math.random() * 6) + 1;
+
+        // 移除丟骰子動畫 class，讓下一次骰可以再動，然後讓骰子顯示正確數字
+        setTimeout(() => {
+            cubic.classList.remove('rolling');
+            cubic.style.transform = sides[step - 1];
+        }, 500);
+
+        // 棋子
         let chesses = document.querySelectorAll('.chess');
         // 回傳骰到的步數給 Redux
         this.props.updateOutcome(i, step);
-        // 移動棋子
-        for(let j = 0; j < step; j++) {
-            setTimeout(() => { this.moveChess(cube, chesses, true, parseInt(curr) + j) }, j * 300);
-        }
-        // 檢查抵達的格子是否有命運機會事件
-        setTimeout(() => { this.checkEvent(cube, chesses) }, step * 400 );
+        // 等骰子動畫好後，棋子才開始移動
+        setTimeout(() => {
+            // 移動棋子
+            for(let j = 0; j < step; j++) {
+                setTimeout(() => { this.moveChess(cube, chesses, true, parseInt(curr) + j) }, j * 400);
+            }
+            // 檢查抵達的格子是否有命運機會事件
+            setTimeout(() => { this.checkEvent(cube, chesses) }, step * 500 );
+        }, 1000);
     }
 
     checkEvent(cube, chesses) {
@@ -115,30 +135,25 @@ class PlayerUI extends Component {
 
     render() {
         const {
-            plyList
+            plyList,
+            sides
         } = this.props;
-        // console.log('傳到 PlyayerUI Component 裡的 props', this.props);
+        let divs = sides.map((side, i) => {
+            return <div key={i} className="side">{ i + 1 }</div>
+        });
         return(
             <footer>
                 <div id='gameUI'>
-                    {/* <div id="gameInfo">
-                        <p>回合數</p>
-                        <p id="currentTurn">YOO</p>
-                    </div> */}
                     <form id='plyZone' name='plyZone'>
                     { plyList.map((ply, i) => {
                         return(
                             <div key={i} className='plyInfo'>
                                 <p>{ply.name}</p>
                                 <div data-confirm={ply.uid} className='dice'>
-                                    <p>{ ply.outcome }</p>
-                                    <div className="cubic">
-                                        <div className="front"></div>
-                                        <div className="right"></div>
-                                        <div className="bottom"></div>
-                                        <div className="top"></div>
-                                        <div className="left"></div>
-                                        <div className="back"></div>
+                                    <div className="cubicWrap">
+                                        <div className={`cubic d` + sides.length }>
+                                            { divs }
+                                        </div>
                                     </div>
                                     <input type='button' value='骰～!'
                                     name={ 'cube' + i } className='cube'

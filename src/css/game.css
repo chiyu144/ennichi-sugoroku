@@ -50,78 +50,68 @@
     cursor: pointer;
 }
 
+.cubicWrap {
+    position: relative;
+    perspective: 1000px;
+    width: 200px;
+    height: 200px;
+}
+
 .cubic {
-    margin: 1em;
-    width: 50px;
-    height: 50px;
-    -webkit-transform: rotateY(-10deg) rotateX(-10deg);
-            transform: rotateY(-10deg) rotateX(-10deg);
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-    transition-property: -webkit-transform;
-    transition-property: transform;
-    transition-property: transform, -webkit-transform;
-    transition-timing-function: ease-out;
+    position: absolute;
+    transition: transform .25s;
+    transform-style: preserve-3d;
+    transform: translateZ(-100px);
+    width: 100%;
+    height: 100%;
+    background-color: rgb(201, 79, 105);
+    color: #FFFFFF;
 }
 
-.cubic > div {
+.side {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 196px;
+    height: 196px;
+    background-color: inherit;
+    border: 2px solid #ffdef5;
+    font-size: 8em;
     font-weight: bold;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    line-height: 50px;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4c/Dice.png");
-    background-size: 170px;
-    box-sizing: border-box;
-  }
+}
 
-.cubic > div::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #ccc;
-    opacity: 0.2;
+.rolling {
+    animation: rotation .55s linear;
 }
-.top {
-    -webkit-transform: rotateX(90deg) translateZ(25px);
-    transform: rotateX(90deg) translateZ(25px);
-    background-position: -5px -62px;
+
+@keyframes rotation {
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
 }
-.bottom {
-    -webkit-transform: rotateX(-90deg) translateZ(25px);
-    transform: rotateX(-90deg) translateZ(25px);
-    background-position: -289px -5px;
+
+.d6 .side:nth-child(1) {
+    transform: rotateY(0deg) translateZ(100px);
 }
-.front {
-    -webkit-transform: translateZ(25px);
-    transform: translateZ(25px);
-    background-position: -5px -5px;
+.d6 .side:nth-child(2) {
+    transform: rotateX(180deg) translateZ(100px);
 }
-.right {
-    -webkit-transform: rotateY(90deg) translateZ(25px);
-    transform: rotateY(90deg) translateZ(25px);
-    background-position: -232px -5px;
+.d6 .side:nth-child(3) {
+    transform: rotateY(90deg) translateZ(100px);
 }
-.back {
-    -webkit-transform: rotateY(180deg) translateZ(25px);
-    transform: rotateY(180deg) translateZ(25px);
-    background-position: -289px -62px;
+.d6 .side:nth-child(4) {
+    transform: rotateY(-90deg) translateZ(100px);
 }
-.left {
-    -webkit-transform: rotateY(270deg) translateZ(25px);
-    transform: rotateY(270deg) translateZ(25px);
-    background-position: -232px -62px;
+.d6 .side:nth-child(5) {
+    transform: rotateX(90deg) translateZ(100px);
+}
+.d6 .side:nth-child(6) {
+    transform: rotateX(-90deg) translateZ(100px);
 }
 
 #eventShower {

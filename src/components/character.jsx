@@ -117,7 +117,7 @@ class Character extends Component {
         <div id='charaForm'>
           <p>選擇 ::: 角色</p>
           <p>請依序選擇想要扮演的角色，選好後請抽籤決定遊玩順序。※ 如果有 NPC ，也請幫他 / 他們選個角色吧!</p>
-          <Popup trigger={<button id="drawLotsTrigger" className='drawLots readyToSlot'> 抽順序! </button>}
+          <Popup trigger={<button id="drawLotsTrigger" className='drawLots'> 抽順序! </button>}
           closeOnDocumentClick={false}
           overlayStyle={{
             background: 'rgb(255, 255, 255, 1)',

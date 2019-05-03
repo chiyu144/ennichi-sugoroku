@@ -9,7 +9,8 @@ const mapStateToProps = state => {
         // Some State
         isTurn: state.character.isTurn,
         plyList: state.character.plyList,
-        cell: state.cell.cell
+        cell: state.cell.cell,
+        sides: state.character.sides
     }
 }
 

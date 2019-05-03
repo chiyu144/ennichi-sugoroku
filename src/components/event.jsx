@@ -30,7 +30,6 @@ class Event extends Component {
 
     eventMoveChessManyTimes(e, move, isTurn, direction, currCellNum) {
         e.preventDefault();
-        console.log(this.props.openCloseEvent);
         this.props.openCloseEvent(false);
         if (isTurn >= document.plyZone.length) {
             isTurn = isTurn % document.plyZone.length;

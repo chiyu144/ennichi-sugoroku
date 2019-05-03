@@ -148,14 +148,18 @@ class PlayerUI extends Component {
                     { plyList.map((ply, i) => {
                         return(
                             <div key={i} className='plyInfo'>
-                                <p>{ply.name}</p>
+                                <div className="plyDetail">
+                                    { ply.type === 'ply' && <p>玩家</p> }
+                                    { ply.type === 'npc' && <p>NPC</p> }
+                                    <img src={ ply.icon }></img>
+                                </div>
                                 <div data-confirm={ply.uid} className='dice'>
                                     <div className="cubicWrap">
                                         <div className={`cubic d` + sides.length }>
                                             { divs }
                                         </div>
                                     </div>
-                                    <input type='button' value='骰～!'
+                                    <input type='button' value='丟骰子'
                                     name={ 'cube' + i } className='cube'
                                     data-confirm={ply.uid}
                                     onClick={ (e) => this.rollingDice(e, i, ply.offset.curr) } />

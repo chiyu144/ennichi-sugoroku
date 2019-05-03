@@ -6,12 +6,12 @@ const initialState = {
     isTurn: 0,
     spin: false,
     sides: [
-        "translateZ(-100px) rotateY(0deg)",
-        "translateZ(-100px) rotateX(-180deg)",
-        "translateZ(-100px) rotateY(-90deg)",
-        "translateZ(-100px) rotateY(90deg)",
-        "translateZ(-100px) rotateX(-90deg)",
-        "translateZ(-100px) rotateX(90deg)"
+        "translateZ(-25px) rotateY(0deg)",
+        "translateZ(-25px) rotateX(-180deg)",
+        "translateZ(-25px) rotateY(-90deg)",
+        "translateZ(-25px) rotateY(90deg)",
+        "translateZ(-25px) rotateX(-90deg)",
+        "translateZ(-25px) rotateX(90deg)"
     ],
     character: [
         {

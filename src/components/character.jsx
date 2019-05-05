@@ -110,13 +110,13 @@ class Character extends Component {
 
   render() {
     const {
-      plyList, character, spin
+      plyList, character, spin, bodyWidth
     } = this.props;
     return(
       <div id="character">
         <div id='charaForm'>
           <p>選擇 ::: 角色</p>
-          <p>請依序選擇想要扮演的角色，選好後請抽籤決定遊玩順序。※ 如果有 NPC ，也請幫他 / 他們選個角色吧!</p>
+          <p>請依序選擇想要扮演的角色，選好後請抽籤決定遊玩順序，抽好後才可以開始遊戲喔！※ 如果有 NPC ，也請幫他 / 他們選個角色吧!</p>
           <Popup trigger={<button id="drawLotsTrigger" className='drawLots'> 抽順序! </button>}
           closeOnDocumentClick={false}
           overlayStyle={{
@@ -198,7 +198,8 @@ class Character extends Component {
             return (
               <button key={i} data-index={c.index} className='candidate' onClick={(e) => { this.toggling(e) }}>
                 <p>{ c.name }</p>
-                <img src={ c.visual }></img>
+                <img className='pcVisual' src={ c.visual }></img>
+                <img className='mobileVisual' src={ c.visualM }></img>
               </button>
           )})}
           </div>

@@ -67,10 +67,10 @@ class Game extends Component {
     // let nextBodyWith = this.props.bodyWidth;
     // if(nextBodyWith !== prevBodyWith) {
     //   console.log('Body寬度有變');
-      // let chesses = document.querySelectorAll('.chess');
-      // chesses.forEach((chess, i) => {
-      //   this.setChessPosition(chess, startCorners[i], i);
-      // })
+    //   let chesses = document.querySelectorAll('.chess');
+    //   chesses.forEach((chess, i) => {
+    //     this.setChessPosition(chess, startCorners[i], i);
+    //   })
     // }
   }
 

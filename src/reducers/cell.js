@@ -1,7 +1,5 @@
-let bodyWidth = document.body.clientWidth;
-
 const initialState = {
-    bodyWidth: bodyWidth,
+    bodyWidth: document.body.clientWidth,
     cell: [
         {
             index: 0,

@@ -17,40 +17,45 @@ const initialState = {
         {
             index: 0,
             name: '土星',
-            chessVisual:null,
-            icon:require('../img/icon04.png'),
-            visual: require('../img/chara04.png')
+            visualC:null,
+            icon:require('../img/iconDo.png'),
+            visual: require('../img/dosei.png'),
+            visualM: require('../img/mDo.png')
         }, {
             index: 1,
             name: '錦冠菊',
-            chessVisual:null,
-            icon:require('../img/icon05.png'),
-            visual: require('../img/chara05.png')
+            visualC: null,
+            icon:require('../img/iconNishi.png'),
+            visual: require('../img/nishikikamurogiku.png'),
+            visualM: require('../img/mNishi.png')
         }, {
             index: 2,
-            name: '蜂',
-            chessVisual:null,
-            icon:require('../img/icon02.png'),
-            visual: require('../img/chara02.png')
+            name: '柳',
+            visualC: null,
+            icon:require('../img/iconYa.png'),
+            visual: require('../img/yanagi.png'),
+            visualM: require('../img/mYa.png')
         }, {
             index: 3,
             name: '線香',
-            chessVisual:null,
-            icon:require('../img/icon01.png'),
-            visual: require('../img/chara01.png')
+            visualC: null,
+            icon:require('../img/iconSen.png'),
+            visual: require('../img/senkou.png'),
+            visualM: require('../img/mSen.png')
         }, {
             index: 4,
-            name: '柳',
-            chessVisual:null,
-            icon:require('../img/icon03.png'),
-            visual: require('../img/chara03.png')
-            
+            name: '銀冠菊',
+            visualC: null,
+            icon:require('../img/iconGin.png'),
+            visual: require('../img/ginkamurogiku.png'),
+            visualM: require('../img/mGin.png')
         }, {
             index: 5,
-            name: '銀冠菊',
-            chessVisual:null,
-            icon:require('../img/icon06.png'),
-            visual: require('../img/chara06.png')
+            name: '蜂',
+            visualC: null,
+            icon:require('../img/iconHa.png'),
+            visual: require('../img/hachi.png'),
+            visualM: require('../img/mHa.png')
         }
     ],
     plyList: [
@@ -61,7 +66,7 @@ const initialState = {
             name: null,
             visual: null,
             icon: null,
-            chessVisual:null,
+            visualC:null,
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
             inJail: false
@@ -72,7 +77,7 @@ const initialState = {
             name: null,
             visual: null,
             icon: null,
-            chessVisual:null,
+            visualC:null,
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
             inJail: false
@@ -83,7 +88,7 @@ const initialState = {
             name: null,
             visual: null,
             icon: null,
-            chessVisual:null,
+            visualC:null,
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
             inJail: false
@@ -94,7 +99,7 @@ const initialState = {
             name: null,
             visual: null,
             icon: null,
-            chessVisual:null,
+            visualC:null,
             outcome: 0,
             offset: { curr:0, x: 0, y: 0 },
             inJail: false
@@ -133,7 +138,7 @@ const characterReducer = (state = initialState, action) => {
 
             setUp[plyIndex].name = selected.name;
             setUp[plyIndex].visual = selected.visual;
-            setUp[plyIndex].chessVisual = selected.chessVisual;
+            setUp[plyIndex].visualC = selected.visualC;
             setUp[plyIndex].icon = selected.icon;
 
             return {...state, plyList: setUp};

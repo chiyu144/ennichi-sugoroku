@@ -43,13 +43,13 @@
     padding: 0 5%;
 }
 
-@media (max-width:1024px){
+@media screen and (max-width:1024px){
     #gameUI {
         padding: 0 4%;
     }
 }
 
-@media (max-width:700px){
+@media screen and (max-width:700px){
     #gameUI {
         padding: 0 3%;
     }
@@ -200,17 +200,17 @@ label, #eventTrigger {
     overflow-x: hidden;
 }
 
-@media (max-width:1024px){
+@media screen and (max-width:1024px){
     #eventWrap { 
         width: 50%;
     }
 }
-@media (max-width:700px){
+@media screen and (max-width:700px){
     #eventWrap { 
         width: 80%;
     }
 }
-@media (max-width:500px){
+@media screen and (max-width:500px){
     #eventWrap { 
         width: 100%;
     }

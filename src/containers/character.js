@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/character';
+import * as cellActions from '../actions/cell';
 
 import Character from '../components/character';
 
@@ -18,7 +19,7 @@ const mapDispatchToProps = dispatch => {
         setPlyType: (plyNum) => dispatch(actions.setPlyType(plyNum)), 
         setPlyInfo: (selectedIndex, plyIndex) => dispatch(actions.setPlyInfo(selectedIndex, plyIndex)), 
         drawLotsAnime: (newPlyArr) => dispatch(actions.drawLotsAnime(newPlyArr)),
-        updateIsSelecting: (selectingIndex) => dispatch(actions.updateIsSelecting(selectingIndex)),
+        updateIsSelecting: (selectingIndex) => dispatch(actions.updateIsSelecting(selectingIndex))
     }
 }
   

@@ -19,14 +19,19 @@ class Ranking extends Component {
                 <div className='circle'>
                     <img src={ circle } />
                 </div>
-                <p>第一名</p>
-                <p>{ plyList[0].name }</p>
-                <p>第二名</p>
-                <p>{ plyList[1].name }</p>
-                <p>第三名</p>
-                <p>{ plyList[2].name }</p>
-                <p>第四名</p>
-                <p>{ plyList[3].name }</p>
+                <p>Ranking</p>
+                { plyList.map((ply, i) => {
+                    return(
+                <div key={i} className='panel'>
+                    <p>{ i+1 }</p>
+                    <div className="wheel">
+                        { ply.type === 'ply' && <p>玩家</p> }
+                        { ply.type === 'npc' && <p>NPC</p> }
+                        <p>{ ply.name }</p>
+                        <img src={ ply.icon }></img>
+                    </div>
+                </div>
+                )})}
             </div>
         )
     }

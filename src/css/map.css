@@ -16,7 +16,7 @@
 }
 @media screen and (max-width:700px){
     #cellContainer {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -60,7 +60,7 @@
         background-repeat: no-repeat;
     }
     #cellContainer > *:nth-child(6n) {
-        background-position: center;
+        background-position: unset;
     }
     #cellContainer > *:nth-child(4n) {
         background-position: center 101%;
@@ -73,14 +73,14 @@
         background-image: none;
     }
     #cellContainer > *:nth-child(4n) {
-        background-position: center;
+        background-position: unset;
     }
-    #cellContainer > *:nth-child(2n), 
-    #cellContainer > *:nth-child(2n+1) {
+    #cellContainer > *:nth-child(3n), 
+    #cellContainer > *:nth-child(3n+1) {
         background-image: url('../img/tube.svg');
         background-repeat: no-repeat;
     }
-    #cellContainer > *:nth-child(2n) {
+    #cellContainer > *:nth-child(3n) {
         background-position: center 101%;
     }
 }

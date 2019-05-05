@@ -63,30 +63,99 @@
 
 .plyInfo {
     display: flex;
-    flex: 0 0 15%;
-    flex-flow: column;
+    flex: 0 0 23%;
+    flex-flow: row;
     margin: 0 5px;
+    justify-content: center;
+    align-items: center;
 }
 
-.plyDetail > p {
+/* @media screen and (max-width:700px){
+    .plyInfo {
+        display: flex;
+        flex: 0 0 15%;
+        flex-flow: column;
+        margin: 0 5px;
+    }
+} */
+
+.plyDetail {
+    flex: 0 0 30%;
+}
+
+.plyDetail > p:nth-child(1) {
     text-align: center;
-    background-color: rgb(65, 174, 225);
     color: #fff;
+    background-color: #2fc4ff;
     border-radius: 4px;
-    margin: 0 auto 12px;
+    width: 100%;
+    white-space: nowrap;
+    padding: 0 3%;
 }
 
-.plyDetail > img {
+.plyDetail > p:nth-child(2) {
+    text-align: center;
+    color: #2fc4ff;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #2fc4ff;
+    margin: 3px auto;
+    white-space: nowrap;
+    padding: 0 3%;
+}
+
+.plyImg {
+    flex: 0 0 30%;
+    margin: 0 3%;
+}
+
+.plyImg > img {
     width: 100%;
 }
 
 .dice {
     pointer-events: none;
-    flex: 0 0 50%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px){
+    .plyInfo {
+        flex-flow: row wrap;
+    }
+    .plyImg {
+        flex: 0 0 50%;
+        margin: 0 3%;
+    }
+    .dice {
+        flex-flow: row;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .plyImg {
+        flex: 0 0 100%;
+        margin: 0 3%;
+    }
 }
 
 .cube {
     cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ff712f;
+    border-radius: 4px;
+    color: #ff712f;
+    padding: 4px;
+    margin-top: 4px;
+    position: relative;
+    top: 0; left: 0;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cube:active {
+    top: 3px; left: 3px;
 }
 
 .cubicWrap {
@@ -94,6 +163,7 @@
     perspective: 250px;
     width: 50px;
     height: 50px;
+    margin: 0 auto;
 }
 
 .cubic {
@@ -103,7 +173,7 @@
     transform: translateZ(-25px);
     width: 100%;
     height: 100%;
-    background-color: rgb(201, 79, 105);
+    background-color: #ff712f;
     color: #FFFFFF;
 }
 

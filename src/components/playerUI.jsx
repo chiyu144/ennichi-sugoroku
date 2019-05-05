@@ -151,6 +151,9 @@ class PlayerUI extends Component {
                                 <div className="plyDetail">
                                     { ply.type === 'ply' && <p>玩家</p> }
                                     { ply.type === 'npc' && <p>NPC</p> }
+                                    <p>{ ply.name }</p>
+                                </div>
+                                <div className='plyImg'>
                                     <img src={ ply.icon }></img>
                                 </div>
                                 <div data-confirm={ply.uid} className='dice'>
@@ -159,7 +162,7 @@ class PlayerUI extends Component {
                                             { divs }
                                         </div>
                                     </div>
-                                    <input type='button' value='丟骰子'
+                                    <input type='button' value='擲骰'
                                     name={ 'cube' + i } className='cube'
                                     data-confirm={ply.uid}
                                     onClick={ (e) => this.rollingDice(e, i, ply.offset.curr) } />

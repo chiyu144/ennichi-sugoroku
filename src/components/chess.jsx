@@ -21,7 +21,8 @@ class Chess extends Component {
                  left: chess.offset.x, top: chess.offset.y,
                 //  transform: `translateX(${chess.offset.x}px) translateY(${chess.offset.y}px)`,
                }} className='chess'>
-            <p>{chess.name}</p>
+            {/* <p>{chess.name}</p> */}
+            <img src={ chess.icon }></img>
           </div>
         )
       })

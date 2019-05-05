@@ -3,12 +3,14 @@ const initialState = {
     cell: [
         {
             index: 0,
+            visualCell: require('../img/cellS.png'),
             event: {
                 type: null
             }
         },
         {
             index: 1,
+            visualCell: require('../img/cellK1.png'),
             event: {
                 type: 'knowledge',
                 title: '「緣日雙六 - HANABI -」的意思',
@@ -22,12 +24,14 @@ const initialState = {
         },
         {
             index: 2,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 3,
+            visualCell: require('../img/cellB0.png'),
             event: {
                 type: 'back',
                 title: '忘東忘西',
@@ -39,6 +43,7 @@ const initialState = {
         },
         {
             index: 4,
+            visualCell: require('../img/cellF0.png'),
             event: {
                 type: 'foward',
                 title: '獲得跑車',
@@ -50,12 +55,14 @@ const initialState = {
         },
         {
             index: 5,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 6,
+            visualCell: require('../img/cellB1.png'),
             event: {
                 type: 'back',
                 title: '遭遇惡犬',
@@ -67,12 +74,14 @@ const initialState = {
         },
         {
             index: 7,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 8,
+            visualCell: require('../img/cellK4.png'),
             event: {
                 type: 'knowledge',
                 title: '為什麼日本的夏天是煙火的季節？',
@@ -86,6 +95,7 @@ const initialState = {
         },
         {
             index: 9,
+            visualCell: require('../img/cellJ0.png'),
             event: {
                 type: 'jail',
                 title: '漁夫纏身',
@@ -97,6 +107,7 @@ const initialState = {
         },
         {
             index: 10,
+            visualCell: require('../img/cellF1.png'),
             event: {
                 type: 'foward',
                 title: '體驗 U-Bike',
@@ -108,12 +119,14 @@ const initialState = {
         },
         {
             index: 11,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 12,
+            visualCell: require('../img/cellJ1.png'),
             event: {
                 type: 'jail',
                 title: '癡漢疑惑',
@@ -125,12 +138,14 @@ const initialState = {
         },
         {
             index: 13,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 14,
+            visualCell: require('../img/cellB2.png'),
             event: {
                 type: 'back',
                 title: '黑色流星',
@@ -142,12 +157,14 @@ const initialState = {
         },
         {
             index: 15,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 16,
+            visualCell: require('../img/cellB3.png'),
             event: {
                 type: 'back',
                 title: '唐傘小僧',
@@ -159,6 +176,7 @@ const initialState = {
         },
         {
             index: 17,
+            visualCell: require('../img/cellF2.png'),
             event: {
                 type: 'foward',
                 title: '打折誘惑',
@@ -170,6 +188,7 @@ const initialState = {
         },
         {
             index: 18,
+            visualCell: require('../img/cellK3.png'),
             event: {
                 type: 'knowledge',
                 title: '玉屋（Tamaya）、鍵屋（Kagiya）',
@@ -184,12 +203,14 @@ const initialState = {
         },
         {
             index: 19,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 20,
+            visualCell: require('../img/cellJ2.png'),
             event: {
                 type: 'jail',
                 title: '占卜阿嬤',
@@ -201,6 +222,7 @@ const initialState = {
         },
         {
             index: 21,
+            visualCell: require('../img/cellK0.png'),
             event: {
                 type: 'knowledge',
                 title: '線香花火',
@@ -215,6 +237,7 @@ const initialState = {
         },
         {
             index: 22,
+            visualCell: require('../img/cellF3.png'),
             event: {
                 type: 'foward',
                 title: '絕佳景點',
@@ -226,12 +249,14 @@ const initialState = {
         },
         {
             index: 23,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 24,
+            visualCell: require('../img/cellJ3.png'),
             event: {
                 type: 'jail',
                 title: '巧遇男神',
@@ -243,6 +268,7 @@ const initialState = {
         },
         {
             index: 25,
+            visualCell: require('../img/cellF4.png'),
             event: {
                 type: 'foward',
                 title: '美食療癒',
@@ -254,6 +280,7 @@ const initialState = {
         },
         {
             index: 26,
+            visualCell: require('../img/cellK2.png'),
             event: {
                 type: 'knowledge',
                 title: '打上花火',
@@ -266,12 +293,14 @@ const initialState = {
         },
         {
             index: 27,
+            visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
             }
         },
         {
             index: 28,
+            visualCell: require('../img/cellB4.png'),
             event: {
                 type: 'back',
                 title: '離奇噴飛',
@@ -283,6 +312,7 @@ const initialState = {
         },
         {
             index: 29,
+            visualCell: require('../img/cellG.png'),
             event: {
                 type: 'goal',
                 title: '抵達終點～!',

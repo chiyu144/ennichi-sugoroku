@@ -154,6 +154,7 @@ class Character extends Component {
                             <div style={{ transform }} className="wheel">
                               { d.type === 'ply' && <p style={{ transform }}>玩家</p> }
                               { d.type === 'npc' && <p style={{ transform }}>NPC</p> }
+                              <p>{ d.name }</p>
                               <img src={ d.icon }></img>
                             </div>
                           }
@@ -185,6 +186,7 @@ class Character extends Component {
                       }}>
                       { ({ left }) =>
                         <div style={{ left }} className="deciding">
+                          { d.name === null ? <p>　</p> : <p>{ d.name }</p> }
                           { d.icon === null ? <img src={ require('../img/icon00.png') }></img> : <img src={ d.icon }></img> }
                         </div>
                       }

@@ -9,7 +9,7 @@
 
 #charaForm {
     width: 100%; max-width: 1200px;
-    margin: 40px auto 4%;
+    margin: 30px auto 4%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -36,7 +36,7 @@
     width: 100%; max-width: 70%;
     padding: 0.5% 0.25%;
     border-radius: 6px;
-    margin: 40px auto 10px;
+    margin: 40px auto 0;
 }
 
 @media screen and (max-width:900px){
@@ -55,7 +55,7 @@
     letter-spacing: 4px;
     font-size: 24px;
     padding: 6px 0;
-    margin: 0 auto 40px;
+    margin: 0 auto 30px;
     position: relative;
 }
 
@@ -68,7 +68,7 @@
 }
 
 #charaForm > p:nth-child(2) {
-    margin: 20px auto 40px;
+    margin: 10px auto 30px;
 }
 
 @media screen and (max-width:900px){
@@ -255,14 +255,14 @@
 }
 
 .charaActive {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(253, 78, 72, 0.3);
     pointer-events: none;
     transition: background-color .2s linear, filter .2s ease;
 }
 
 @media screen and (max-width:900px){
     .charaActive {
-        background-color: rgba(211, 53, 53, 0.513);
+    background-color: rgba(187, 14, 8, 0.5);
     }
 }
 
@@ -343,7 +343,7 @@
 .panel {
     color: #d1ac38;
     display: flex;
-    flex: 0 1 20%;
+    flex: 0 1 22%;
     flex-flow: column;
     justify-content: center;
     align-items: center;
@@ -365,18 +365,29 @@
     position: relative;
 }
 
-.wheel > p {
+.elect > p, .wheel > p:nth-child(1) {
     text-align: center;
-    color: #1fb7f3;
-    border: 1px solid #2fc4ff;
+    color: #fff;
+    background-color: #2fc4ff;
     border-radius: 4px;
-    margin: 0 auto 12px;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.deciding > p, .wheel > p:nth-child(2) {
+    text-align: center;
+    color: #2fc4ff;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #2fc4ff;
+    margin: 3px auto;
+    white-space: nowrap;
 }
 
 @media screen and (max-width:900px){
     .panel > p {
         width: 30px; height: 30px;
-        font-size: 22px;
+        font-size: 16px;
     }
 }
 

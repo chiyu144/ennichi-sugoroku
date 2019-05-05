@@ -1,7 +1,7 @@
 .cell {
     color: #fff;
     text-align: center;
-    padding: 24%;
+    padding: 22%;
 }
 
 .cell:nth-child(12n+7) {
@@ -71,10 +71,13 @@
         grid-column-start: unset
     }
 
-    .cell:nth-child(4n+3) {
+    .cell:nth-child(6n+4) {
+        grid-column-start: 3
+    }
+    .cell:nth-child(6n+5) {
         grid-column-start: 2
     }
-    .cell:nth-child(4n+4) {
+    .cell:nth-child(6n+6) {
         grid-column-start: 1
     }
 }
@@ -84,8 +87,9 @@
     display: flex;
     height: 100%;
     position: relative;
-    /* background-image: url('../img/bg1.png'); */
-    background-color: royalblue;
+    /* background-image: url('../img/cell.png'); */
+    background-size: 100%;
+    /* background-color: royalblue; */
     /* border: 2px solid royalblue; */
     -webkit-transform: rotate(45deg) skew(-0.32175055rad, -0.32175055rad);
     -moz-transform: rotate(45deg) skew(-0.32175055rad, -0.32175055rad);
@@ -99,31 +103,6 @@
     display: inline-flex;
     position: absolute;
     width: 30px; height: 30px;
-}
-
-.cell:nth-child(12n+7) > .cytoplasm {
-    /* border: 2px solid yellowgreen; */
-    background-color: yellowgreen;
-}
-.cell:nth-child(12n+8) > .cytoplasm {
-    /* border: 2px solid yellowgreen; */
-    background-color: yellowgreen;
-}
-.cell:nth-child(12n+9) > .cytoplasm {
-    /* border: 2px solid yellowgreen; */
-    background-color: yellowgreen;
-}
-.cell:nth-child(12n+10) > .cytoplasm {
-    /* border: 2px solid yellowgreen; */
-    background-color: yellowgreen;
-}
-.cell:nth-child(12n+11) > .cytoplasm {
-    /* border: 2px solid yellowgreen; */
-    background-color: yellowgreen;
-}
-.cell:nth-child(12n+12) > .cytoplasm {
-    /* border: 2px solid yellowgreen; */
-    background-color: yellowgreen;
 }
 
 .upperL {

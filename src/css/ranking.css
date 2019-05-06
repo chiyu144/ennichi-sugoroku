@@ -1,8 +1,79 @@
-#ranking{
+#ranking {
     margin-top: 50px;
     flex: 1;
     width: 100%; max-width: 100%;
     background-color:#e5e4de;
     position: relative;
     overflow: hidden;
+    background-image: url(../img/bg0.png);
+}
+
+#rankingTable {
+    width: 100%; max-width: 1200px;
+    margin: 30px auto 4%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4%;
+}
+
+#rank {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rankingPanel {
+    flex: 1 1 auto;
+}
+
+#rankingTable > p {
+    letter-spacing: 4px;
+    font-size: 24px;
+    padding: 6px 0;
+    margin: 0 auto 30px;
+    position: relative;
+    flex: none;
+}
+
+#rankingTable > p:after {
+    content: ""; position: absolute; display: inline-flex;
+	bottom: 0; right: 0;
+	width: 100%; height: 20px;
+	transform: skew(-40deg);
+	background: #2fe0ff5e;
+}
+
+#backToTop {
+    position: relative;
+    width: 152px; height: 43px;
+    margin: 40px auto;
+    padding: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    background-image: url(../img/button.svg);
+    background-size: 100%;
+    transition: filter .2s ease;
+}
+
+#backToTop:hover {
+    filter: brightness(0.7) sepia(1) hue-rotate(-10deg) saturate(2);
+}
+
+#backToTop > a {
+    color: #313131;
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    text-decoration: none;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 下面三項是為了讓 IE 也點得到 */
+    background-color: transparent;
+    filter: alpha(opacity = 1);
 }

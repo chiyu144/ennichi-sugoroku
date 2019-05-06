@@ -11,6 +11,7 @@ class PlayerUI extends Component {
     }
 
     componentDidMount() {
+
         this.cubeInit(-1);
         if (this.props.plyList[0].type === 'npc') {
             console.log('如果第一個玩家是 NPC');
@@ -27,14 +28,18 @@ class PlayerUI extends Component {
         let prevPlyIndex = prevProps.isTurn;
         let nextPlyIndex = this.props.isTurn;
         let nextPly = this.props.plyList[nextPlyIndex];
+        let plyInfo = document.querySelectorAll('.plyInfo');
 
         if (nextPlyIndex !== prevPlyIndex) {
+            plyInfo[prevPlyIndex].classList.remove('plyElecting');
             if (nextPly.inJail) {
                 this.cubeInit(nextPlyIndex + 1);
                 // 換下一人
                 this.props.updateTurn(nextPlyIndex + 1);
                 // 出獄
                 this.props.inOutJail(nextPlyIndex);
+                // 解除坐牢 UI
+                plyInfo[nextPlyIndex].classList.remove('plyInJail');
             } else if (nextPly.type === 'npc') {
                 nextPlyIndex === 0 ? this.cubeInit(-1) : this.cubeInit(nextPlyIndex);
                 setTimeout(() => { document.querySelectorAll('.cube')[nextPlyIndex].click() }, 2000);
@@ -60,6 +65,7 @@ class PlayerUI extends Component {
         if (this.props.plyList[this.props.isTurn].type === 'ply') {
             document.querySelectorAll('.dice')[num].style.pointerEvents = 'auto';
         }
+        document.querySelectorAll('.plyInfo')[num].classList.add('plyElecting');
     }
 
     rollingDice(e, i, curr) {

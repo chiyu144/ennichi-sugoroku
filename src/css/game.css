@@ -29,12 +29,16 @@
     background-attachment: fixed;
     padding: 0 3%;
     overflow: hidden;
-    padding-bottom: 100px;
+    padding-bottom: 140px;
 }
 
 #gameUI, #plyZone {
     display: flex;
     justify-content: space-evenly;
+}
+
+#plyZone {
+    width: 100%;
 }
 
 #gameUI {
@@ -47,11 +51,26 @@
     #gameUI {
         padding: 0 4%;
     }
+    #board {
+        padding-bottom: 120px;
+    }
 }
 
 @media screen and (max-width:700px){
     #gameUI {
         padding: 0 3%;
+    }
+    #board {
+        padding-bottom: 170px;
+    }
+}
+
+@media screen and (max-width:600px){
+    #gameUI {
+        padding: 0 3%;
+    }
+    #board {
+        padding-bottom: 250px;
     }
 }
 
@@ -66,8 +85,38 @@
     flex: 0 0 23%;
     flex-flow: row;
     margin: 0 5px;
+    padding: 1%;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.plyElecting {
+    z-index: 0;
+    position: relative;
+}
+.plyElecting:before {
+    content: '';
+    position: absolute;
+    border-radius: 4px;
+    top: 0; bottom: 0; left: 0; right: 0;
+    z-index: -1;
+    margin: 2%;
+    transition: box-shadow .5s linear;
+    animation: plyGlow .5s infinite alternate;
+}
+
+@keyframes plyGlow {
+    to {
+        -webkit-box-shadow: 0 0 2px #56d11d; 
+        -moz-box-shadow: 0 0 2px #56d11d; 
+        box-shadow: 0 0 10px #56d11d; 
+      }
+}
+
+.plyInJail {
+    filter: brightness(0.7);
 }
 
 /* @media screen and (max-width:700px){
@@ -138,6 +187,9 @@
     .plyImg {
         flex: 0 0 100%;
         margin: 0 3%;
+    }
+    .dice {
+        flex-flow: column;
     }
 }
 

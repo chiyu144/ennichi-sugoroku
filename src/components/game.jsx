@@ -12,7 +12,7 @@ class Game extends Component {
     super(props)
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     let chesses = document.querySelectorAll('.chess');
     let startCorners = document.querySelectorAll('.cytoplasm')[0].querySelectorAll('span');
     chesses.forEach((chess, i) => {
@@ -78,6 +78,7 @@ class Game extends Component {
     const {
       checked
     } = this.props;
+
     return(
       <div id="game">
         <Chess />

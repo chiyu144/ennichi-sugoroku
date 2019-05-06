@@ -55,6 +55,7 @@ class Event extends Component {
         // 關閉 checkbox → 修改 Redux 裡 PlyList[isTurn].inJail = true（坐牢狀態）
         this.props.inOutJail(isTurn);
         // 顯示坐牢 UI
+        document.querySelectorAll('.plyInfo')[isTurn].classList.add('plyInJail');
         // 換下一人（之後回去 playerUI 寫判斷說如果 inJail 是 true 要跳過這人）
         this.props.updateTurn(isTurn + 1);    
     }
@@ -106,7 +107,7 @@ class Event extends Component {
                 </p>
                 <p id='eventTitle'>{ theEvent.title }</p> {/* { theEvent.title } */}
                 <div id='eventVisual'>
-                    <img src={require('../img/name7.png')} />
+                    <img src={ theEvent.visual } />
                 </div>
                 <p id='eventDesc'>{ theEvent.description }</p> {/* { theEvent.description } */}
                 <div id='eventTrigger'>

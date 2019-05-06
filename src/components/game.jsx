@@ -86,6 +86,18 @@ class Game extends Component {
         <div id='board'>
           {/* <p>Game Start</p> */}
           <Map />
+            <ul className="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
         </div>
         <PlayerUI findSpot={ this.findSpot } setChessPosition={ this.setChessPosition }/>
         <label id="eventBackground" htmlFor="eventShower"></label>

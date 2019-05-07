@@ -15,7 +15,7 @@ class Cell extends Component {
     return(
       cell.map((c, i) => {
         return (
-          <div key={i} data-curr={c.index} className='cell'>
+          <div key={i} data-curr={c.index} className='cell' ref={ c.ref }>
               <label htmlFor='eventShower' className='cytoplasm' style={ { backgroundImage: `url(${c.visualCell})` } }>
                 {/* <p>{c.index + " " + c.event.type}</p> */}
                 {/* <img src={ c.visualCell }></img> */}

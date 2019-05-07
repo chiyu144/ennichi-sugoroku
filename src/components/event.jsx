@@ -85,6 +85,8 @@ class Event extends Component {
             cell,
             checked
         } = this.props;
+
+        console.log(cell[0].ref);
         // 需要： 1. isTurn 數字（當棋子的 index，找到正在玩的玩家棋子）
         // 2. offset.curr（找到正站在哪格）
 
@@ -93,6 +95,7 @@ class Event extends Component {
         const theCell = cell[theCellNum];
         // 準備把他那格的事件 render 出來
         const theEvent = theCell.event;        
+
 
         // if 事件類型是「前進」就 render 可以 trigger「前進」的按鈕，以此類推
         return(

@@ -8,7 +8,13 @@ import '../css/character.css';
 
 class Character extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.candidateRef = [];
+    this.electRef = [];
+    this.decideBtnRef = [];
+    this.charaOptionRef = React.createRef();
+    this.drawLotsTriggerRef = React.createRef();
+    this.gameStartLinkRef = React.createRef();
   }
 
   componentDidMount() {
@@ -29,37 +35,32 @@ class Character extends Component {
     if (plyIndex + 1 > 4) {
       return
     } else {
-      let candidate = document.querySelectorAll('.candidate');
-      candidate.forEach(cd => {
+      this.candidateRef.forEach(cd => {
         if (cd.className === 'candidate charaSelected') {
         cd.setAttribute('disabled', true) }
       });
 
-      let charaOption = document.querySelector('#charaOption');
-      charaOption.style.pointerEvents = 'auto';
-      
-      let elect = document.querySelectorAll('.elect')[plyIndex];
-      let decideBtn = elect.querySelector('.decideBtn');
+      this.charaOptionRef.current.style.pointerEvents = 'auto';
 
-      elect.classList.add('electing');
-      decideBtn.classList.add('decideBtnActive');
+      this.electRef[plyIndex].classList.add('electing');
+      this.decideBtnRef[plyIndex].classList.add('decideBtnActive');
 
-      decideBtn.addEventListener('click', (e) => this.deciding(e, candidate, plyIndex, charaOption));
+      this.decideBtnRef[plyIndex].addEventListener('click', (e) => this.deciding(e, plyIndex));
     }
   }
 
   // 決定鈕 CallBack
-  deciding(e, candidate, plyIndex, charaOption) {
+  deciding(e, plyIndex) {
     // 被選走的角色不能重複再被選
-    candidate.forEach( cd => {
+    this.candidateRef.forEach( cd => {
       if (cd.classList.contains('charaActive')) {
         // 決定按下去，觸發 action，elect 格子要顯示大頭 + 名字（舊版的：set ply name，新增 visual、chessVisual、icon）
         this.props.setPlyInfo(cd.getAttribute('data-index'), plyIndex);
         cd.className = ('candidate charaSelected');
         // 選好後，畫面顯示換下一個人選
-        document.querySelectorAll('.elect')[plyIndex].classList.remove('electing');
+        this.electRef[plyIndex].classList.remove('electing');
         e.target.classList.remove('decideBtnActive');
-        charaOption.style.pointerEvents = 'none';
+        this.charaOptionRef.current.style.pointerEvents = 'none';
         // 通知 Redux 換下一個人了
         this.props.updateIsSelecting(plyIndex + 1);
       }
@@ -69,7 +70,7 @@ class Character extends Component {
 
   // 角色選項變色用
   toggling (e) {
-    let option = document.querySelectorAll('.candidate')[0];
+    let option = this.candidateRef[0];
       while(option) {
           if(option.tagName === 'BUTTON') { option.classList.remove('charaActive') }
           option = option.nextSibling;
@@ -79,12 +80,11 @@ class Character extends Component {
 
   // 檢查都選好沒
   checkPlySelect () {
-    let drawLotsTrigger = document.querySelector('#drawLotsTrigger');
     let checkPlyNameArr = this.props.plyList.filter(p => { return p.name !== null });
     if (checkPlyNameArr.length < 4) {
-      drawLotsTrigger.className = 'drawLots';
+      this.drawLotsTriggerRef.current.className = 'drawLots';
     } else {
-      drawLotsTrigger.classList.add('readyToSlot');
+      this.drawLotsTriggerRef.current.classList.add('readyToSlot');
     }
   } 
 
@@ -104,8 +104,8 @@ class Character extends Component {
     this.props.drawLotsAnime(newPlyArr);
     // 抽好後 Game Start 出來，抽按鈕消失
     e.target.style.display = 'none';
-    document.querySelector('#gameStartLink').style.display = 'flex';
-    document.querySelector('#gameStartLink').style.pointerEvents = 'auto';
+    this.gameStartLinkRef.current.style.display = 'flex';
+    this.gameStartLinkRef.current.style.pointerEvents = 'auto';
   }
 
   render() {
@@ -117,7 +117,7 @@ class Character extends Component {
         <div id='charaForm'>
           <p>選擇 ::: 角色</p>
           <p>請依序選擇想要扮演的角色，選好後請抽籤決定遊玩順序，抽好後才可以開始遊戲喔！※ 如果有 NPC ，也請幫他 / 他們選個角色吧!</p>
-          <Popup trigger={<button id="drawLotsTrigger" className='drawLots'> 抽順序! </button>}
+          <Popup trigger={<button ref={ this.drawLotsTriggerRef } id="drawLotsTrigger" className='drawLots'> 抽順序! </button>}
           closeOnDocumentClick={false}
           overlayStyle={{
             background: 'rgb(255, 255, 255, 1)',
@@ -174,7 +174,7 @@ class Character extends Component {
           <div id='charaDecide'>
               { plyList.map((d, i) => {
                 return (
-                  <div key={i} data-confirm={d.uid} className='elect'>
+                  <div key={i} data-confirm={d.uid} className='elect' ref={ electRef => this.electRef[i] = electRef }>
                     { d.type === 'ply' && <p>玩家</p> }
                     { d.type === 'npc' && <p>NPC</p> }
                     <Spring
@@ -191,14 +191,14 @@ class Character extends Component {
                         </div>
                       }
                     </Spring>
-                    <button data-index={d.index} className='decideBtn'>決定</button>
+                    <button data-index={d.index} className='decideBtn' ref={ decideBtnRef => this.decideBtnRef[i] = decideBtnRef }>決定</button>
                   </div>
               )})}
           </div>
-          <div id='charaOption'>
+          <div id='charaOption' ref={ this.charaOptionRef }>
           { character.map((c, i) => {
             return (
-              <button key={i} data-index={c.index} className='candidate' onClick={(e) => { this.toggling(e) }}>
+              <button key={i} data-index={c.index} ref={ candidateRef => this.candidateRef[i] = candidateRef } className='candidate' onClick={(e) => { this.toggling(e) }}>
                 <p>{ c.name }</p>
                 <img className='pcVisual' src={ c.visual }></img>
                 <img className='mobileVisual' src={ c.visualM }></img>

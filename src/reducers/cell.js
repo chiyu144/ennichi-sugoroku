@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 const initialState = {
     bodyWidth: document.body.clientWidth,
     cell: [

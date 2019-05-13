@@ -2,8 +2,6 @@
 
 import React, { Component } from 'react';
 
-import Event from '../containers/event';
-
 import '../css/style.css';
 
 class PlayerUI extends Component {
@@ -17,8 +15,6 @@ class PlayerUI extends Component {
         this.diceRef = [];
         // 全部玩家 UI 大包裹
         this.plyZoneRef = React.createRef();
-        // 每個玩家 UI 小包裹
-        this.plyInfoRefs = [];
     }
 
     componentDidMount() {
@@ -36,10 +32,10 @@ class PlayerUI extends Component {
         let prevPlyIndex = prevProps.isTurn;
         let nextPlyIndex = this.props.isTurn;
         let nextPly = this.props.plyList[nextPlyIndex];
-        let plyInfo = this.plyInfoRefs;
+        let plyInfos = this.props.plyInfoRefs;
 
         if (nextPlyIndex !== prevPlyIndex) {
-            plyInfo[prevPlyIndex].classList.remove('plyElecting');
+            plyInfos[prevPlyIndex].classList.remove('plyElecting');
             if (nextPly.inJail) {
                 this.cubeInit(nextPlyIndex + 1);
                 // 換下一人
@@ -47,7 +43,7 @@ class PlayerUI extends Component {
                 // 出獄
                 this.props.inOutJail(nextPlyIndex);
                 // 解除坐牢 UI
-                plyInfo[nextPlyIndex].classList.remove('plyInJail');
+                plyInfos[nextPlyIndex].classList.remove('plyInJail');
             } else if (nextPly.type === 'npc') {
                 nextPlyIndex === 0 ? this.cubeInit(-1) : this.cubeInit(nextPlyIndex);
                 setTimeout(() => { this.cubeRef[nextPlyIndex].click() }, 2000);
@@ -74,7 +70,7 @@ class PlayerUI extends Component {
             this.diceRef[num].style.pointerEvents = 'auto';
         }
 
-        this.plyInfoRefs[num].classList.add('plyElecting');
+        this.props.plyInfoRefs[num].classList.add('plyElecting');
     }
 
     rollingDice(e, i, curr) {
@@ -152,10 +148,7 @@ class PlayerUI extends Component {
         const {
             plyList,
             sides,
-            findSpot,
-            cellRefs,
-            eventTriggerRef,
-            eventTriggerBtnRef
+            plyInfoRefs
         } = this.props;
 
         // 骰子的面
@@ -169,7 +162,7 @@ class PlayerUI extends Component {
                     <form id='plyZone' name='plyZone' ref={ this.plyZoneRef }>
                     { plyList.map((ply, i) => {
                         return(
-                            <div key={i} className='plyInfo' ref={ plyInfoRef => this.plyInfoRefs[i] = plyInfoRef }>
+                            <div key={i} className='plyInfo' ref={ plyInfoRef => plyInfoRefs[i] = plyInfoRef }>
                                 <div className="plyDetail">
                                     { ply.type === 'ply' && <p>玩家</p> }
                                     { ply.type === 'npc' && <p>NPC</p> }
@@ -193,12 +186,6 @@ class PlayerUI extends Component {
                         )
                     })}
                     </form>
-                </div>
-                <label id="eventBackground" htmlFor="eventShower"></label>
-                <div id='eventWrap'>
-                <Event findSpot={ findSpot } cellRefs={ cellRefs } plyInfoRefs={ this.plyInfoRefs }
-                 eventTriggerRef={ eventTriggerRef } eventTriggerBtnRef={ eventTriggerBtnRef }
-                />
                 </div>
             </footer>
         )

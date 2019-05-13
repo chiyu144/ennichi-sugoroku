@@ -117,6 +117,30 @@ class Character extends Component {
         <div id='charaForm'>
           <p>選擇 ::: 角色</p>
           <p>請依序選擇想要扮演的角色，選好後請抽籤決定遊玩順序，抽好後才可以開始遊戲喔！※ 如果有 NPC ，也請幫他 / 他們選個角色吧!</p>
+          <div id='charaDecide'>
+              { plyList.map((d, i) => {
+                return (
+                  <div key={i} className='elect' ref={ electRef => this.electRef[i] = electRef }>
+                    { d.type === 'ply' && <p>玩家</p> }
+                    { d.type === 'npc' && <p>NPC</p> }
+                    <Spring
+                      from={{
+                        left: -300
+                      }}
+                      to={{
+                        left: d.name !== null ? 0 : -300
+                      }}>
+                      { ({ left }) =>
+                        <div style={{ left }} className="deciding">
+                          { d.name === null ? <p>　</p> : <p>{ d.name }</p> }
+                          { d.icon === null ? <img src={ require('../img/icon00.png') }></img> : <img src={ d.icon }></img> }
+                        </div>
+                      }
+                    </Spring>
+                    <button data-index={d.index} className='decideBtn' ref={ decideBtnRef => this.decideBtnRef[i] = decideBtnRef }>決定</button>
+                  </div>
+              )})}
+          </div>
           <Popup trigger={<button ref={ this.drawLotsTriggerRef } id="drawLotsTrigger" className='drawLots'> 抽順序! </button>}
           closeOnDocumentClick={false}
           overlayStyle={{
@@ -171,30 +195,6 @@ class Character extends Component {
             </div>
           )}
         </Popup>
-          <div id='charaDecide'>
-              { plyList.map((d, i) => {
-                return (
-                  <div key={i} className='elect' ref={ electRef => this.electRef[i] = electRef }>
-                    { d.type === 'ply' && <p>玩家</p> }
-                    { d.type === 'npc' && <p>NPC</p> }
-                    <Spring
-                      from={{
-                        left: -300
-                      }}
-                      to={{
-                        left: d.name !== null ? 0 : -300
-                      }}>
-                      { ({ left }) =>
-                        <div style={{ left }} className="deciding">
-                          { d.name === null ? <p>　</p> : <p>{ d.name }</p> }
-                          { d.icon === null ? <img src={ require('../img/icon00.png') }></img> : <img src={ d.icon }></img> }
-                        </div>
-                      }
-                    </Spring>
-                    <button data-index={d.index} className='decideBtn' ref={ decideBtnRef => this.decideBtnRef[i] = decideBtnRef }>決定</button>
-                  </div>
-              )})}
-          </div>
           <div id='charaOption' ref={ this.charaOptionRef }>
           { character.map((c, i) => {
             return (

@@ -12,11 +12,8 @@ class Chess extends Component {
       offset,
     } = this.props;
     return(
-      <div data-confirm={uid} ref={ chessRef }
-            style={{
-              left: offset.x, top: offset.y,
-            //  transform: `translateX(${chess.offset.x}px) translateY(${chess.offset.y}px)`,
-            }} className='chess'>
+      <div data-confirm={uid} ref={ chessRef }  className='chess'
+           style={{ left: offset.x, top: offset.y, }}>
         <img src={ icon }></img>
       </div>
     )

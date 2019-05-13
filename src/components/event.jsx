@@ -56,9 +56,6 @@ class Event extends Component {
     eventTellKnowledge(e, isTurn) {
         e.preventDefault();
         this.props.openCloseEvent(false);
-        if (isTurn >= 4) {
-            isTurn = isTurn % 4;
-        }
         // 換下一人
         this.props.updateTurn(isTurn + 1);
     }
@@ -80,7 +77,6 @@ class Event extends Component {
             eventTriggerRef,
             eventTriggerBtnRef
         } = this.props;
-        
         // 需要： 1. isTurn 數字（當棋子的 index，找到正在玩的玩家棋子）
         // 2. offset.curr（找到正站在哪格）
 

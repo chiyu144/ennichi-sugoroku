@@ -167,7 +167,7 @@ const characterReducer = (state = initialState, action) => {
         
         case 'UPDATE_TURN':
             let next = action.payload.next;
-            if (next >= 4) { next = 0 }
+            if (next >= 4) { next = next % 4 }
             return {...state, isTurn: next};
 
         case 'IN_OUT_JAIL':

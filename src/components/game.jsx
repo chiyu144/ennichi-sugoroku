@@ -6,12 +6,15 @@ import '../css/game.css';
 import Cell from './cell';
 import Chess from './chess';
 import PlayerUI from '../containers/playerUI';
+import Event from '../containers/event';
 class Game extends Component {
   constructor(props) {
     super(props);
     this.gameRef = React.createRef();
     this.chessRefs = [];
     this.cellRefs = [];
+    // 每個玩家 UI 小包裹
+    this.plyInfoRefs = [];
     this.eventTriggerRef = React.createRef();
     this.eventTriggerBtnRef = React.createRef();
   }
@@ -40,40 +43,40 @@ class Game extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    
+    // 如果命運機會跳出，遊戲主畫面卷軸隱藏，命運機會事件卷軸顯示
+    // 如果玩家是 NPC，電腦 2 秒後自行按下確認鈕，並防止人類亂按
+    // 如果玩家是人類，電腦就沒事，確認鈕可以給人類按
     let prevChecked = prevProps.checked;
     let nextChecked = this.props.checked;
     let playing = this.props.plyList[this.props.isTurn];
-
     if (nextChecked !== prevChecked) {
       if (nextChecked === true) {
         // window、body 不屬於 React 管轄範圍，所以以下有寫到的地方就用原生 JavaScript 寫。
         let scrollWidth = window.innerWidth - document.body.clientWidth;
         this.gameRef.current.style.marginRight = scrollWidth + 'px';
         document.body.style.overflow = 'hidden';
-        
         if (playing.type === 'npc') {
           this.eventTriggerRef.current.style.pointerEvents = 'none';
           setTimeout(() => { this.eventTriggerBtnRef.current.click() }, 2000);
         } else if (playing.type === 'ply') {
           this.eventTriggerRef.current.style.pointerEvents = 'auto'
         }
-
       } else {
         this.gameRef.current.style.marginRight = 0;
         document.body.style.overflow = 'auto';
       }
     }
-
-    // let prevBodyWith = prevProps.bodyWidth;
-    // let nextBodyWith = this.props.bodyWidth;
-    // if(nextBodyWith !== prevBodyWith) {
-    //   console.log('Body寬度有變');
-    //   let chesses = document.querySelectorAll('.chess');
-    //   chesses.forEach((chess, i) => {
-    //     this.setChessPosition(chess, startCorners[i], i);
-    //   })
-    // }
+    
+    // 棋子 RWD
+    let prevBodyWith = prevProps.bodyWidth;
+    let nextBodyWith = this.props.bodyWidth;
+    if(nextBodyWith !== prevBodyWith) {
+      let chesses = this.chessRefs;
+      chesses.forEach((chess, i) => {
+        let curr = this.props.plyList[i].offset.curr;
+        this.setChessPosition(this.cellRefs[curr].firstChild.childNodes[i], i);
+      })
+    }
   }
 
   render() {
@@ -119,8 +122,14 @@ class Game extends Component {
         </div>
         <PlayerUI findSpot={ this.findSpot } setChessPosition={ this.setChessPosition }
                   cellRefs={ this.cellRefs } chessRefs={ this.chessRefs }
-                  eventTriggerRef={ this.eventTriggerRef } eventTriggerBtnRef={ this.eventTriggerBtnRef }
+                  plyInfoRefs={ this.plyInfoRefs }
         />
+        <label id="eventBackground" htmlFor="eventShower"></label>
+          <div id='eventWrap'>
+            <Event findSpot={ this.findSpot } cellRefs={ this.cellRefs } plyInfoRefs={ this.plyInfoRefs }
+             eventTriggerRef={ this.eventTriggerRef } eventTriggerBtnRef={ this.eventTriggerBtnRef }
+            />
+          </div>
       </div>
     )
   }

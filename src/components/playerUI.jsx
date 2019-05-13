@@ -1,34 +1,42 @@
 // a.k.a Footer
 
 import React, { Component } from 'react';
-import { Spring } from 'react-spring/renderprops';
+
+import Event from '../containers/event';
 
 import '../css/style.css';
 
 class PlayerUI extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        //「擲骰按鈕」
+        this.cubeRef = [];
+        // 骰子本人
+        this.cubicRef = [];
+        // 按鈕 + 骰子包裹
+        this.diceRef = [];
+        // 全部玩家 UI 大包裹
+        this.plyZoneRef = React.createRef();
+        // 每個玩家 UI 小包裹
+        this.plyInfoRefs = [];
     }
 
     componentDidMount() {
-
         this.cubeInit(-1);
         if (this.props.plyList[0].type === 'npc') {
             console.log('如果第一個玩家是 NPC');
             setTimeout(() => {
-                console.log('等 3 秒自動骰～！');
-                document.querySelectorAll('.cube')[0].click();
+                console.log('等 2 秒自動骰～！');
+                this.cubeRef[0].click();
             }, 2000);
         }
     }
 
     componentDidUpdate(prevProps) {
-        // console.log(prevProps === this.props ? console.log('true'):console.log('false'));
-        
         let prevPlyIndex = prevProps.isTurn;
         let nextPlyIndex = this.props.isTurn;
         let nextPly = this.props.plyList[nextPlyIndex];
-        let plyInfo = document.querySelectorAll('.plyInfo');
+        let plyInfo = this.plyInfoRefs;
 
         if (nextPlyIndex !== prevPlyIndex) {
             plyInfo[prevPlyIndex].classList.remove('plyElecting');
@@ -42,7 +50,7 @@ class PlayerUI extends Component {
                 plyInfo[nextPlyIndex].classList.remove('plyInJail');
             } else if (nextPly.type === 'npc') {
                 nextPlyIndex === 0 ? this.cubeInit(-1) : this.cubeInit(nextPlyIndex);
-                setTimeout(() => { document.querySelectorAll('.cube')[nextPlyIndex].click() }, 2000);
+                setTimeout(() => { this.cubeRef[nextPlyIndex].click() }, 2000);
             } else if (nextPly.type === 'ply') {
                 nextPlyIndex === 0 ? this.cubeInit(-1) : this.cubeInit(nextPlyIndex);
             }
@@ -51,30 +59,31 @@ class PlayerUI extends Component {
     
     cubeInit(num) {
         if (num < 1) {
-            num = (num + 1) % document.plyZone.length;
+            num = (num + 1) % this.plyZoneRef.current.length;
         }
-        if (num >= document.plyZone.length) {
-            num = num % document.plyZone.length;
+        if (num >= this.plyZoneRef.current.length) {
+            num = num % this.plyZoneRef.current.length;
         }
-        document.plyZone.cube0.setAttribute('disabled', true);
-        document.plyZone.cube1.setAttribute('disabled', true);
-        document.plyZone.cube2.setAttribute('disabled', true);
-        document.plyZone.cube3.setAttribute('disabled', true); 
-        document.plyZone.elements['cube' + num].removeAttribute('disabled');
+        this.cubeRef[0].setAttribute('disabled', true);
+        this.cubeRef[1].setAttribute('disabled', true);
+        this.cubeRef[2].setAttribute('disabled', true);
+        this.cubeRef[3].setAttribute('disabled', true); 
+        this.cubeRef[num].removeAttribute('disabled');
 
         if (this.props.plyList[this.props.isTurn].type === 'ply') {
-            document.querySelectorAll('.dice')[num].style.pointerEvents = 'auto';
+            this.diceRef[num].style.pointerEvents = 'auto';
         }
-        document.querySelectorAll('.plyInfo')[num].classList.add('plyElecting');
+
+        this.plyInfoRefs[num].classList.add('plyElecting');
     }
 
     rollingDice(e, i, curr) {
         // 點一次之後就封起來，不讓人類亂連擊丟骰子按鈕
-        document.querySelectorAll('.dice')[i].style.pointerEvents = 'none';
+        this.diceRef[i].style.pointerEvents = 'none';
         // 骰按鈕
         let cube = e.target;
         // 骰子本人
-        let cubic = document.querySelectorAll('.cubic')[i];
+        let cubic = this.cubicRef[i];
         // 骰子本人角度
         let sides = this.props.sides;
         // 在這觸發丟骰子動畫
@@ -89,7 +98,7 @@ class PlayerUI extends Component {
         }, 500);
 
         // 棋子
-        let chesses = document.querySelectorAll('.chess');
+        let chesses = this.props.chessRefs;
         // 回傳骰到的步數給 Redux
         this.props.updateOutcome(i, step);
         // 等骰子動畫好後，棋子才開始移動
@@ -123,14 +132,14 @@ class PlayerUI extends Component {
     }
 
     moveChess(cube, chesses, direction, curr) {
-        let currCell = document.querySelectorAll('.cell')[curr];
+        let currCell = this.props.cellRefs[curr];
         if (currCell !== undefined) {
             let nextCell = null;
             direction ? nextCell = currCell.nextSibling : nextCell = currCell.previousSibling;
             chesses.forEach((c, i) => {
                 if(cube.getAttribute('data-confirm') === c.getAttribute('data-confirm') && nextCell !== null) {
                     // 棋子「目前在的那格」的「下一格」的「定位用 span 們」
-                    let nextSpot = this.props.findSpot(nextCell.querySelectorAll('span')[i]);
+                    let nextSpot = this.props.findSpot(nextCell.firstChild.childNodes[i]);
                     this.props.updateOffset(i, nextSpot);
                 } else {
                     return
@@ -142,18 +151,25 @@ class PlayerUI extends Component {
     render() {
         const {
             plyList,
-            sides
+            sides,
+            findSpot,
+            cellRefs,
+            eventTriggerRef,
+            eventTriggerBtnRef
         } = this.props;
+
+        // 骰子的面
         let divs = sides.map((side, i) => {
             return <div key={i} className="side">{ i + 1 }</div>
         });
+
         return(
             <footer>
                 <div id='gameUI'>
-                    <form id='plyZone' name='plyZone'>
+                    <form id='plyZone' name='plyZone' ref={ this.plyZoneRef }>
                     { plyList.map((ply, i) => {
                         return(
-                            <div key={i} className='plyInfo'>
+                            <div key={i} className='plyInfo' ref={ plyInfoRef => this.plyInfoRefs[i] = plyInfoRef }>
                                 <div className="plyDetail">
                                     { ply.type === 'ply' && <p>玩家</p> }
                                     { ply.type === 'npc' && <p>NPC</p> }
@@ -162,21 +178,27 @@ class PlayerUI extends Component {
                                 <div className='plyImg'>
                                     <img src={ ply.icon }></img>
                                 </div>
-                                <div data-confirm={ply.uid} className='dice'>
+                                <div data-confirm={ ply.uid } className='dice' ref={ diceRef => this.diceRef[i] = diceRef }>
                                     <div className="cubicWrap">
-                                        <div className={`cubic d` + sides.length }>
+                                        <div className={`cubic d` + sides.length } ref={ cubicRef => this.cubicRef[i] = cubicRef }>
                                             { divs }
                                         </div>
                                     </div>
                                     <input type='button' value='擲骰'
-                                    name={ 'cube' + i } className='cube'
-                                    data-confirm={ply.uid}
+                                    name={ 'cube' + i } className='cube' ref={ cubeRef => this.cubeRef[i] = cubeRef }
+                                    data-confirm={ ply.uid }
                                     onClick={ (e) => this.rollingDice(e, i, ply.offset.curr) } />
                                 </div>
                             </div>
                         )
                     })}
                     </form>
+                </div>
+                <label id="eventBackground" htmlFor="eventShower"></label>
+                <div id='eventWrap'>
+                <Event findSpot={ findSpot } cellRefs={ cellRefs } plyInfoRefs={ this.plyInfoRefs }
+                 eventTriggerRef={ eventTriggerRef } eventTriggerBtnRef={ eventTriggerBtnRef }
+                />
                 </div>
             </footer>
         )

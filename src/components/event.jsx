@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from "react-router";
 
 import '../css/style.css';
 import '../css/event.css';
@@ -9,30 +10,22 @@ class Event extends Component {
         super(props)
     }
 
-    // enterKeyHandler(e, plyList, isTurn) {
-    //     e.preventDefault();
-    //     if(e.key === 'Enter' && plyList[isTurn].type === 'ply') {
-    //         document.querySelector('#eventTrigger > button').click();
-    //         () => this.props.openCloseEvent(false);
-    //     }
-    // }
-
     eventMoveChessOneTime(isTurn, direction, currCellNum) {
-        let currCell = document.querySelectorAll('.cell')[currCellNum];
+        let currCell = this.props.cellRefs[currCellNum];
         // 因為跟骰骰子的前進後退用不一樣的條件，又再寫一個 function 來處理命運機會的移動棋子
         // 抓下一格的定位 span，改 redux 裡的座標
         let nextCell = null;
         direction ? nextCell = currCell.nextSibling : nextCell = currCell.previousSibling;
         // console.log('動一次', '方向', direction, '目前格', currCell, '下一格', nextCell);
-        let nextSpot = this.props.findSpot(nextCell.querySelectorAll('span')[isTurn]);
+        let nextSpot = this.props.findSpot(nextCell.firstChild.childNodes[isTurn]);
         this.props.updateOffset(isTurn, nextSpot);
     }
 
     eventMoveChessManyTimes(e, move, isTurn, direction, currCellNum) {
         e.preventDefault();
         this.props.openCloseEvent(false);
-        if (isTurn >= document.plyZone.length) {
-            isTurn = isTurn % document.plyZone.length;
+        if (isTurn >= 4) {
+            isTurn = isTurn % 4;
         }
         if (direction) {
             // 前進
@@ -55,16 +48,16 @@ class Event extends Component {
         // 關閉 checkbox → 修改 Redux 裡 PlyList[isTurn].inJail = true（坐牢狀態）
         this.props.inOutJail(isTurn);
         // 顯示坐牢 UI
-        document.querySelectorAll('.plyInfo')[isTurn].classList.add('plyInJail');
+        this.props.plyInfoRefs[isTurn].classList.add('plyInJail');
         // 換下一人（之後回去 playerUI 寫判斷說如果 inJail 是 true 要跳過這人）
-        this.props.updateTurn(isTurn + 1);    
+        this.props.updateTurn(isTurn + 1);
     }
 
     eventTellKnowledge(e, isTurn) {
         e.preventDefault();
         this.props.openCloseEvent(false);
-        if (isTurn >= document.plyZone.length) {
-            isTurn = isTurn % document.plyZone.length;
+        if (isTurn >= 4) {
+            isTurn = isTurn % 4;
         }
         // 換下一人
         this.props.updateTurn(isTurn + 1);
@@ -76,6 +69,7 @@ class Event extends Component {
         let plyListArr = unRankArr.sort((a, b) => (b.offset.curr - a.offset.curr))
                          .map( (pla, i) => { pla.index = i; return pla });
         this.props.ranking(plyListArr);
+        this.props.history.push("/ranking");
     }
 
     render() {
@@ -83,10 +77,10 @@ class Event extends Component {
             isTurn,
             plyList,
             cell,
-            checked
+            eventTriggerRef,
+            eventTriggerBtnRef
         } = this.props;
-
-        console.log(cell[0].ref);
+        
         // 需要： 1. isTurn 數字（當棋子的 index，找到正在玩的玩家棋子）
         // 2. offset.curr（找到正站在哪格）
 
@@ -113,17 +107,17 @@ class Event extends Component {
                     <img src={ theEvent.visual } />
                 </div>
                 <p id='eventDesc'>{ theEvent.description }</p> {/* { theEvent.description } */}
-                <div id='eventTrigger'>
+                <div id='eventTrigger' ref={ eventTriggerRef }>
                 {/* <button className="eventBtn">測試</button> */}
-                    { theEvent.type === 'foward' && <button className="eventBtn" onClick={ (e) => this.eventMoveChessManyTimes(e, theEvent.move, isTurn, theEvent.direction, theCellNum) }>確認</button> }
-                    { theEvent.type === 'back' && <button className="eventBtn" onClick={ (e) => this.eventMoveChessManyTimes(e, theEvent.move, isTurn, theEvent.direction, theCellNum) }>確認</button> }
-                    { theEvent.type === 'jail' && <button className="eventBtn" onClick={ (e) => this.eventJail(e, isTurn) }>確認</button> }
-                    { theEvent.type === 'knowledge' && <button className="eventBtn" onClick={ (e) => this.eventTellKnowledge(e, isTurn) }>確認</button> }            
-                    { theEvent.type === 'goal' && <button onClick={ (e) => this.eventRanking(e)} className="eventBtn"><NavLink to='/ranking'>確認</NavLink></button> }            
+                    { theEvent.type === 'foward' && <button ref={ eventTriggerBtnRef } className="eventBtn" onClick={ (e) => this.eventMoveChessManyTimes(e, theEvent.move, isTurn, theEvent.direction, theCellNum) }>確認</button> }
+                    { theEvent.type === 'back' && <button ref={ eventTriggerBtnRef } className="eventBtn" onClick={ (e) => this.eventMoveChessManyTimes(e, theEvent.move, isTurn, theEvent.direction, theCellNum) }>確認</button> }
+                    { theEvent.type === 'jail' && <button ref={ eventTriggerBtnRef } className="eventBtn" onClick={ (e) => this.eventJail(e, isTurn) }>確認</button> }
+                    { theEvent.type === 'knowledge' && <button ref={ eventTriggerBtnRef } className="eventBtn" onClick={ (e) => this.eventTellKnowledge(e, isTurn) }>確認</button> }            
+                    { theEvent.type === 'goal' && <button ref={ eventTriggerBtnRef } onClick={ (e) => this.eventRanking(e)} className="eventBtn"><NavLink to='/ranking'>確認</NavLink></button> }            
                 </div>
             </div>
         )
     }
 }
 
-export default Event;
+export default withRouter(Event);

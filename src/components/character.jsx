@@ -110,7 +110,7 @@ class Character extends Component {
 
   render() {
     const {
-      plyList, character, spin, bodyWidth
+      plyList, character, spin
     } = this.props;
     return(
       <div id="character">
@@ -164,7 +164,7 @@ class Character extends Component {
                     </div>
                   <div id='drawLotsAction'>
                     <button id='drawLotsBtn' onClick={ (e) => { this.drawLots(e) }}>抽籤</button>
-                    <button id='gameStartLink'><NavLink to='/game'>遊戲開始</NavLink></button>
+                    <button id='gameStartLink' ref={ this.gameStartLinkRef }><NavLink to='/game'>遊戲開始</NavLink></button>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ class Character extends Component {
           <div id='charaDecide'>
               { plyList.map((d, i) => {
                 return (
-                  <div key={i} data-confirm={d.uid} className='elect' ref={ electRef => this.electRef[i] = electRef }>
+                  <div key={i} className='elect' ref={ electRef => this.electRef[i] = electRef }>
                     { d.type === 'ply' && <p>玩家</p> }
                     { d.type === 'npc' && <p>NPC</p> }
                     <Spring

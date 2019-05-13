@@ -1,4 +1,4 @@
 #### Ennichi-Sugoroku ver. HANABI β
-> Webpack + React + React Router + CSS Grid
+> Webpack + React + React Router + Redux + CSS Grid
 
-Demo：
+Demo：https://julieliao.github.io/Ennichi-Sugoroku/

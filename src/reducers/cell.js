@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 const initialState = {
     bodyWidth: document.body.clientWidth,
     cell: [
@@ -8,8 +6,7 @@ const initialState = {
             visualCell: require('../img/cellS.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 1,
@@ -23,16 +20,14 @@ const initialState = {
                              'HANABI，也是來自日語，指煙火，煙火是日本夏日風情的象徵。因此，緣日雙六 - HANABI -，就如其名是一款以夏日祭典為主題的日式大富翁遊戲。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 2,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 3,
@@ -44,8 +39,7 @@ const initialState = {
                 description: '買完東西後把錢包忘在攤位上，急忙跑回去找老闆拿，後退 1 格。',
                 move: 1,
                 direction: false
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 4,
@@ -57,16 +51,14 @@ const initialState = {
                 description: '轉轉樂抽到頭獎，獲得名車一台，前進 3 格。',
                 move: 3,
                 direction: true
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 5,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 6,
@@ -78,16 +70,14 @@ const initialState = {
                 description: '與路邊惡犬對到眼，被牠追趕，後退 1 格',
                 move: 1,
                 direction: false
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 7,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 8,
@@ -101,8 +91,7 @@ const initialState = {
                              '夏日夜晚氣候涼爽適合民眾外出觀賞煙火，煙火製造商也為了競爭誰家的煙火好，積極參與。此後在夏天舉行煙火大會祭典就演變成一個習俗了。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 9,
@@ -114,8 +103,7 @@ const initialState = {
                 description: '遭到數名漁夫包圍，一時之間無法脫身，休息 1 次。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 10,
@@ -127,16 +115,14 @@ const initialState = {
                 description: '平常鮮少運動的你心血來潮的跑去騎 U-Bike 兜風，前進 1 格',
                 move: 1,
                 direction: true
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 11,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 12,
@@ -148,16 +134,14 @@ const initialState = {
                 description: '好心幫助迷路的小妹妹找家人，路人卻誤會你是誘拐犯，被帶去警局喝咖啡，休息 1 次。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 13,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 14,
@@ -169,16 +153,14 @@ const initialState = {
                 description: '開開心心的吃著路邊攤美食，突然一隻會飛的「黑色流星」襲來，驚嚇不已，倒退 1 格',
                 move: 1,
                 direction: false
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 15,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 16,
@@ -190,8 +172,7 @@ const initialState = {
                 description: '無意中撞見唐傘小僧，雖然祂只是混入人群中享受祭典氣氛，你還是嚇得魂飛魄散，倒退 3 格。',
                 move: 3,
                 direction: false
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 17,
@@ -203,8 +184,7 @@ const initialState = {
                 description: '聽說前方不遠處有名牌精品包包跳樓大拍賣，但走了好久都沒看見，前進 2 格。',
                 move: 2,
                 direction: true
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 18,
@@ -219,16 +199,14 @@ const initialState = {
                              '人們為了讚賞自己認為最美麗的煙火，就會高喊煙火商的商號助威。這種加油號子就一直流傳到了現在。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 19,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 20,
@@ -240,8 +218,7 @@ const initialState = {
                 description: '行經一個桌上擺放水晶球的攤位，攤主婆婆將你叫住，擅自替你進行了一連串的占卜，休息一次。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 21,
@@ -256,8 +233,7 @@ const initialState = {
                              '根據風的強度與拿法的改變，煙火維持的時間也會不同。那細緻的風情可說是日本傳統美的代表。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 22,
@@ -269,16 +245,14 @@ const initialState = {
                 description: '朋友說他知道一處欣賞煙火的好景點，雖然雙腳已開始痠痛，但你們還是不辭辛勞的走了過去，前進 1 格。',
                 move: 1,
                 direction: true
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 23,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 24,
@@ -290,8 +264,7 @@ const initialState = {
                 description: '你的偶像男神喬裝成一般民眾外出逛街被你發現，你立刻上前攀談，聊得太開心休息 1 次。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 25,
@@ -303,8 +276,7 @@ const initialState = {
                 description: '吃了烤玉米、刨冰、烤魷魚、蘋果糖 … 等等各式祭典美食，心靈感到療癒滿足，前進 2 格。',
                 move: 2,
                 direction: true
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 26,
@@ -317,16 +289,14 @@ const initialState = {
                              '「土星」、「銀冠菊」、「錦冠菊」、「柳」、「蜂」都是打上花火的一種。',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 27,
             visualCell: require('../img/cellNull.png'),
             event: {
                 type: null
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 28,
@@ -338,8 +308,7 @@ const initialState = {
                 description: '不慎踩到香蕉皮，跌進一旁的手推車，沒想到路面傾斜，在手推車裡的你隨著斜坡高速滑行，路人紛紛閃避，所幸最後撞到一塊廢棄床墊後停下，無人傷亡但後退 5 格。',
                 move: 5,
                 direction: false
-            },
-            ref: React.createRef()
+            }
         },
         {
             index: 29,
@@ -351,8 +320,7 @@ const initialState = {
                 description: '恭喜～!!!',
                 move: 0,
                 direction: null
-            },
-            ref: React.createRef()
+            }
         }
     ]
 }
@@ -362,7 +330,7 @@ const cellReducer = (state = initialState, action) => {
         case 'UPDATE_BODY_WIDTH':
             const newBodyWidth = action.payload.newBodyWidth;   
             return {...state, bodyWidth: newBodyWidth};
-
+            
         default:
             return state;
     }

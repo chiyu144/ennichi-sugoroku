@@ -3,20 +3,23 @@ import React, { Component } from 'react';
 import '../css/style.css';
 import '../css/game.css';
 
-import Map from './map';
-import Chess from '../containers/chess';
+import Cell from './cell';
+import Chess from './chess';
 import PlayerUI from '../containers/playerUI';
-import Event from '../containers/event';
 class Game extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.gameRef = React.createRef();
+    this.chessRefs = [];
+    this.cellRefs = [];
+    this.eventTriggerRef = React.createRef();
+    this.eventTriggerBtnRef = React.createRef();
   }
-
   componentDidMount() {
-    let chesses = document.querySelectorAll('.chess');
-    let startCorners = document.querySelectorAll('.cytoplasm')[0].querySelectorAll('span');
+    let chesses = this.chessRefs;
+    let startCorners = this.cellRefs[0].firstChild.childNodes;
     chesses.forEach((chess, i) => {
-      this.setChessPosition(chess, startCorners[i], i);
+      this.setChessPosition(startCorners[i], i);
     })
     window.addEventListener("resize", () => { this.props.updateBodyWidth(document.body.offsetWidth) });
   }
@@ -31,7 +34,7 @@ class Game extends Component {
     return { curr: curr, x: rect.left + window.pageXOffset, y: rect.top + window.pageYOffset } 
   }
 
-  setChessPosition(chess, corner, i) {
+  setChessPosition(corner, i) {
     let spot = this.findSpot(corner);
     this.props.updateOffset(i, spot);
   }
@@ -41,24 +44,23 @@ class Game extends Component {
     let prevChecked = prevProps.checked;
     let nextChecked = this.props.checked;
     let playing = this.props.plyList[this.props.isTurn];
-    let theEventType = this.props.cell[playing.offset.curr].event.type;
 
     if (nextChecked !== prevChecked) {
       if (nextChecked === true) {
+        // window、body 不屬於 React 管轄範圍，所以以下有寫到的地方就用原生 JavaScript 寫。
         let scrollWidth = window.innerWidth - document.body.clientWidth;
-        document.querySelector('#game').style.marginRight = scrollWidth + 'px';
+        this.gameRef.current.style.marginRight = scrollWidth + 'px';
         document.body.style.overflow = 'hidden';
         
         if (playing.type === 'npc') {
-          document.querySelector('#eventTrigger').style.pointerEvents = 'none';
-          if (theEventType === 'goal') setTimeout(() => { document.querySelector('#eventTrigger a').click() }, 2000)
-          else setTimeout(() => { document.querySelector('#eventTrigger > button').click() }, 2000);
+          this.eventTriggerRef.current.style.pointerEvents = 'none';
+          setTimeout(() => { this.eventTriggerBtnRef.current.click() }, 2000);
         } else if (playing.type === 'ply') {
-          document.querySelector('#eventTrigger').style.pointerEvents = 'auto'
+          this.eventTriggerRef.current.style.pointerEvents = 'auto'
         }
 
       } else {
-        document.querySelector('#game').style.marginRight = 0;
+        this.gameRef.current.style.marginRight = 0;
         document.body.style.overflow = 'auto';
       }
     }
@@ -76,34 +78,49 @@ class Game extends Component {
 
   render() {
     const {
-      checked
+      checked,
+      plyList,
+      cell
     } = this.props;
-
     return(
-      <div id="game">
-        <Chess />
+      <div id="game" ref={ this.gameRef }>
+        { plyList.map((ply, i) => {
+          return(
+            <Chess key={i} chessRef={ chessRef => this.chessRefs[i] = chessRef } 
+                  uid={ ply.uid } offset={ ply.offset } icon={ ply.icon }
+            />
+          )
+        })}
         <input type="checkbox" id="eventShower" checked={ checked } onChange={ this.props.openCloseEvent }></input>
         <div id='board'>
-          {/* <p>Game Start</p> */}
-          <Map />
-            <ul className="circles">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-            </ul>
+          <div id='map'>
+            <div id='cellContainer'>
+              { cell.map(( c, i ) => {
+                return(
+                  <Cell key={i} curr={ c.index } visualCell={ c.visualCell }
+                        cellRef={ cellRef => this.cellRefs[i] = cellRef }
+                  />
+                )
+              })}
+            </div>
+          </div>
+          <ul className="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
         </div>
-        <PlayerUI findSpot={ this.findSpot } setChessPosition={ this.setChessPosition }/>
-        <label id="eventBackground" htmlFor="eventShower"></label>
-        <div id='eventWrap'>
-          <Event findSpot={ this.findSpot }/>
-        </div>
+        <PlayerUI findSpot={ this.findSpot } setChessPosition={ this.setChessPosition }
+                  cellRefs={ this.cellRefs } chessRefs={ this.chessRefs }
+                  eventTriggerRef={ this.eventTriggerRef } eventTriggerBtnRef={ this.eventTriggerBtnRef }
+        />
       </div>
     )
   }

@@ -4,30 +4,25 @@ import '../css/style.css';
 import '../css/cell.css';
 
 class Cell extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const {
-      cell
+      cellRef,
+      visualCell,
+      curr
     } = this.props;
     return(
-      cell.map((c, i) => {
-        return (
-          <div key={i} data-curr={c.index} className='cell' ref={ c.ref }>
-              <label htmlFor='eventShower' className='cytoplasm' style={ { backgroundImage: `url(${c.visualCell})` } }>
-                {/* <p>{c.index + " " + c.event.type}</p> */}
-                {/* <img src={ c.visualCell }></img> */}
-                <span className='upperL'></span>
-                <span className='upperR'></span>
-                <span className='lowerR'></span>
-                <span className='lowerL'></span>
-              </label>
-          </div>
-      )})
+      <div className='cell' data-curr={ curr }
+            ref={ cellRef } >
+          <label htmlFor='eventShower' className='cytoplasm'
+            style={ { backgroundImage: `url(${visualCell})` } }>
+            <span className='upperL'></span>
+            <span className='upperR'></span>
+            <span className='lowerR'></span>
+            <span className='lowerL'></span>
+          </label>
+      </div>
     )
   }
 }
-  
+ 
 export default Cell;

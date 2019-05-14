@@ -6,7 +6,6 @@ import PlayerUI from '../components/playerUI';
 
 const mapStateToProps = state => {
     return {
-        // Some State
         isTurn: state.character.isTurn,
         plyList: state.character.plyList,
         cell: state.cell.cell,
@@ -16,7 +15,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // Some Action
         updateOutcome: (who, newOutcome) => dispatch(actions.updateOutcome(who, newOutcome)),
         updateOffset: (which, newOffset) => dispatch(actions.updateOffset(which, newOffset)),
         updateTurn: (next) => dispatch(actions.updateTurn(next)),

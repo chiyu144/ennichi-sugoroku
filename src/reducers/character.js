@@ -176,9 +176,8 @@ const characterReducer = (state = initialState, action) => {
             prison[inmate].inJail = !prison[inmate].inJail;
             return {...state, plyList: prison}
 
-        case 'RANKING':
-            const plyListArr = action.payload.plyListArr;
-            return {...state, plyList: plyListArr}
+        case 'RESET_GAME':
+            return state = {...initialState};
 
         default:
             return state;

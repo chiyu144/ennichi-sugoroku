@@ -28,18 +28,9 @@ class Game extends Component {
   }
 
   componentWillUnmount() {
+    // 觸發重設 State 的 Action（玩一半跳出遊戲畫面 ex. 重整 or 上一頁，就必須重玩）
+    this.props.resetGame();
     window.removeEventListener("resize", () => { this.props.updateBodyWidth(document.body.offsetWidth) });
-  }
-
-  findSpot(corner) {
-    let rect = corner.getBoundingClientRect();
-    let curr = corner.parentNode.parentNode.getAttribute('data-curr');
-    return { curr: curr, x: rect.left + window.pageXOffset, y: rect.top + window.pageYOffset } 
-  }
-
-  setChessPosition(corner, i) {
-    let spot = this.findSpot(corner);
-    this.props.updateOffset(i, spot);
   }
 
   componentDidUpdate(prevProps) {
@@ -77,6 +68,17 @@ class Game extends Component {
         this.setChessPosition(this.cellRefs[curr].firstChild.childNodes[i], i);
       })
     }
+  }
+
+  findSpot(corner) {
+    let rect = corner.getBoundingClientRect();
+    let curr = corner.parentNode.parentNode.getAttribute('data-curr');
+    return { curr: curr, x: rect.left + window.pageXOffset, y: rect.top + window.pageYOffset } 
+  }
+
+  setChessPosition(corner, i) {
+    let spot = this.findSpot(corner);
+    this.props.updateOffset(i, spot);
   }
 
   render() {

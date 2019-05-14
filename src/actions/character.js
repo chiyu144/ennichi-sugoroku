@@ -61,9 +61,8 @@ export const inOutJail = (inmate) => {
     }
 }
 
-export const ranking = (plyListArr) => {
+export const resetGame = () => {
     return {
-        type: 'RANKING',
-        payload: { plyListArr: plyListArr }
+        type: 'RESET_GAME'
     }
 }

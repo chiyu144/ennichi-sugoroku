@@ -19,7 +19,8 @@ const mapDispatchToProps = dispatch => {
     return {
         updateOffset: (which, newOffset) => dispatch(actions.updateOffset(which, newOffset)),
         openCloseEvent: (toggle) => dispatch(eventActions.openCloseEvent(toggle)),
-        updateBodyWidth: (newBodyWidth) => dispatch(cellActions.updateBodyWidth(newBodyWidth))
+        updateBodyWidth: (newBodyWidth) => dispatch(cellActions.updateBodyWidth(newBodyWidth)),
+        resetGame: () => dispatch(actions.resetGame())
     }
 }
   

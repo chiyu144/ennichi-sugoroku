@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
-// import * as actions from '../actions/character';
+import * as eventActions from '../actions/event';
 
 import Ranking from '../components/ranking';
 
 const mapStateToProps = state => {
     return {
-        plyList: state.character.plyList, 
+        rankList: state.event.rankList, 
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        // setPlyNum: (person) => dispatch(actions.setPlyNum(person)),
+        resetRank: () => dispatch(eventActions.resetRank())
     }
 }
 

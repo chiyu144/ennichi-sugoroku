@@ -4,3 +4,16 @@ export const openCloseEvent = (toggle) => {
         payload: { toggle: toggle }
     }
 }
+
+export const ranking = (plyListArr) => {
+    return {
+        type: 'RANKING',
+        payload: { plyListArr: plyListArr }
+    }
+}
+
+export const resetRank = () => {
+    return {
+        type: 'RESET_RANK'
+    }
+}

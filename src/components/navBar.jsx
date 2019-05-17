@@ -16,7 +16,7 @@ import Ranking from '../containers/ranking';
 
 const NavBar = () => {
   return (
-    <BrowserRouter> {/* basename={'/Ennichi-Sugoroku'} */}
+    <BrowserRouter basename={'/Ennichi-Sugoroku'}> {/* basename={'/Ennichi-Sugoroku'} */}
       <nav>
         <div className='navItem'>
           <NavLink to='/'></NavLink>

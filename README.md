@@ -1,4 +1,3 @@
-#### Ennichi-Sugoroku ver. HANABI β
-> Webpack + React + React Router + Redux + CSS Grid
+#### Ennichi-Sugoroku HANABI verβ
 
-Demo：https://julieliao.github.io/Ennichi-Sugoroku/
+> AppWorks School 2019 Spring Web Class (Front-end) Personal Project

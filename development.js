@@ -1,5 +1,5 @@
-import path from 'path'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const src  = path.resolve(__dirname, 'src')
 const dist = path.resolve(__dirname, 'dist')
@@ -7,7 +7,6 @@ const dist = path.resolve(__dirname, 'dist')
 export default {
     mode: 'development',
     entry: src + '/index.jsx',
-
     output: {
         path: dist,
         filename: 'bundle.js'
@@ -16,7 +15,7 @@ export default {
     module: {
     rules: [
         {
-            test: /\.jsx$/,
+            test: /\.(jsx|js)$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         },

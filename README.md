@@ -14,4 +14,4 @@ Ennichi-Sugoroku is A Japanese summer festival theme web-based board game which 
 
 > [縁日雙六 - HANABI -｜Julie](https://julieliao.github.io/Ennichi-Sugoroku)
 
-![STYLiSH ScreenShot01](https://raw.github.com/julieliao/Ennichi-Sugoroku/master/sample/sample-index.png)
+![STYLiSH ScreenShot01](https://raw.github.com/julieliao/Ennichi-Sugoroku/master/sample/sample-intro.png)

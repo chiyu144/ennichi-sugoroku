@@ -13,19 +13,19 @@ Ennichi-Sugoroku is A Japanese summer festival theme web-based board game which 
 
 > [縁日雙六 - HANABI -｜Julie](https://julieliao.github.io/Ennichi-Sugoroku)
 
-#### Intro
-- Users can choose how many players would NPC will 
+#### Intro 
 
 ![STYLiSH ScreenShot01](https://raw.github.com/julieliao/Ennichi-Sugoroku/master/sample/sample-intro.png)
 
-#### Choose Character & Drawlots
-- in order
+#### Choose character & Decide turn order
+- Choose character you want to be and decide turn order by draw lots.
+
 ![STYLiSH ScreenShot01](https://raw.github.com/julieliao/Ennichi-Sugoroku/master/sample/sample-choose.png)
 
 #### Game Start
-- Event
+
 ![STYLiSH ScreenShot01](https://raw.github.com/julieliao/Ennichi-Sugoroku/master/sample/sample-game.png)
 
 #### Ranking
-- Goal
+
 ![STYLiSH ScreenShot01](https://raw.github.com/julieliao/Ennichi-Sugoroku/master/sample/sample-ranking.png)

@@ -19,7 +19,7 @@ Ennichi-Sugoroku is A Japanese summer festival theme web-based board game which 
 ![STYLiSH ScreenShot01](https://raw.github.com/julieliao/Ennichi-Sugoroku/master/sample/sample-intro.png)
 
 #### Choose character & Decide turn order
-- Choose a character you want to be and decide turn order by draw lots. ( Choose character for NPC too! )
+- Choose a character you want to be and decide turn order by draw lots. ( Choose character for NPC too ! )
 
 ![STYLiSH ScreenShot01](https://raw.github.com/julieliao/Ennichi-Sugoroku/master/sample/sample-choose.png)
 

@@ -16,7 +16,7 @@ import Ranking from '../containers/ranking';
 
 const NavBar = () => {
   return (
-    <BrowserRouter basename={'/Ennichi-Sugoroku'}> {/* basename={'/Ennichi-Sugoroku'} */}
+    <HashRouter> {/* 如果用 BrowserRouter 要加 basename={'/Ennichi-Sugoroku'} */}
       <nav>
         <div className='navItem'>
           <NavLink to='/'></NavLink>
@@ -29,7 +29,7 @@ const NavBar = () => {
         <Route path='/game' render={ () => <Game /> } />
         <Route path='/ranking' render={ () => <Ranking /> } />
       </ScrollToTop>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

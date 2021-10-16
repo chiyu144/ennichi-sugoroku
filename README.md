@@ -9,10 +9,6 @@ Ennichi-Sugoroku is A Japanese summer festival theme web-based board game which 
 | React, Router, Redux         | CSS & DOM Animation        | Single Page Application  |
 | Module bundling with Webpack | UI, UX design              | Responsive Web Design    |
 
-### Play Ennichi-Sugoroku now !
-
-> [縁日雙六 - HANABI -｜Julie](https://julieliao.github.io/Ennichi-Sugoroku)
-
 #### Intro
 - There will be 4 players a round. If you can't find 4 people to play with, NPC will join in automatically.
 

@@ -1,5 +1,4 @@
 #### Ennichi Sugoroku
-
 <div align="center">
   <img src="https://github.com/chiyu144/ennichi-sugoroku/assets/45845170/c254caa6-b31f-4fe3-8342-4750445525d8" alt="ennichi-sugoroku-logo"/>
 </div>

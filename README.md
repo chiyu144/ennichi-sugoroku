@@ -4,7 +4,7 @@
 </div>
 <br />
 <div align="center">
-  a web board game with a Japanese summer festival theme
+  A web board game with a Japanese summer festival theme
 </div>
 
 #### Live Demo
